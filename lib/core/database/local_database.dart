@@ -6,13 +6,17 @@ class LocalDatabase {
   late final Isar _isar;
   bool _isInitialized = false;
 
+  //Creamos un getter para obtener la base de datos de Isar y lanzar un error si no se ha inicializado
   Isar get db => _isInitialized ? _isar : throw IsarError('Isar not initialized');
 
   Future<void> initialize() async{
+    //Verificamos si la base de datos ya ha sido inicializada
     if(_isInitialized) throw IsarError('Isar has already been initialized.');
 
+    //Obtenemos el directorio de la aplicación
     final directory = await getApplicationDocumentsDirectory();
-
+    
+    // Inicializamos la base de datos de Isar con las colecciones y el directorio de la aplicación
     // _isar = await Isar.open([MovieDetailCollectionSchema], directory.path);
 
     _isInitialized = true;
