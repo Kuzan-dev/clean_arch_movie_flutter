@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/util/cast.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/util/review.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/season.dart';
 
 class TvShowDetailsEntity extends Equatable {
@@ -16,8 +14,6 @@ class TvShowDetailsEntity extends Equatable {
   final double? voteAverage;
   final String? voteCount;
   final String? trailerUrl;
-  final List<CastEntity>? cast;
-  final List<ReviewEntity>? reviews;
   final List<SeasonEntity>? seasons;
 
   const TvShowDetailsEntity({
@@ -33,8 +29,6 @@ class TvShowDetailsEntity extends Equatable {
     this.voteAverage,
     this.voteCount,
     this.trailerUrl,
-    this.cast,
-    this.reviews,
     this.seasons,
   });
 
@@ -52,8 +46,6 @@ class TvShowDetailsEntity extends Equatable {
         voteAverage,
         voteCount,
         trailerUrl,
-        cast,
-        reviews,
         seasons,
       ];
 }
