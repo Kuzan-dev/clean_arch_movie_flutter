@@ -1,7 +1,6 @@
-
 import 'package:clean_arch_movie_flutter/domain/entities/media/media.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/tv_show/episode.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/tv_show/season.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/tv_show/episode_details.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/tv_show/season_details.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/util/cast.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/util/review.dart';
 import 'package:equatable/equatable.dart';
@@ -48,26 +47,25 @@ class MediaDetailEntity extends Equatable {
     this.isSaved = false,
   });
 
-
   @override
   List<Object?> get props => [
-    id,
-    title,
-    posterUrl,
-    backdropUrl,
-    releaseDate,
-    lastEpisodeToAir,
-    genres,
-    runtime,
-    numberOfSeasons,
-    overview,
-    voteAverage,
-    voteCount,
-    trailerUrl,
-    cast,
-    reviews,
-    seasons,
-    similar,
-    isSaved,
-  ];
+        id,
+        title,
+        posterUrl,
+        backdropUrl,
+        releaseDate,
+        lastEpisodeToAir,
+        genres,
+        runtime,
+        numberOfSeasons,
+        overview,
+        voteAverage,
+        voteCount,
+        trailerUrl,
+        cast,
+        reviews,
+        seasons,
+        similar,
+        isSaved,
+      ];
 }
