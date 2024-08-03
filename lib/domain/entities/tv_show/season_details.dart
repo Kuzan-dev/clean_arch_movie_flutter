@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 class SeasonDetailsEntity extends Equatable {
   final int? tmdbID;
   final String? name;
-  final int? episodeCount;
   final String? airDate;
   final String? overview;
   final String? posterUrl;
@@ -12,7 +11,6 @@ class SeasonDetailsEntity extends Equatable {
   const SeasonDetailsEntity({
     required this.tmdbID,
     required this.name,
-    required this.episodeCount,
     required this.airDate,
     required this.overview,
     required this.posterUrl,
@@ -23,7 +21,6 @@ class SeasonDetailsEntity extends Equatable {
   List<Object?> get props => [
         tmdbID,
         name,
-        episodeCount,
         airDate,
         overview,
         posterUrl,

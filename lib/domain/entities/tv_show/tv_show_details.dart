@@ -6,7 +6,7 @@ class TvShowDetailsEntity extends Equatable {
   final String? posterUrl;
   final String? backdropUrl;
   final String? releaseDate;
-  final String? genres;
+  final List<String>? genres;
   final String? runtime;
   final int? numberOfSeasons;
   final String? overview;
