@@ -1,15 +1,32 @@
 import 'package:equatable/equatable.dart';
-import './episode.dart';
 
-class SeasonDetailEntity extends Equatable {
-  final List<EpisodeEntity> episodes;
+class SeasonDetailsEntity extends Equatable {
+  final int? tmdbID;
+  final String? name;
+  final int? episodeCount;
+  final String? airDate;
+  final String? overview;
+  final String? posterUrl;
+  final int? seasonNumber;
 
-  const SeasonDetailEntity({
-    required this.episodes,
+  const SeasonDetailsEntity({
+    required this.tmdbID,
+    required this.name,
+    required this.episodeCount,
+    required this.airDate,
+    required this.overview,
+    required this.posterUrl,
+    required this.seasonNumber,
   });
 
   @override
   List<Object?> get props => [
-        episodes,
+        tmdbID,
+        name,
+        episodeCount,
+        airDate,
+        overview,
+        posterUrl,
+        seasonNumber,
       ];
 }
