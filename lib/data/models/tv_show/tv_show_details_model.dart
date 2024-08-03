@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/_mappers/entity_convertable.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
 
-part 'tv_show_details.g.dart';
+part 'tv_show_details_model.g.dart';
 
 @JsonSerializable()
 class TvShowDetailsModel extends Equatable

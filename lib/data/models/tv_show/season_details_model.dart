@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'package:clean_arch_movie_flutter/data/datasources/_mappers/entity_convertable.dart';
 
-part 'season_details.g.dart';
+part 'season_details_model.g.dart';
 
 @JsonSerializable()
 class SeasonDetailsModel extends Equatable

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tv_show_details.dart';
+part of 'tv_show_details_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

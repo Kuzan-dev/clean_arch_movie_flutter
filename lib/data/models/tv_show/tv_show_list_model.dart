@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/_mappers/entity_convertable.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_list.dart';
-import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_details.dart';
+import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_details_model.dart';
 
-part 'tv_show_list.g.dart';
+part 'tv_show_list_model.g.dart';
 
 @JsonSerializable()
 class TvShowListModel extends Equatable
