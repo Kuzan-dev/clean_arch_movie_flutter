@@ -1,11 +1,13 @@
+
+import 'package:clean_arch_movie_flutter/domain/entities/media/media.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/episode.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/season.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/util/cast.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/util/review.dart';
 import 'package:equatable/equatable.dart';
 
-
-class MediaEntity extends Equatable {
+// ignore: must_be_immutable
+class MediaDetailEntity extends Equatable {
   final int? id;
   final String? title;
   final String? posterUrl;
@@ -22,8 +24,10 @@ class MediaEntity extends Equatable {
   final List<CastEntity>? cast;
   final List<ReviewEntity>? reviews;
   final List<SeasonEntity>? seasons;
+  final List<MediaEntity>? similar;
+  bool isSaved;
 
-  const MediaEntity({
+  MediaDetailEntity({
     this.id,
     this.title,
     this.posterUrl,
@@ -40,25 +44,30 @@ class MediaEntity extends Equatable {
     this.cast,
     this.reviews,
     this.seasons,
+    this.similar,
+    this.isSaved = false,
   });
+
 
   @override
   List<Object?> get props => [
-        id,
-        title,
-        posterUrl,
-        backdropUrl,
-        releaseDate,
-        lastEpisodeToAir,
-        genres,
-        runtime,
-        numberOfSeasons,
-        overview,
-        voteAverage,
-        voteCount,
-        trailerUrl,
-        cast,
-        reviews,
-        seasons,
-      ];
+    id,
+    title,
+    posterUrl,
+    backdropUrl,
+    releaseDate,
+    lastEpisodeToAir,
+    genres,
+    runtime,
+    numberOfSeasons,
+    overview,
+    voteAverage,
+    voteCount,
+    trailerUrl,
+    cast,
+    reviews,
+    seasons,
+    similar,
+    isSaved,
+  ];
 }

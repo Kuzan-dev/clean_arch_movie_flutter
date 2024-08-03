@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import './episode.dart';
 
-class SeasonDetails extends Equatable {
-  final List<Episode> episodes;
+class SeasonDetailEntity extends Equatable {
+  final List<EpisodeEntity> episodes;
 
-  const SeasonDetails({
+  const SeasonDetailEntity({
     required this.episodes,
   });
 
