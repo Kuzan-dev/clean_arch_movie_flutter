@@ -1,4 +1,3 @@
-import 'package:clean_arch_movie_flutter/domain/entities/movies/movie_details.dart';
 import 'package:equatable/equatable.dart';
 
 class ActorDetailEntity extends Equatable {
