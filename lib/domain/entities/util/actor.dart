@@ -6,15 +6,12 @@ class ActorDetailEntity extends Equatable {
   final String? name;
   final String? birthday;
   final String? profileUrl;
-  final List<MovieDetailsEntity>? movies;
-
 
   const ActorDetailEntity({
     this.name,
     this.profileUrl,
     this.birthday,
     this.id,
-    this.movies,
   });
 
   @override
@@ -23,6 +20,5 @@ class ActorDetailEntity extends Equatable {
         profileUrl,
         birthday,
         id,
-        movies,
       ];
 }
