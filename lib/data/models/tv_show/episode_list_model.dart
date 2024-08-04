@@ -9,10 +9,12 @@ part 'episode_list_model.g.dart';
 @JsonSerializable()
 class EpisodeListModel extends Equatable
     with EntityConvertible<EpisodeListModel, EpisodeListEntity> {
+  final int? id;
   @JsonKey(name: 'results')
   final List<EpisodeDetailsModel>? episodes;
 
   EpisodeListModel({
+    required this.id,
     required this.episodes,
   });
 
@@ -23,11 +25,13 @@ class EpisodeListModel extends Equatable
 
   @override
   List<Object?> get props => [
+        id,
         episodes,
       ];
 
   @override
   EpisodeListEntity toEntity() => EpisodeListEntity(
+        id: id.toString(),
         episodes: episodes?.map((e) => e.toEntity()).toList(),
       );
 }

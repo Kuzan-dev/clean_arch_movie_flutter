@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class EpisodeDetailEntity extends Equatable {
+  final int? id;
   final int? number;
   final int? season;
   final String? name;
@@ -9,6 +10,7 @@ class EpisodeDetailEntity extends Equatable {
   final String? airDate;
 
   const EpisodeDetailEntity({
+    required this.id,
     required this.number,
     required this.season,
     required this.name,
@@ -19,6 +21,7 @@ class EpisodeDetailEntity extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         number,
         season,
         name,

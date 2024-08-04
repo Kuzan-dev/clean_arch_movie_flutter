@@ -8,6 +8,7 @@ part 'episode_details_model.g.dart';
 @JsonSerializable()
 class EpisodeDetailsModel extends Equatable
     with EntityConvertible<EpisodeDetailsModel, EpisodeDetailEntity> {
+  final int? id;
   @JsonKey(name: 'episode_number')
   final int? number;
   @JsonKey(name: 'season_number')
@@ -20,6 +21,7 @@ class EpisodeDetailsModel extends Equatable
   final String? airDate;
 
   EpisodeDetailsModel({
+    required this.id,
     required this.number,
     required this.season,
     required this.name,
@@ -34,11 +36,19 @@ class EpisodeDetailsModel extends Equatable
   Map<String, dynamic> toJson() => _$EpisodeDetailsModelToJson(this);
 
   @override
-  List<Object?> get props =>
-      [number, season, name, runtime, stillPath, airDate];
+  List<Object?> get props => [
+        id,
+        number,
+        season,
+        name,
+        runtime,
+        stillPath,
+        airDate,
+      ];
 
   @override
   EpisodeDetailEntity toEntity() => EpisodeDetailEntity(
+        id: id,
         number: number,
         season: season,
         name: name,

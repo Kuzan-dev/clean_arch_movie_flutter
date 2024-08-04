@@ -8,6 +8,7 @@ part of 'episode_details_model.dart';
 
 EpisodeDetailsModel _$EpisodeDetailsModelFromJson(Map<String, dynamic> json) =>
     EpisodeDetailsModel(
+      id: (json['id'] as num?)?.toInt(),
       number: (json['episode_number'] as num?)?.toInt(),
       season: (json['season_number'] as num?)?.toInt(),
       name: json['name'] as String?,
@@ -19,6 +20,7 @@ EpisodeDetailsModel _$EpisodeDetailsModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$EpisodeDetailsModelToJson(
         EpisodeDetailsModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'episode_number': instance.number,
       'season_number': instance.season,
       'name': instance.name,
