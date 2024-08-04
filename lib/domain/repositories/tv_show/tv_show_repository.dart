@@ -1,7 +1,7 @@
 import 'package:clean_arch_movie_flutter/core/exceptions/database_exception.dart';
 import 'package:clean_arch_movie_flutter/core/exceptions/network_exception.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/episode_details.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/tv_show/episode_list.dart';
+
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/season_details.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_credit.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
@@ -26,12 +26,8 @@ abstract class TvShowRepository {
   Future<Either<NetworkException, SeasonDetailsEntity>> getSeasonDetails(
       {required int tvShowId, required int seasonNumber});
 
-  /// Recupera la lista de episodios de una serie específica del servidor.
-  Future<Either<NetworkException, EpisodeDetailEntity>> getEpisodeList(
-      {required int tvShowId, required int seasonNumber});
-
   ///  Recupera la lista de episodios de una serie específica del servidor.
-  Future<Either<NetworkException, EpisodeListEntity>> getEpisodeDetails(
+  Future<Either<NetworkException, EpisodeDetailEntity>> getEpisodeDetails(
       {required int tvShowId,
       required int seasonNumber,
       required int episodeNumber});

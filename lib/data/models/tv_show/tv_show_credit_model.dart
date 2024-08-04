@@ -3,7 +3,6 @@ import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_credit.
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/_mappers/entity_convertable.dart';
-import 'package:clean_arch_movie_flutter/data/models/util/cast_model.dart';
 
 part 'tv_show_credit_model.g.dart';
 

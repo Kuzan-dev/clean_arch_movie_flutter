@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/tv_show/episode_details.dart';
 
 class SeasonDetailsEntity extends Equatable {
   final int? tmdbID;
@@ -7,6 +8,7 @@ class SeasonDetailsEntity extends Equatable {
   final String? overview;
   final String? posterUrl;
   final int? seasonNumber;
+  final List<EpisodeDetailEntity>? episodes;
 
   const SeasonDetailsEntity({
     required this.tmdbID,
@@ -15,6 +17,7 @@ class SeasonDetailsEntity extends Equatable {
     required this.overview,
     required this.posterUrl,
     required this.seasonNumber,
+    required this.episodes,
   });
 
   @override
@@ -25,5 +28,6 @@ class SeasonDetailsEntity extends Equatable {
         overview,
         posterUrl,
         seasonNumber,
+        episodes,
       ];
 }

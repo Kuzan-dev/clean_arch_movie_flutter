@@ -1,6 +1,7 @@
 import 'package:clean_arch_movie_flutter/core/network/dio_client.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/remote/tv_show/tv_show_data_souce.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/episode_details_model.dart';
+
 import 'package:clean_arch_movie_flutter/data/models/tv_show/season_details_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_credit_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_list_model.dart';
@@ -97,7 +98,6 @@ class TvShowRemoteDataSourceImpl implements TvShowRemoteDataSource {
           .replaceAll('{series_id}', tvShowId.toString())
           .replaceAll('{season_number}', seasonNumber.toString())
           .replaceAll('{episode_number}', episodeNumber.toString()));
-
       final model =
           EpisodeDetailsModel.fromJson(response.data as Map<String, dynamic>);
 

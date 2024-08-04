@@ -1,3 +1,4 @@
+import 'package:clean_arch_movie_flutter/data/models/tv_show/episode_details_model.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/season_details.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -19,6 +20,8 @@ class SeasonDetailsModel extends Equatable
   final String? posterUrl;
   @JsonKey(name: 'season_number')
   final int? seasonNumber;
+  @JsonKey(name: 'episodes')
+  final List<EpisodeDetailsModel>? episodes;
 
   SeasonDetailsModel({
     required this.tmdbID,
@@ -27,6 +30,7 @@ class SeasonDetailsModel extends Equatable
     required this.overview,
     required this.posterUrl,
     required this.seasonNumber,
+    required this.episodes,
   });
 
   factory SeasonDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -42,6 +46,7 @@ class SeasonDetailsModel extends Equatable
         overview,
         posterUrl,
         seasonNumber,
+        episodes,
       ];
 
   @override
@@ -52,5 +57,6 @@ class SeasonDetailsModel extends Equatable
         overview: overview,
         posterUrl: posterUrl,
         seasonNumber: seasonNumber,
+        episodes: episodes?.map((e) => e.toEntity()).toList(),
       );
 }

@@ -14,6 +14,9 @@ SeasonDetailsModel _$SeasonDetailsModelFromJson(Map<String, dynamic> json) =>
       overview: json['overview'] as String?,
       posterUrl: json['poster_path'] as String?,
       seasonNumber: (json['season_number'] as num?)?.toInt(),
+      episodes: (json['episodes'] as List<dynamic>?)
+          ?.map((e) => EpisodeDetailsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$SeasonDetailsModelToJson(SeasonDetailsModel instance) =>
@@ -24,4 +27,5 @@ Map<String, dynamic> _$SeasonDetailsModelToJson(SeasonDetailsModel instance) =>
       'overview': instance.overview,
       'poster_path': instance.posterUrl,
       'season_number': instance.seasonNumber,
+      'episodes': instance.episodes,
     };
