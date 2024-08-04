@@ -121,7 +121,7 @@ class TvShowRepositoryImpl implements TvShowRepository {
     try {
       final result = await _localDataSource.saveTvShowDetails(
         tvShowDetailsCollection:
-            TvShowDetailsCollection().fromEntity(tvShowDetails!),
+            TvShowDetailsCollection().fromEntity(tvShowDetails),
       );
 
       return Right(result);

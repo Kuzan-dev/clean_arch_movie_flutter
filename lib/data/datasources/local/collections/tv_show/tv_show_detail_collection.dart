@@ -55,20 +55,20 @@ class TvShowDetailsCollection
   }
 
   @override
-  TvShowDetailsCollection fromEntity(TvShowDetailsEntity model) {
+  TvShowDetailsCollection fromEntity(TvShowDetailsEntity? model) {
     return TvShowDetailsCollection(
-      id: model.id,
-      title: model.title,
-      posterUrl: model.posterUrl,
-      backdropUrl: model.backdropUrl,
-      releaseDate: model.releaseDate,
-      genres: model.genres,
-      runtime: model.runtime,
-      numberOfSeasons: model.numberOfSeasons,
-      overview: model.overview,
-      voteAverage: model.voteAverage,
-      voteCount: model.voteCount,
-      trailerUrl: model.trailerUrl,
+      id: model?.id,
+      title: model?.title,
+      posterUrl: model?.posterUrl,
+      backdropUrl: model?.backdropUrl,
+      releaseDate: model?.releaseDate,
+      genres: model?.genres,
+      runtime: model?.runtime,
+      numberOfSeasons: model?.numberOfSeasons,
+      overview: model?.overview,
+      voteAverage: model?.voteAverage,
+      voteCount: model?.voteCount,
+      trailerUrl: model?.trailerUrl,
     );
   }
 }
