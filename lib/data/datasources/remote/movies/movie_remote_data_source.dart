@@ -9,5 +9,5 @@ abstract class MovieRemoteDataSource {
 
   Future<MovieDetailsModel>getMovieDetails({required int movieId});
 
-  Future<List<MovieDetailsModel>>getSimilarMovies({required int movieId, required int page});
+  Future<MovieListModel>getSimilarMovies({required int movieId, required int page});
 }

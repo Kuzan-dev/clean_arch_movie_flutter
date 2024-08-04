@@ -19,7 +19,7 @@ abstract class MovieRepository {
       {required int movieId});
 
   // Get similar movies
-  Future<Either<NetworkException, List<MovieDetailsEntity>>> getSimilarMovies(
+  Future<Either<NetworkException, MovieListEntity>> getSimilarMovies(
       {required int movieId, required int page});
 
   //Data Local
