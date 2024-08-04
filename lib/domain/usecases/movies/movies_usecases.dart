@@ -52,9 +52,9 @@ abstract class MoviesUsecases {
       return left(error);
     }, (isSaved) {
       if (isSaved) {
-        return _repository.removeMovieDetail(movieId: movieDetailsEntity?.id);
+        return _repository.removeMovieDetails(movieId: movieDetailsEntity?.id);
       } else {
-        return _repository.saveMovieDetail(
+        return _repository.saveMovieDetails(
             movieDetailsEntity: movieDetailsEntity);
       }
     });

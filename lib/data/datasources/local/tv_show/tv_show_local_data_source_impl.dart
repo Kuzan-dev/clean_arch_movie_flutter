@@ -25,10 +25,10 @@ class TvShowLocalDataSourceImpl implements TvShowLocalDataSource {
   ///Guarda los detalles de las series de televisión en el local data source.
 
   @override
-  Future<List<TvShowDetailCollection>> getSavedTvShowDetails() async {
+  Future<List<TvShowDetailsCollection>> getSavedTvShowDetails() async {
     try {
       final list =
-          await localDatabase.db.tvShowDetailCollections.where().findAll();
+          await localDatabase.db.tvShowDetailsCollections.where().findAll();
       return list;
     } catch (_) {
       rethrow;
@@ -39,7 +39,7 @@ class TvShowLocalDataSourceImpl implements TvShowLocalDataSource {
   Future<bool> isTvShowSaved({required int tvShowId}) async {
     try {
       final db = localDatabase.db;
-      final result = await db.tvShowDetailCollections
+      final result = await db.tvShowDetailsCollections
           .filter()
           .idEqualTo(tvShowId)
           .isNotEmpty();
@@ -51,11 +51,11 @@ class TvShowLocalDataSourceImpl implements TvShowLocalDataSource {
 
   @override
   Future<void> saveTvShowDetails(
-      {required TvShowDetailCollection tvShowDetailsCollection}) async {
+      {required TvShowDetailsCollection tvShowDetailsCollection}) async {
     try {
       final db = localDatabase.db;
       await db.writeTxn(() async {
-        db.tvShowDetailCollections.put(tvShowDetailsCollection);
+        db.tvShowDetailsCollections.put(tvShowDetailsCollection);
       });
     } catch (_) {
       rethrow;

@@ -6,8 +6,8 @@ import 'package:isar/isar.dart';
 part 'tv_show_detail_collection.g.dart';
 
 @Collection()
-class TvShowDetailCollection
-    with EntityConvertible<TvShowDetailCollection, TvShowDetailsEntity> {
+class TvShowDetailsCollection
+    with EntityConvertible<TvShowDetailsCollection, TvShowDetailsEntity> {
   final Id? id;
   final String? title;
   final String? posterUrl;
@@ -21,7 +21,7 @@ class TvShowDetailCollection
   final String? voteCount;
   final String? trailerUrl;
 
-  TvShowDetailCollection({
+  TvShowDetailsCollection({
     this.id,
     this.title,
     this.posterUrl,
@@ -55,8 +55,8 @@ class TvShowDetailCollection
   }
 
   @override
-  TvShowDetailCollection fromEntity(TvShowDetailsEntity model) {
-    return TvShowDetailCollection(
+  TvShowDetailsCollection fromEntity(TvShowDetailsEntity model) {
+    return TvShowDetailsCollection(
       id: model.id,
       title: model.title,
       posterUrl: model.posterUrl,

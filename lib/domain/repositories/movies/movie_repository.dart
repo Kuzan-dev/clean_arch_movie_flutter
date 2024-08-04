@@ -28,11 +28,11 @@ abstract class MovieRepository {
       getFavoriteMovies();
 
   //Save a movie detail as favorite
-  Future<Either<DatabaseException, void>> saveMovieDetail(
+  Future<Either<DatabaseException, void>> saveMovieDetails(
       {required MovieDetailsEntity? movieDetailsEntity});
 
   //Remove a movie detail from favorite
-  Future<Either<DatabaseException, void>> removeMovieDetail(
+  Future<Either<DatabaseException, void>> removeMovieDetails(
       {required int? movieId});
 
   //Check if a movie detail is favorite

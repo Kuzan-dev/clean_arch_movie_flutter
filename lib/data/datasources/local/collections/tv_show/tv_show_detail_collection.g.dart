@@ -9,14 +9,14 @@ part of 'tv_show_detail_collection.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetTvShowDetailCollectionCollection on Isar {
-  IsarCollection<TvShowDetailCollection> get tvShowDetailCollections =>
+extension GetTvShowDetailsCollectionCollection on Isar {
+  IsarCollection<TvShowDetailsCollection> get tvShowDetailsCollections =>
       this.collection();
 }
 
-const TvShowDetailCollectionSchema = CollectionSchema(
-  name: r'TvShowDetailCollection',
-  id: -3303684775043858697,
+const TvShowDetailsCollectionSchema = CollectionSchema(
+  name: r'TvShowDetailsCollection',
+  id: -9123046991954096452,
   properties: {
     r'backdropUrl': PropertySchema(
       id: 0,
@@ -74,22 +74,22 @@ const TvShowDetailCollectionSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _tvShowDetailCollectionEstimateSize,
-  serialize: _tvShowDetailCollectionSerialize,
-  deserialize: _tvShowDetailCollectionDeserialize,
-  deserializeProp: _tvShowDetailCollectionDeserializeProp,
+  estimateSize: _tvShowDetailsCollectionEstimateSize,
+  serialize: _tvShowDetailsCollectionSerialize,
+  deserialize: _tvShowDetailsCollectionDeserialize,
+  deserializeProp: _tvShowDetailsCollectionDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _tvShowDetailCollectionGetId,
-  getLinks: _tvShowDetailCollectionGetLinks,
-  attach: _tvShowDetailCollectionAttach,
+  getId: _tvShowDetailsCollectionGetId,
+  getLinks: _tvShowDetailsCollectionGetLinks,
+  attach: _tvShowDetailsCollectionAttach,
   version: '3.1.0+1',
 );
 
-int _tvShowDetailCollectionEstimateSize(
-  TvShowDetailCollection object,
+int _tvShowDetailsCollectionEstimateSize(
+  TvShowDetailsCollection object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -157,8 +157,8 @@ int _tvShowDetailCollectionEstimateSize(
   return bytesCount;
 }
 
-void _tvShowDetailCollectionSerialize(
-  TvShowDetailCollection object,
+void _tvShowDetailsCollectionSerialize(
+  TvShowDetailsCollection object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -176,13 +176,13 @@ void _tvShowDetailCollectionSerialize(
   writer.writeString(offsets[10], object.voteCount);
 }
 
-TvShowDetailCollection _tvShowDetailCollectionDeserialize(
+TvShowDetailsCollection _tvShowDetailsCollectionDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = TvShowDetailCollection(
+  final object = TvShowDetailsCollection(
     backdropUrl: reader.readStringOrNull(offsets[0]),
     genres: reader.readStringList(offsets[1]),
     id: id,
@@ -199,7 +199,7 @@ TvShowDetailCollection _tvShowDetailCollectionDeserialize(
   return object;
 }
 
-P _tvShowDetailCollectionDeserializeProp<P>(
+P _tvShowDetailsCollectionDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -233,21 +233,21 @@ P _tvShowDetailCollectionDeserializeProp<P>(
   }
 }
 
-Id _tvShowDetailCollectionGetId(TvShowDetailCollection object) {
+Id _tvShowDetailsCollectionGetId(TvShowDetailsCollection object) {
   return object.id ?? Isar.autoIncrement;
 }
 
-List<IsarLinkBase<dynamic>> _tvShowDetailCollectionGetLinks(
-    TvShowDetailCollection object) {
+List<IsarLinkBase<dynamic>> _tvShowDetailsCollectionGetLinks(
+    TvShowDetailsCollection object) {
   return [];
 }
 
-void _tvShowDetailCollectionAttach(
-    IsarCollection<dynamic> col, Id id, TvShowDetailCollection object) {}
+void _tvShowDetailsCollectionAttach(
+    IsarCollection<dynamic> col, Id id, TvShowDetailsCollection object) {}
 
-extension TvShowDetailCollectionQueryWhereSort
-    on QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QWhere> {
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterWhere>
+extension TvShowDetailsCollectionQueryWhereSort
+    on QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QWhere> {
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterWhere>
       anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -255,9 +255,9 @@ extension TvShowDetailCollectionQueryWhereSort
   }
 }
 
-extension TvShowDetailCollectionQueryWhere on QueryBuilder<
-    TvShowDetailCollection, TvShowDetailCollection, QWhereClause> {
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+extension TvShowDetailsCollectionQueryWhere on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QWhereClause> {
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
@@ -267,7 +267,7 @@ extension TvShowDetailCollectionQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
@@ -290,7 +290,7 @@ extension TvShowDetailCollectionQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -299,7 +299,7 @@ extension TvShowDetailCollectionQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -308,7 +308,7 @@ extension TvShowDetailCollectionQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
@@ -326,9 +326,9 @@ extension TvShowDetailCollectionQueryWhere on QueryBuilder<
   }
 }
 
-extension TvShowDetailCollectionQueryFilter on QueryBuilder<
-    TvShowDetailCollection, TvShowDetailCollection, QFilterCondition> {
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+extension TvShowDetailsCollectionQueryFilter on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QFilterCondition> {
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -337,7 +337,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -346,7 +346,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -360,7 +360,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlGreaterThan(
     String? value, {
     bool include = false,
@@ -376,7 +376,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlLessThan(
     String? value, {
     bool include = false,
@@ -392,7 +392,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlBetween(
     String? lower,
     String? upper, {
@@ -412,7 +412,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -426,7 +426,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -440,7 +440,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       backdropUrlContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -452,7 +452,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       backdropUrlMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -464,7 +464,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -474,7 +474,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> backdropUrlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -484,7 +484,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -493,7 +493,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -502,7 +502,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -516,7 +516,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementGreaterThan(
     String value, {
     bool include = false,
@@ -532,7 +532,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementLessThan(
     String value, {
     bool include = false,
@@ -548,7 +548,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementBetween(
     String lower,
     String upper, {
@@ -568,7 +568,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -582,7 +582,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -596,7 +596,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       genresElementContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -608,7 +608,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       genresElementMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -620,7 +620,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -630,7 +630,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresElementIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -640,7 +640,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
@@ -653,7 +653,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
@@ -666,7 +666,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
@@ -679,7 +679,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresLengthLessThan(
     int length, {
     bool include = false,
@@ -695,7 +695,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresLengthGreaterThan(
     int length, {
     bool include = false,
@@ -711,7 +711,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> genresLengthBetween(
     int lower,
     int upper, {
@@ -729,7 +729,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> idIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -738,7 +738,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> idIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -747,7 +747,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -757,7 +757,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> idGreaterThan(
     Id? value, {
     bool include = false,
@@ -771,7 +771,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> idLessThan(
     Id? value, {
     bool include = false,
@@ -785,7 +785,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> idBetween(
     Id? lower,
     Id? upper, {
@@ -803,7 +803,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> numberOfSeasonsIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -812,7 +812,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> numberOfSeasonsIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -821,7 +821,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> numberOfSeasonsEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -831,7 +831,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> numberOfSeasonsGreaterThan(
     int? value, {
     bool include = false,
@@ -845,7 +845,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> numberOfSeasonsLessThan(
     int? value, {
     bool include = false,
@@ -859,7 +859,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> numberOfSeasonsBetween(
     int? lower,
     int? upper, {
@@ -877,7 +877,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -886,7 +886,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -895,7 +895,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -909,7 +909,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewGreaterThan(
     String? value, {
     bool include = false,
@@ -925,7 +925,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewLessThan(
     String? value, {
     bool include = false,
@@ -941,7 +941,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewBetween(
     String? lower,
     String? upper, {
@@ -961,7 +961,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -975,7 +975,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -989,7 +989,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       overviewContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1001,7 +1001,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       overviewMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1013,7 +1013,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1023,7 +1023,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> overviewIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1033,7 +1033,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1042,7 +1042,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1051,7 +1051,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1065,7 +1065,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlGreaterThan(
     String? value, {
     bool include = false,
@@ -1081,7 +1081,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlLessThan(
     String? value, {
     bool include = false,
@@ -1097,7 +1097,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlBetween(
     String? lower,
     String? upper, {
@@ -1117,7 +1117,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1131,7 +1131,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1145,7 +1145,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       posterUrlContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1157,7 +1157,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       posterUrlMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1169,7 +1169,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1179,7 +1179,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> posterUrlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1189,7 +1189,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1198,7 +1198,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1207,7 +1207,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1221,7 +1221,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateGreaterThan(
     String? value, {
     bool include = false,
@@ -1237,7 +1237,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateLessThan(
     String? value, {
     bool include = false,
@@ -1253,7 +1253,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateBetween(
     String? lower,
     String? upper, {
@@ -1273,7 +1273,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1287,7 +1287,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1301,7 +1301,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       releaseDateContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1313,7 +1313,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       releaseDateMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1325,7 +1325,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1335,7 +1335,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> releaseDateIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1345,7 +1345,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1354,7 +1354,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1363,7 +1363,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1377,7 +1377,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeGreaterThan(
     String? value, {
     bool include = false,
@@ -1393,7 +1393,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeLessThan(
     String? value, {
     bool include = false,
@@ -1409,7 +1409,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeBetween(
     String? lower,
     String? upper, {
@@ -1429,7 +1429,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1443,7 +1443,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1457,7 +1457,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       runtimeContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1469,7 +1469,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       runtimeMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1481,7 +1481,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1491,7 +1491,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> runtimeIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1501,7 +1501,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1510,7 +1510,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1519,7 +1519,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1533,7 +1533,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleGreaterThan(
     String? value, {
     bool include = false,
@@ -1549,7 +1549,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleLessThan(
     String? value, {
     bool include = false,
@@ -1565,7 +1565,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleBetween(
     String? lower,
     String? upper, {
@@ -1585,7 +1585,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1599,7 +1599,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1613,7 +1613,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       titleContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1625,7 +1625,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       titleMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1637,7 +1637,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1647,7 +1647,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> titleIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1657,7 +1657,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1666,7 +1666,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1675,7 +1675,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1689,7 +1689,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlGreaterThan(
     String? value, {
     bool include = false,
@@ -1705,7 +1705,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlLessThan(
     String? value, {
     bool include = false,
@@ -1721,7 +1721,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlBetween(
     String? lower,
     String? upper, {
@@ -1741,7 +1741,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1755,7 +1755,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -1769,7 +1769,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       trailerUrlContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1781,7 +1781,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       trailerUrlMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1793,7 +1793,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1803,7 +1803,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> trailerUrlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1813,7 +1813,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteAverageIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1822,7 +1822,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteAverageIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1831,7 +1831,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteAverageEqualTo(
     double? value, {
     double epsilon = Query.epsilon,
@@ -1845,7 +1845,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteAverageGreaterThan(
     double? value, {
     bool include = false,
@@ -1861,7 +1861,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteAverageLessThan(
     double? value, {
     bool include = false,
@@ -1877,7 +1877,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteAverageBetween(
     double? lower,
     double? upper, {
@@ -1897,7 +1897,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1906,7 +1906,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1915,7 +1915,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountEqualTo(
     String? value, {
     bool caseSensitive = true,
@@ -1929,7 +1929,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountGreaterThan(
     String? value, {
     bool include = false,
@@ -1945,7 +1945,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountLessThan(
     String? value, {
     bool include = false,
@@ -1961,7 +1961,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountBetween(
     String? lower,
     String? upper, {
@@ -1981,7 +1981,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1995,7 +1995,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountEndsWith(
     String value, {
     bool caseSensitive = true,
@@ -2009,7 +2009,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       voteCountContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2021,7 +2021,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
           QAfterFilterCondition>
       voteCountMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2033,7 +2033,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -2043,7 +2043,7 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection,
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
       QAfterFilterCondition> voteCountIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -2054,148 +2054,148 @@ extension TvShowDetailCollectionQueryFilter on QueryBuilder<
   }
 }
 
-extension TvShowDetailCollectionQueryObject on QueryBuilder<
-    TvShowDetailCollection, TvShowDetailCollection, QFilterCondition> {}
+extension TvShowDetailsCollectionQueryObject on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QFilterCondition> {}
 
-extension TvShowDetailCollectionQueryLinks on QueryBuilder<
-    TvShowDetailCollection, TvShowDetailCollection, QFilterCondition> {}
+extension TvShowDetailsCollectionQueryLinks on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QFilterCondition> {}
 
-extension TvShowDetailCollectionQuerySortBy
-    on QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QSortBy> {
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+extension TvShowDetailsCollectionQuerySortBy
+    on QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QSortBy> {
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByBackdropUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'backdropUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByBackdropUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'backdropUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByNumberOfSeasons() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'numberOfSeasons', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByNumberOfSeasonsDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'numberOfSeasons', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByOverview() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'overview', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByOverviewDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'overview', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByPosterUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'posterUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByPosterUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'posterUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByReleaseDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'releaseDate', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByReleaseDateDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'releaseDate', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByRuntime() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'runtime', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByRuntimeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'runtime', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByTitleDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByTrailerUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'trailerUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByTrailerUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'trailerUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByVoteAverage() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteAverage', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByVoteAverageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteAverage', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByVoteCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteCount', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       sortByVoteCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteCount', Sort.desc);
@@ -2203,156 +2203,156 @@ extension TvShowDetailCollectionQuerySortBy
   }
 }
 
-extension TvShowDetailCollectionQuerySortThenBy on QueryBuilder<
-    TvShowDetailCollection, TvShowDetailCollection, QSortThenBy> {
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+extension TvShowDetailsCollectionQuerySortThenBy on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QSortThenBy> {
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByBackdropUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'backdropUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByBackdropUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'backdropUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByNumberOfSeasons() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'numberOfSeasons', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByNumberOfSeasonsDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'numberOfSeasons', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByOverview() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'overview', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByOverviewDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'overview', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByPosterUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'posterUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByPosterUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'posterUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByReleaseDate() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'releaseDate', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByReleaseDateDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'releaseDate', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByRuntime() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'runtime', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByRuntimeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'runtime', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByTitleDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByTrailerUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'trailerUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByTrailerUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'trailerUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByVoteAverage() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteAverage', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByVoteAverageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteAverage', Sort.desc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByVoteCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteCount', Sort.asc);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QAfterSortBy>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
       thenByVoteCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteCount', Sort.desc);
@@ -2360,79 +2360,79 @@ extension TvShowDetailCollectionQuerySortThenBy on QueryBuilder<
   }
 }
 
-extension TvShowDetailCollectionQueryWhereDistinct
-    on QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct> {
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+extension TvShowDetailsCollectionQueryWhereDistinct on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QDistinct> {
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByBackdropUrl({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'backdropUrl', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByGenres() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'genres');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByNumberOfSeasons() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'numberOfSeasons');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByOverview({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'overview', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByPosterUrl({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'posterUrl', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByReleaseDate({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'releaseDate', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByRuntime({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'runtime', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByTitle({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'title', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByTrailerUrl({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'trailerUrl', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByVoteAverage() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'voteAverage');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, TvShowDetailCollection, QDistinct>
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
       distinctByVoteCount({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'voteCount', caseSensitive: caseSensitive);
@@ -2440,85 +2440,85 @@ extension TvShowDetailCollectionQueryWhereDistinct
   }
 }
 
-extension TvShowDetailCollectionQueryProperty on QueryBuilder<
-    TvShowDetailCollection, TvShowDetailCollection, QQueryProperty> {
-  QueryBuilder<TvShowDetailCollection, int, QQueryOperations> idProperty() {
+extension TvShowDetailsCollectionQueryProperty on QueryBuilder<
+    TvShowDetailsCollection, TvShowDetailsCollection, QQueryProperty> {
+  QueryBuilder<TvShowDetailsCollection, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       backdropUrlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'backdropUrl');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, List<String>?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, List<String>?, QQueryOperations>
       genresProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'genres');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, int?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, int?, QQueryOperations>
       numberOfSeasonsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'numberOfSeasons');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       overviewProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'overview');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       posterUrlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'posterUrl');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       releaseDateProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'releaseDate');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       runtimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'runtime');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       trailerUrlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'trailerUrl');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, double?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, double?, QQueryOperations>
       voteAverageProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'voteAverage');
     });
   }
 
-  QueryBuilder<TvShowDetailCollection, String?, QQueryOperations>
+  QueryBuilder<TvShowDetailsCollection, String?, QQueryOperations>
       voteCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'voteCount');

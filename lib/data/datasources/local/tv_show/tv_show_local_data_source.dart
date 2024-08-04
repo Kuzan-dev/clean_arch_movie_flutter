@@ -5,7 +5,7 @@ abstract class TvShowLocalDataSource {
 
   ///Guarda los detalles de las series de televisión en el local data source.
   Future<void> saveTvShowDetails(
-      {required TvShowDetailCollection tvShowDetailsCollection});
+      {required TvShowDetailsCollection tvShowDetailsCollection});
 
   ///Elimina los detalles de las series de televisión del local data source.
   Future<void> deleteTvShowDetails({required int tvShowId});
@@ -15,5 +15,5 @@ abstract class TvShowLocalDataSource {
   Future<bool> isTvShowSaved({required int tvShowId});
 
   ///Recupera la lista de series de televisión guardadas en el local data source.
-  Future<List<TvShowDetailCollection>> getSavedTvShowDetails();
+  Future<List<TvShowDetailsCollection>> getSavedTvShowDetails();
 }
