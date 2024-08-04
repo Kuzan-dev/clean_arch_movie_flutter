@@ -7,24 +7,29 @@ import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_list_model.
 abstract class TvShowRemoteDataSource {
   //* Fuente de datos remota
   /// Devuelve una lista de series de televisión mejor valoradas de la fuerente de datos remota.
-  Future<TvShowListModel> getTopRatedTvShows(int page);
+  Future<TvShowListModel> getTopRatedTvShows({required int page});
 
   /// Devuelve una lista de series de televisión populares de la fuente de datos remota.
-  Future<TvShowListModel> getPopularTvShows(int page);
+  Future<TvShowListModel> getPopularTvShows({required int page});
 
   /// Devuelve los créditos de una serie de televisión específica de la fuente de datos remota.
-  Future<TvShowCreditModel> getTvShowCredit(int tvShowId);
+  Future<TvShowCreditModel> getTvShowCredit({required int tvShowId});
 
   /// Devuelve los detalles de una temporada de una serie de televisión específica de la fuente de datos remota.
-  Future<SeasonDetailsModel> getSeasonDetails(int tvShowId, int seasonNumber);
+  Future<SeasonDetailsModel> getSeasonDetails(
+      {required int tvShowId, required int seasonNumber});
 
   /// Devuelve la lista de episodios de una serie de televisión específica de la fuente de datos remota.
-  Future<EpisodeDetailsModel> getEpisodeList(int tvShowId, int seasonNumber);
+  Future<EpisodeDetailsModel> getEpisodeList(
+      {required int tvShowId, required int seasonNumber});
 
   ///  Devuelve los detalles de un episodio de una serie de televisión específica de la fuente de datos remota.
   Future<EpisodeListModel> getEpisodeDetails(
-      int tvShowId, int seasonNumber, int episodeNumber);
+      {required int tvShowId,
+      required int seasonNumber,
+      required int episodeNumber});
 
   /// Devuelve una lista de series de televisión similares a una serie de televisión específica de la fuente de datos remota.
-  Future<TvShowListModel> getSimilarTvShows(int tvShowId, int page);
+  Future<TvShowListModel> getSimilarTvShows(
+      {required int tvShowId, required int page});
 }

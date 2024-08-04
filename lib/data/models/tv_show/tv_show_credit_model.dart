@@ -1,3 +1,4 @@
+import 'package:clean_arch_movie_flutter/data/models/util/cast_list_model.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_credit.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -11,7 +12,7 @@ class TvShowCreditModel extends Equatable
     with EntityConvertible<TvShowCreditModel, TvShowCreditEntity> {
   final int? id;
   @JsonKey(name: 'cast')
-  final List<CastModel>? cast;
+  final CastListModel? cast;
 
   TvShowCreditModel({
     required this.id,
@@ -29,6 +30,6 @@ class TvShowCreditModel extends Equatable
   @override
   TvShowCreditEntity toEntity() => TvShowCreditEntity(
         id: id,
-        cast: cast?.map((e) => e.toEntity()).toList(),
+        cast: cast?.toEntity(),
       );
 }

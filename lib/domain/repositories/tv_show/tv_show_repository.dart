@@ -12,31 +12,33 @@ abstract class TvShowRepository {
   //* Fuente de datos remota
   /// Recupera las series mejor valoradas del servidor.
   Future<Either<NetworkException, TvShowListEntity>> getTopRatedTvShows(
-      int page);
+      {required int page});
 
   /// Recupera las series populares del servidor.
   Future<Either<NetworkException, TvShowListEntity>> getPopularTvShows(
-      int page);
+      {required int page});
 
   /// Recupera los créditos de una película específica del servidor.
   Future<Either<NetworkException, TvShowCreditEntity>> getTvShowCredit(
-      int tvShowId);
+      {required int tvShowId});
 
   /// Recupera los detalles de una season de una serie específica del servidor.
   Future<Either<NetworkException, SeasonDetailsEntity>> getSeasonDetails(
-      int tvShowId, int seasonNumber);
+      {required int tvShowId, required int seasonNumber});
 
   /// Recupera la lista de episodios de una serie específica del servidor.
   Future<Either<NetworkException, EpisodeDetailEntity>> getEpisodeList(
-      int tvShowId, int seasonNumber);
+      {required int tvShowId, required int seasonNumber});
 
   ///  Recupera la lista de episodios de una serie específica del servidor.
   Future<Either<NetworkException, EpisodeListEntity>> getEpisodeDetails(
-      int tvShowId, int seasonNumber, int episodeNumber);
+      {required int tvShowId,
+      required int seasonNumber,
+      required int episodeNumber});
 
   /// Recupera las series de televisión que se parecen a una serie específica del servidor.
   Future<Either<NetworkException, TvShowListEntity>> getSimilarTvShows(
-      int tvShowId, int page);
+      {required int tvShowId, required int page});
 
   //* Local Data Source
   /// Recupera los detalles de la película guardada de la base de datos.

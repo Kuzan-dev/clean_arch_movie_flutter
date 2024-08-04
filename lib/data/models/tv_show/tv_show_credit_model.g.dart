@@ -9,9 +9,9 @@ part of 'tv_show_credit_model.dart';
 TvShowCreditModel _$TvShowCreditModelFromJson(Map<String, dynamic> json) =>
     TvShowCreditModel(
       id: (json['id'] as num?)?.toInt(),
-      cast: (json['cast'] as List<dynamic>?)
-          ?.map((e) => CastModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      cast: json['cast'] == null
+          ? null
+          : CastListModel.fromJson(json['cast'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TvShowCreditModelToJson(TvShowCreditModel instance) =>
