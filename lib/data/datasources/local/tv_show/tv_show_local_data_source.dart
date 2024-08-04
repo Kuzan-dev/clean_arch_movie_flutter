@@ -1,0 +1,17 @@
+import '../collections/tv_show/tv_show_detail_collection.dart';
+
+abstract class TvShowLocalDataSource {
+  ///Recupera la lista de series de televisión guardadas en el local data source.
+  Future<List<TvShowDetailCollection>> getSavedTvShowDetails();
+
+  ///Guarda los detalles de las series de televisión en el local data source.
+  Future<void> saveTvShowDetails(
+      {required TvShowDetailCollection tvShowDetails});
+
+  ///Elimina los detalles de las series de televisión del local data source.
+  Future<void> deleteTvShowDetails({required int tvShowId});
+
+  ///Verifica si la serie de televisión está guardada en el local data source.
+
+  Future<bool> isTvShowSaved({required int tvShowId});
+}

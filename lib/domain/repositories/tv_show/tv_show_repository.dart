@@ -37,19 +37,19 @@ abstract class TvShowRepository {
       {required int tvShowId, required int page});
 
   //* Local Data Source
-  /// Recupera los detalles de la película guardada de la base de datos.
+  /// Recupera la lista de series de televisión guardadas en la base de datos.
   Future<Either<DatabaseException, List<TvShowDetailsEntity>>>
-      getSavedMovieDetails();
+      getSavedTvShowDetails();
 
-  /// Guarda los detalles de la película en la base de datos.
+  /// Guarda los detalles de las series de televisión en la base de datos.
   Future<Either<DatabaseException, void>> saveTvShowDetails(
       {required TvShowDetailsEntity? tvShowDetails});
 
-  /// Elimina los detalles de la película de la base de datos.
+  /// Elimina los detalles de las series de televisión de la base de datos.
   Future<Either<DatabaseException, void>> deleteTvShowDetails(
       {required int tvShowId});
 
-  /// Verifica si la película está guardada en la base de datos.
+  /// Verifica si la serie de televisión está guardada en la base de datos.
   Future<Either<DatabaseException, bool>> isTvShowSaved(
       {required int tvShowId});
 }
