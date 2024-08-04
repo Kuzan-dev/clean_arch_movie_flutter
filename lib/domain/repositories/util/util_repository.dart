@@ -6,7 +6,7 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class UtilRepository {
   //Data Remota
-  // Get cast of a movie or tv show
+  // Get cast of a movie
   Future<Either<NetworkException, CastListEntity>> getCast({required int id});
 
   // Get actor details

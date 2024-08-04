@@ -23,5 +23,5 @@ class UrlConstants {
   //Actors
   static const actorDetails = '/person/{person_id}';
   static const actorMovies = '/person/{person_id}/movie_credits';
-  static const actorTvShows = '/person/{person_id}/tv_credits';
+  static const actorTvShows = '/person/{person_id}/tv_credits'; //Pendiente de implementar
 }
