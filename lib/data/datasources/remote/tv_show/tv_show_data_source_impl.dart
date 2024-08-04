@@ -4,6 +4,7 @@ import 'package:clean_arch_movie_flutter/data/models/tv_show/episode_details_mod
 
 import 'package:clean_arch_movie_flutter/data/models/tv_show/season_details_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_credit_model.dart';
+import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_details_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_list_model.dart';
 import 'package:clean_arch_movie_flutter/core/constants/url_constants.dart';
 
@@ -33,6 +34,20 @@ class TvShowRemoteDataSourceImpl implements TvShowRemoteDataSource {
           .get(UrlConstants.topRatedTvShows, queryParameters: {'page': page});
       final model =
           TvShowListModel.fromJson(response.data as Map<String, dynamic>);
+
+      return model;
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<TvShowDetailsModel> getTvShowDetails({required int tvShowId}) async {
+    try {
+      final response = await _dioClient.get(UrlConstants.tvShowDetails
+          .replaceAll('{series_id}', tvShowId.toString()));
+      final model =
+          TvShowDetailsModel.fromJson(response.data as Map<String, dynamic>);
 
       return model;
     } catch (_) {

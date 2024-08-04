@@ -1,12 +1,11 @@
-import '../collections/tv_show/tv_show_detail_collection.dart';
+import 'package:clean_arch_movie_flutter/data/datasources/local/collections/tv_show/tv_show_detail_collection.dart';
 
 abstract class TvShowLocalDataSource {
-  ///Recupera la lista de series de televisión guardadas en el local data source.
-  Future<List<TvShowDetailCollection>> getSavedTvShowDetails();
+  const TvShowLocalDataSource();
 
   ///Guarda los detalles de las series de televisión en el local data source.
   Future<void> saveTvShowDetails(
-      {required TvShowDetailCollection tvShowDetails});
+      {required TvShowDetailCollection tvShowDetailsCollection});
 
   ///Elimina los detalles de las series de televisión del local data source.
   Future<void> deleteTvShowDetails({required int tvShowId});
@@ -14,4 +13,7 @@ abstract class TvShowLocalDataSource {
   ///Verifica si la serie de televisión está guardada en el local data source.
 
   Future<bool> isTvShowSaved({required int tvShowId});
+
+  ///Recupera la lista de series de televisión guardadas en el local data source.
+  Future<List<TvShowDetailCollection>> getSavedTvShowDetails();
 }

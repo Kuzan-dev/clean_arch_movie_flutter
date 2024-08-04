@@ -51,11 +51,11 @@ class TvShowLocalDataSourceImpl implements TvShowLocalDataSource {
 
   @override
   Future<void> saveTvShowDetails(
-      {required TvShowDetailCollection tvShowDetails}) async {
+      {required TvShowDetailCollection tvShowDetailsCollection}) async {
     try {
       final db = localDatabase.db;
       await db.writeTxn(() async {
-        await db.tvShowDetailCollections.put(tvShowDetails);
+        db.tvShowDetailCollections.put(tvShowDetailsCollection);
       });
     } catch (_) {
       rethrow;

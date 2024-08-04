@@ -2,6 +2,7 @@ import 'package:clean_arch_movie_flutter/data/models/tv_show/episode_details_mod
 
 import 'package:clean_arch_movie_flutter/data/models/tv_show/season_details_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_credit_model.dart';
+import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_details_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/tv_show/tv_show_list_model.dart';
 
 abstract class TvShowRemoteDataSource {
@@ -11,6 +12,9 @@ abstract class TvShowRemoteDataSource {
 
   /// Devuelve una lista de series de televisión populares de la fuente de datos remota.
   Future<TvShowListModel> getPopularTvShows({required int page});
+
+  /// Devuelve los detalles de una serie de televisión específica de la fuente de datos remota.
+  Future<TvShowDetailsModel> getTvShowDetails({required int tvShowId});
 
   /// Devuelve los créditos de una serie de televisión específica de la fuente de datos remota.
   Future<TvShowCreditModel> getTvShowCredit({required int tvShowId});

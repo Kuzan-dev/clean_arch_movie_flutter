@@ -6,7 +6,7 @@ import 'package:clean_arch_movie_flutter/data/datasources/local/collections/movi
 
 class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   final LocalDatabase localDatabase;
-  
+
   MovieLocalDataSourceImpl(this.localDatabase);
 
   // Delete movie details from local database
@@ -14,28 +14,32 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   Future<void> deleteMovieDetails({required int? movieId}) async {
     try {
       final db = localDatabase.db;
-      await db.writeTxn(() async => db.movieDetailsCollections.filter().idEqualTo(movieId).deleteAll());
-    } catch(_) {
+      await db.writeTxn(() async =>
+          db.movieDetailsCollections.filter().idEqualTo(movieId).deleteAll());
+    } catch (_) {
       rethrow;
     }
   }
-  
+
   // Get saved movie details from local database
   @override
   Future<List<MovieDetailsCollection>> getSavedMovieDetails() async {
     try {
-      final list = await localDatabase.db.movieDetailsCollections.where().findAll();
+      final list =
+          await localDatabase.db.movieDetailsCollections.where().findAll();
       return list;
-    } catch (_){
+    } catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<void> saveMovieDetails({required MovieDetailsCollection movieDetailsCollection}) async {
-    try{
+  Future<void> saveMovieDetails(
+      {required MovieDetailsCollection movieDetailsCollection}) async {
+    try {
       final db = localDatabase.db;
-      await db.writeTxn(() => db.movieDetailsCollections.put(movieDetailsCollection));
+      await db.writeTxn(
+          () async => db.movieDetailsCollections.put(movieDetailsCollection));
     } catch (_) {
       rethrow;
     }
@@ -44,9 +48,12 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   // Check if movie details is saved in local database
   @override
   Future<bool> isSavedMovieDetails({required int? movieId}) async {
-    try{
+    try {
       final db = localDatabase.db;
-      final isSaved = await db.movieDetailsCollections.filter().idEqualTo(movieId).isNotEmpty();
+      final isSaved = await db.movieDetailsCollections
+          .filter()
+          .idEqualTo(movieId)
+          .isNotEmpty();
       return isSaved;
     } catch (_) {
       rethrow;

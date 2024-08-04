@@ -18,6 +18,11 @@ abstract class TvShowRepository {
   Future<Either<NetworkException, TvShowListEntity>> getPopularTvShows(
       {required int page});
 
+  /// Recupera los detalles de una serie específica del servidor.
+
+  Future<Either<NetworkException, TvShowDetailsEntity>> getTvShowDetails(
+      {required int tvShowId});
+
   /// Recupera los créditos de una película específica del servidor.
   Future<Either<NetworkException, TvShowCreditEntity>> getTvShowCredit(
       {required int tvShowId});
