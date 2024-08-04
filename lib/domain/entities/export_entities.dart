@@ -6,3 +6,6 @@ export 'tv_show/season_details.dart';
 export 'tv_show/tv_show_credit.dart';
 export 'tv_show/tv_show_details.dart';
 export 'tv_show/tv_show_list.dart';
+export 'util/actor.dart';
+export 'util/actor_movies.dart';
+export 'util/cast_list.dart';
