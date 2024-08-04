@@ -1,0 +1,1 @@
+export 'movies/movie_details_collection.dart';
