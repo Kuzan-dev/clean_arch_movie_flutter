@@ -1,4 +1,3 @@
-
 import 'package:clean_arch_movie_flutter/data/models/movies/movie_details_model.dart';
 import 'package:clean_arch_movie_flutter/data/models/movies/movie_list_model.dart';
 
