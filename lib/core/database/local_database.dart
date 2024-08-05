@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:clean_arch_movie_flutter/data/datasources/local/collections/export_collections.dart';
 //Aca importamos la colección
 
 class LocalDatabase {
@@ -17,7 +18,10 @@ class LocalDatabase {
     final directory = await getApplicationDocumentsDirectory();
     
     // Inicializamos la base de datos de Isar con las colecciones y el directorio de la aplicación
-    // _isar = await Isar.open([MovieDetailCollectionSchema], directory.path);
+    _isar = await Isar.open(
+      [MovieDetailsCollectionSchema, TvShowDetailsCollectionSchema], 
+      directory: directory.path
+    );
 
     _isInitialized = true;
   }
