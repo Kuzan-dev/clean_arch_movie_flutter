@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clean_arch_movie_flutter/core/constants/path_constants.dart';
-import 'package:clean_arch_movie_flutter/presentation/view/main_view.dart';
-import 'package:clean_arch_movie_flutter/presentation/view/movies_view.dart';
-import 'package:clean_arch_movie_flutter/presentation/view/search_view.dart';
-import 'package:clean_arch_movie_flutter/presentation/view/watchlist_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/main_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/movies/movies_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/search/search_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/watchlist/watchlist_view.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'View|Widget,Route')
