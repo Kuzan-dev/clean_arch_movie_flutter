@@ -1,10 +1,10 @@
 class PathConstants {
   //* Principales
   static const String main = '/main';
-  static const String movies = '/movies';
-  static const String tvShows = '/tvShows';
-  static const String watchlist = '/watchlist';
-  static const String search = '/search';
+  static const String movies = 'movies';
+  static const String tvShows = 'tvShows';
+  static const String watchlist = 'watchlist';
+  static const String search = 'search';
 
   //* Detalles
   static const String movieDetail = '/movieDetail';
