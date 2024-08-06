@@ -39,8 +39,9 @@ class _SliderCardState extends State<SliderCard> {
               SizedBox(
                 height: 200,
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  widget.list[_currentIndex]['backdrop_path'],
+                child: FadeInImage.assetNetwork(
+                  placeholder: "assets/backdrop.png",
+                  image:'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex]['backdrop_path']}',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -79,8 +80,9 @@ class _SliderCardState extends State<SliderCard> {
                 });
        },
               itemBuilder: (context, index){
-                return Image.network(
-                  widget.list[index]['poster_path'],
+                return FadeInImage.assetNetwork(
+                  placeholder: 'assets/poster.png',
+                  image:"https://image.tmdb.org/t/p/w780${widget.list[index]['poster_path']}",
                   fit: BoxFit.fill,
                 );
               },

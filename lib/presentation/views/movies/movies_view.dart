@@ -10,29 +10,43 @@ class MoviesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> testList = [
-      {'backdrop_path': 'https://i0.hdslb.com/bfs/manga-static/42b2143b5694835ae35763bea634cdfc36392801.jpg@300w.jpg', 
-      'poster_path': 'https://i0.hdslb.com/bfs/manga-static/42b2143b5694835ae35763bea634cdfc36392801.jpg@300w.jpg', 'id': '0'},
-
-      {'backdrop_path': 'https://i0.hdslb.com/bfs/manga-static/87e22d652eb4c456fe251e15b57bbb25da39925a.jpg@300w.jpg', 'poster_path': 'https://i0.hdslb.com/bfs/manga-static/87e22d652eb4c456fe251e15b57bbb25da39925a.jpg@300w.jpg', 'id': '1'},
-
-      {'backdrop_path': 'https://i0.hdslb.com/bfs/manga-static/3f01609c36d4816eb227c95ac31471710fa706e6.jpg@300w.jpg', 'poster_path': 'https://i0.hdslb.com/bfs/manga-static/3f01609c36d4816eb227c95ac31471710fa706e6.jpg@300w.jpg', 'id': '2'},
-
-      {'backdrop_path': 'https://i0.hdslb.com/bfs/manga-static/6b5ab1a7cb883504db182ee46381835e70d6d460.jpg@300w.jpg', 'poster_path': 'https://i0.hdslb.com/bfs/manga-static/6b5ab1a7cb883504db182ee46381835e70d6d460.jpg@300w.jpg', 'id': '3'},
-
-      {'backdrop_path': 'https://i0.hdslb.com/bfs/manga-static/5482454680757477d728dae82f80a280a9cc97a2.jpg@300w.jpg', 'poster_path': 'https://i0.hdslb.com/bfs/manga-static/5482454680757477d728dae82f80a280a9cc97a2.jpg@300w.jpg', 'id': '4'}
-      
+      {
+        'backdrop_path': '/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg',
+        'poster_path': '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg',
+        'id': '1'
+      },
+      {
+        'backdrop_path': '/3q01ACG0MWm0DekhvkPFCXyPZSu.jpg',
+        'poster_path': '/oGythE98MYleE6mZlGs5oBGkux1.jpg',
+        'id': '2'
+      },
+      {
+        'backdrop_path': '/2RVcJbWFmICRDsVxRI8F5xRmRsK.jpg',
+        'poster_path': '/yrpPYKijwdMHyTGIOd1iK1h0Xno.jpg',
+        'id': '23'
+      },
+      {
+        'backdrop_path': '/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg',
+        'poster_path': '/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg',
+        'id': '3'
+      },
+      {
+        'backdrop_path': '/lgkPzcOSnTvjeMnuFzozRO5HHw1.jpg',
+        'poster_path': '/wWba3TaojhK7NdycRhoQpsG0FaH.jpg',
+        'id': '4'
+      }
     ];
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             SliderCard(
-            mediaType: 'movie',
-            list: testList,
-            index: 0,
-          ),
+              mediaType: 'movie',
+              list: testList,
+              index: 0,
+            ),
           ],
-        ),      
+        ),
       ),
     );
   }
