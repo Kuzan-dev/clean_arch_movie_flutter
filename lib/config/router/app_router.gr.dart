@@ -21,6 +21,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainView(),
       );
     },
+    MovieDetailRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<MovieDetailRouteArgs>(
+          orElse: () =>
+              MovieDetailRouteArgs(movieId: pathParams.getInt('movieId')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MovieDetailView(
+          key: args.key,
+          movieId: args.movieId,
+        ),
+      );
+    },
     MoviesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -36,7 +49,7 @@ abstract class _$AppRouter extends RootStackRouter {
     TvShowRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SearchView(),
+        child: const TvShowView(),
       );
     },
     WatchlistRoute.name: (routeData) {
@@ -60,6 +73,45 @@ class MainRoute extends PageRouteInfo<void> {
   static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MovieDetailView]
+class MovieDetailRoute extends PageRouteInfo<MovieDetailRouteArgs> {
+  MovieDetailRoute({
+    Key? key,
+    required int movieId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MovieDetailRoute.name,
+          args: MovieDetailRouteArgs(
+            key: key,
+            movieId: movieId,
+          ),
+          rawPathParams: {'movieId': movieId},
+          initialChildren: children,
+        );
+
+  static const String name = 'MovieDetailRoute';
+
+  static const PageInfo<MovieDetailRouteArgs> page =
+      PageInfo<MovieDetailRouteArgs>(name);
+}
+
+class MovieDetailRouteArgs {
+  const MovieDetailRouteArgs({
+    this.key,
+    required this.movieId,
+  });
+
+  final Key? key;
+
+  final int movieId;
+
+  @override
+  String toString() {
+    return 'MovieDetailRouteArgs{key: $key, movieId: $movieId}';
+  }
 }
 
 /// generated route for
