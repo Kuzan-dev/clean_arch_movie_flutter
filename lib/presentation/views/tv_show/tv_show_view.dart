@@ -18,7 +18,6 @@ class TvShowView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is GetPopularTvShowLoaded) {
-            print(state.tvshows);
             return SingleChildScrollView(
               child: Column(
                 children: [
