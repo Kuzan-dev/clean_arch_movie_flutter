@@ -22,6 +22,7 @@ class TvShowView extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is GetPopularTvShowLoaded) {
+                  print(state.tvshows);
                   return SliderCard(
                     mediaType: 'tv_show',
                     list: state.tvshows,

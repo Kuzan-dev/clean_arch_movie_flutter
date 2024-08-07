@@ -19,7 +19,7 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
   final String? runtime;
   final String? overview;
   final double? voteAverage;
-  final String? voteCount;
+  //final String? voteCount;
   final String? trailerUrl;
 
 
@@ -33,7 +33,7 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
     this.runtime,
     this.overview,
     this.voteAverage,
-    this.voteCount,
+    //this.voteCount,
     this.trailerUrl,
   });
 
@@ -52,7 +52,7 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
         runtime: runtime,
         overview: overview,
         voteAverage: voteAverage,
-        voteCount: voteCount,
+        //voteCount: voteCount,
         trailerUrl: trailerUrl,
       );
   Map<String, dynamic> toJson() => _$MovieDetailsModelToJson(this);
@@ -68,7 +68,7 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
         runtime,
         overview,
         voteAverage,
-        voteCount,
+        //voteCount,
         trailerUrl,
       ];
 }

@@ -23,8 +23,8 @@ class TvShowDetailsModel extends Equatable
   final String? overview;
   @JsonKey(name: 'vote_average')
   final double? voteAverage;
-  @JsonKey(name: 'vote_count')
-  final String? voteCount;
+  //@JsonKey(name: 'vote_count')
+  //final String? voteCount;
   @JsonKey(name: 'trailer_url')
   final String? trailerUrl;
 
@@ -38,14 +38,13 @@ class TvShowDetailsModel extends Equatable
     required this.numberOfSeasons,
     required this.overview,
     required this.voteAverage,
-    required this.voteCount,
+    //required this.voteCount,
     required this.trailerUrl,
   });
 
   factory TvShowDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$TvShowDetailsModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TvShowDetailsModelToJson(this);
 
   @override
   List<Object?> get props => [
@@ -58,9 +57,11 @@ class TvShowDetailsModel extends Equatable
         numberOfSeasons,
         overview,
         voteAverage,
-        voteCount,
+        //voteCount,
         trailerUrl,
       ];
+  
+  Map<String, dynamic> toJson() => _$TvShowDetailsModelToJson(this);
 
   @override
   TvShowDetailsEntity toEntity() => TvShowDetailsEntity(
@@ -73,7 +74,7 @@ class TvShowDetailsModel extends Equatable
         numberOfSeasons: numberOfSeasons,
         overview: overview,
         voteAverage: voteAverage,
-        voteCount: voteCount,
+        //voteCount: voteCount,
         trailerUrl: trailerUrl,
       );
 }

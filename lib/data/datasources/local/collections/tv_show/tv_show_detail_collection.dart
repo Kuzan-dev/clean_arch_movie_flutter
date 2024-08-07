@@ -18,7 +18,7 @@ class TvShowDetailsCollection
   final int? numberOfSeasons;
   final String? overview;
   final double? voteAverage;
-  final String? voteCount;
+  //final String? voteCount;
   final String? trailerUrl;
 
   TvShowDetailsCollection({
@@ -32,7 +32,7 @@ class TvShowDetailsCollection
     this.numberOfSeasons,
     this.overview,
     this.voteAverage,
-    this.voteCount,
+    //this.voteCount,
     this.trailerUrl,
   });
 
@@ -49,7 +49,7 @@ class TvShowDetailsCollection
       numberOfSeasons: numberOfSeasons,
       overview: overview,
       voteAverage: voteAverage,
-      voteCount: voteCount,
+      //voteCount: voteCount,
       trailerUrl: trailerUrl,
     );
   }
@@ -67,7 +67,7 @@ class TvShowDetailsCollection
       numberOfSeasons: model?.numberOfSeasons,
       overview: model?.overview,
       voteAverage: model?.voteAverage,
-      voteCount: model?.voteCount,
+      //voteCount: model?.voteCount,
       trailerUrl: model?.trailerUrl,
     );
   }

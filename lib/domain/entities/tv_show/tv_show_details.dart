@@ -11,7 +11,7 @@ class TvShowDetailsEntity extends Equatable {
   final int? numberOfSeasons;
   final String? overview;
   final double? voteAverage;
-  final String? voteCount;
+  //final String? voteCount;
   final String? trailerUrl;
 
   const TvShowDetailsEntity({
@@ -25,7 +25,7 @@ class TvShowDetailsEntity extends Equatable {
     this.numberOfSeasons,
     this.overview,
     this.voteAverage,
-    this.voteCount,
+    //this.voteCount,
     this.trailerUrl,
   });
 
@@ -41,7 +41,7 @@ class TvShowDetailsEntity extends Equatable {
         numberOfSeasons,
         overview,
         voteAverage,
-        voteCount,
+        //voteCount,
         trailerUrl,
       ];
 }

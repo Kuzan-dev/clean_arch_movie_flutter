@@ -18,7 +18,6 @@ TvShowDetailsModel _$TvShowDetailsModelFromJson(Map<String, dynamic> json) =>
       numberOfSeasons: (json['number_of_seasons'] as num?)?.toInt(),
       overview: json['overview'] as String?,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
-      voteCount: json['vote_count'] as String?,
       trailerUrl: json['trailer_url'] as String?,
     );
 
@@ -33,6 +32,5 @@ Map<String, dynamic> _$TvShowDetailsModelToJson(TvShowDetailsModel instance) =>
       'number_of_seasons': instance.numberOfSeasons,
       'overview': instance.overview,
       'vote_average': instance.voteAverage,
-      'vote_count': instance.voteCount,
       'trailer_url': instance.trailerUrl,
     };

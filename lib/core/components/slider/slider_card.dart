@@ -30,7 +30,7 @@ class _SliderCardState extends State<SliderCard> {
   @override
   Widget build(BuildContext context) {
     final controller = Gallery3DController(
-      itemCount: widget.list.length,
+      itemCount: widget.list.length-14,
       autoLoop: true,
       ellipseHeight: 0,
       minScale: 0.4,
@@ -48,7 +48,7 @@ class _SliderCardState extends State<SliderCard> {
                 FadeInImage.assetNetwork(
                   placeholder: "assets/backdrop.png",
                   image:
-                      'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex]['backdropUrl']}',
+                      'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex].backdropUrl}',
                   fit: BoxFit.cover,
                 ),
                 BackdropFilter(
@@ -80,19 +80,19 @@ class _SliderCardState extends State<SliderCard> {
             isClip: true,
             onClickItem: (index) {
               navigateToDetailsView(context, widget.mediaType,
-                  int.parse(widget.list[index]['id']));
+                  widget.list[index].id);
             },
             onItemChanged: (index) {
               setState(() {
                 _currentIndex = index;
-                print(widget.list[index]['origin_country']);
+                print(widget.list);
               });
             },
             itemBuilder: (context, index) {
               return FadeInImage.assetNetwork(
                 placeholder: 'assets/poster.png',
                 image:
-                    "https://image.tmdb.org/t/p/w780${widget.list[index]['trailerUrl']}",
+                    "https://image.tmdb.org/t/p/w780${widget.list[index].posterUrl}",
                 fit: BoxFit.fill,
               );
             },

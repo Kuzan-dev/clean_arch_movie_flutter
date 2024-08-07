@@ -16,7 +16,7 @@ class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, Movi
   final String? runtime;
   final String? overview;
   final double? voteAverage;
-  final String? voteCount;
+  //final String? voteCount;
   final String? trailerUrl;
   
   MovieDetailsCollection({
@@ -29,7 +29,7 @@ class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, Movi
     this.runtime,
     this.overview,
     this.voteAverage,
-    this.voteCount,
+    //this.voteCount,
     this.trailerUrl,
   });
 
@@ -44,7 +44,7 @@ class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, Movi
         runtime: runtime,
         overview: overview,
         voteAverage: voteAverage,
-        voteCount: voteCount,
+        //voteCount: voteCount,
         trailerUrl: trailerUrl,
       );
 
@@ -60,7 +60,7 @@ class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, Movi
       runtime: model?.runtime,
       overview: model?.overview,
       voteAverage: model?.voteAverage,
-      voteCount: model?.voteCount,
+      //voteCount: model?.voteCount,
       trailerUrl: model?.trailerUrl,
     );
   }

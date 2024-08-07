@@ -32,7 +32,10 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
       final result = await _movieUsecases.getPopularTvShows(page: _page);
 
       result.fold(
-        (error) => emit(GetPopularTvShowError(message: error.message)),
+        (error) {
+          print(error.message);
+          emit(GetPopularTvShowError(message: error.message));
+          }, 
         (success) {
           // Increases the page number and adds the movies from the [success] response to the movie list.
           // If a movie already exists in the movie list, it will not be added again.
@@ -53,7 +56,8 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
           emit(GetPopularTvShowLoaded(tvshows: List.of(_movieList)));
         },
       );
-    } catch (_) {
+    } catch (e) {
+      print(e);
       rethrow;
     }
   }

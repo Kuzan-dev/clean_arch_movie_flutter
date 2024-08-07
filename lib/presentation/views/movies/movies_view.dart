@@ -9,31 +9,31 @@ class MoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> testList = [
+    final List<Map<String, dynamic>> testList = [
       {
-        'backdrop_path': '/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg',
-        'poster_path': '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg',
-        'id': '1'
+        'backdropUrl': '/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg',
+        'posterUrl': '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg',
+        'id': 1
       },
       {
-        'backdrop_path': '/3q01ACG0MWm0DekhvkPFCXyPZSu.jpg',
-        'poster_path': '/oGythE98MYleE6mZlGs5oBGkux1.jpg',
-        'id': '2'
+        'backdropUrl': '/3q01ACG0MWm0DekhvkPFCXyPZSu.jpg',
+        'posterUrl': '/oGythE98MYleE6mZlGs5oBGkux1.jpg',
+        'id': 2
       },
       {
-        'backdrop_path': '/2RVcJbWFmICRDsVxRI8F5xRmRsK.jpg',
-        'poster_path': '/yrpPYKijwdMHyTGIOd1iK1h0Xno.jpg',
-        'id': '23'
+        'backdropUrl': '/2RVcJbWFmICRDsVxRI8F5xRmRsK.jpg',
+        'posterUrl': '/yrpPYKijwdMHyTGIOd1iK1h0Xno.jpg',
+        'id': 23
       },
       {
-        'backdrop_path': '/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg',
-        'poster_path': '/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg',
-        'id': '3'
+        'backdropUrl': '/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg',
+        'posterUrl': '/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg',
+        'id': 3
       },
       {
-        'backdrop_path': '/lgkPzcOSnTvjeMnuFzozRO5HHw1.jpg',
-        'poster_path': '/wWba3TaojhK7NdycRhoQpsG0FaH.jpg',
-        'id': '4'
+        'backdropUrl': '/lgkPzcOSnTvjeMnuFzozRO5HHw1.jpg',
+        'posterUrl': '/wWba3TaojhK7NdycRhoQpsG0FaH.jpg',
+        'id': 4
       }
     ];
     return Scaffold(
@@ -41,11 +41,12 @@ class MoviesView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SliderCard(
-              mediaType: 'movie',
-              list: testList,
-              index: 0,
-            ),
+            Text('hols')
+            // SliderCard(
+            //   mediaType: 'movie',
+            //   list: testList,
+            //   index: 0,
+            // ),
           ],
         ),
       ),
