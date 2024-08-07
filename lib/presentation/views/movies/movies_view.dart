@@ -39,6 +39,7 @@ class MoviesView extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SliderCard(
               mediaType: 'movie',

@@ -11,6 +11,7 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
+        extendBody: true,
         resizeToAvoidBottomInset: true,
         lazyLoad: true,
         animationDuration: const Duration(milliseconds: 200),
@@ -26,6 +27,7 @@ class MainView extends StatelessWidget {
             unselectedItemColor: Colors.white70,
             backgroundColor: Colors.black.withOpacity(0.1),
             onTap: tabsRouter.setActiveIndex,
+            
             items: [
               CrystalNavigationBarItem(
                 icon: FluentIcons.movies_and_tv_24_filled,
