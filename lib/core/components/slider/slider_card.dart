@@ -48,7 +48,7 @@ class _SliderCardState extends State<SliderCard> {
                 FadeInImage.assetNetwork(
                   placeholder: "assets/backdrop.png",
                   image:
-                      'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex]['backdrop_path']}',
+                      'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex]['backdropUrl']}',
                   fit: BoxFit.cover,
                 ),
                 BackdropFilter(
@@ -85,14 +85,14 @@ class _SliderCardState extends State<SliderCard> {
             onItemChanged: (index) {
               setState(() {
                 _currentIndex = index;
-                print(index);
+                print(widget.list[index]['origin_country']);
               });
             },
             itemBuilder: (context, index) {
               return FadeInImage.assetNetwork(
                 placeholder: 'assets/poster.png',
                 image:
-                    "https://image.tmdb.org/t/p/w780${widget.list[index]['poster_path']}",
+                    "https://image.tmdb.org/t/p/w780${widget.list[index]['trailerUrl']}",
                 fit: BoxFit.fill,
               );
             },

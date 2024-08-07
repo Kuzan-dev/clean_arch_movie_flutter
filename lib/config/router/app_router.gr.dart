@@ -52,6 +52,25 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SearchView(),
       );
     },
+    TvShowDetailRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TvShowDetailRouteArgs>(
+          orElse: () =>
+              TvShowDetailRouteArgs(tvshowId: pathParams.getInt('tvshowId')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TvShowDetailView(
+          key: args.key,
+          tvshowId: args.tvshowId,
+        ),
+      );
+    },
+    TvShowNavigationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TvShowNavigationView(),
+      );
+    },
     TvShowRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -158,6 +177,59 @@ class SearchRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SearchRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TvShowDetailView]
+class TvShowDetailRoute extends PageRouteInfo<TvShowDetailRouteArgs> {
+  TvShowDetailRoute({
+    Key? key,
+    required int tvshowId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TvShowDetailRoute.name,
+          args: TvShowDetailRouteArgs(
+            key: key,
+            tvshowId: tvshowId,
+          ),
+          rawPathParams: {'tvshowId': tvshowId},
+          initialChildren: children,
+        );
+
+  static const String name = 'TvShowDetailRoute';
+
+  static const PageInfo<TvShowDetailRouteArgs> page =
+      PageInfo<TvShowDetailRouteArgs>(name);
+}
+
+class TvShowDetailRouteArgs {
+  const TvShowDetailRouteArgs({
+    this.key,
+    required this.tvshowId,
+  });
+
+  final Key? key;
+
+  final int tvshowId;
+
+  @override
+  String toString() {
+    return 'TvShowDetailRouteArgs{key: $key, tvshowId: $tvshowId}';
+  }
+}
+
+/// generated route for
+/// [TvShowNavigationView]
+class TvShowNavigationRoute extends PageRouteInfo<void> {
+  const TvShowNavigationRoute({List<PageRouteInfo>? children})
+      : super(
+          TvShowNavigationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TvShowNavigationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

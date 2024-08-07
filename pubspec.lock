@@ -50,7 +50,7 @@ packages:
     source: hosted
     version: "8.0.0"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
       sha256: "106842ad6569f0b60297619e9e0b1885c2fb9bf84812935490e6c5275777804e"
@@ -649,7 +649,7 @@ packages:
     source: hosted
     version: "1.4.0"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c

@@ -7,6 +7,7 @@ void navigateToDetailsView(BuildContext context, String typeMedia, int id) {
   if (typeMedia == 'movie') {
     AutoRouter.of(context).push(MovieDetailRoute(movieId: id));
   } else if (typeMedia == 'tv_show') {
+    AutoRouter.of(context).push(TvShowDetailRoute(tvshowId: id));
   } else if (typeMedia == 'person') {
   } else {
     throw Exception('Unknown type media');
