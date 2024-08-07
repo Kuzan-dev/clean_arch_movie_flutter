@@ -11,34 +11,33 @@ class TvShowView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocBuilder<GetPopularTvShowCubit, GetPopularTvShowState>(
-              builder: (context, state) {
-                if (state is GetPopularTvShowLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is GetPopularTvShowLoaded) {
-                  print(state.tvshows);
-                  return SliderCard(
+      body: BlocBuilder<GetPopularTvShowCubit, GetPopularTvShowState>(
+        builder: (context, state) {
+          if (state is GetPopularTvShowLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is GetPopularTvShowLoaded) {
+            print(state.tvshows);
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  SliderCard(
                     mediaType: 'tv_show',
                     list: state.tvshows,
                     index: 0,
-                  );
-                } else if (state is GetPopularTvShowError) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
-          ],
-        ),
+                  ),
+                ],
+              ),
+            );
+          } else if (state is GetPopularTvShowError) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }
