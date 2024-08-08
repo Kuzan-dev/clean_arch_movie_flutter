@@ -20,5 +20,7 @@ Future<void> init() async {
 
     // Bloc
     ..registerLazySingleton<GetPopularTvShowCubit>(
-        () => GetPopularTvShowCubit(injector<TvShowUsecases>()));
+        () => GetPopularTvShowCubit(injector<TvShowUsecases>()))
+    ..registerLazySingleton<GetTopRatedTvShowCubit>(
+        () => GetTopRatedTvShowCubit(injector<TvShowUsecases>()));
 }

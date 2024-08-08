@@ -19,6 +19,7 @@ class HeaderTitle extends StatelessWidget {
             title,
             style: const TextStyle(
               fontSize: 20,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),

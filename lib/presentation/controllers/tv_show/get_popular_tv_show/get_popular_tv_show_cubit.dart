@@ -10,7 +10,7 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
   GetPopularTvShowCubit(this._movieUsecases) : super(GetPopularTvShowInitial());
 
   /// The list of popular movie details.
-  final List<TvShowDetailsEntity> _movieList = [];
+  final List<TvShowDetailsEntity> _TvshoList = [];
 
   /// The current page number for fetching popular movies.
   int _page = 1;
@@ -33,9 +33,8 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
 
       result.fold(
         (error) {
-          print(error.message);
           emit(GetPopularTvShowError(message: error.message));
-          }, 
+        },
         (success) {
           // Increases the page number and adds the movies from the [success] response to the movie list.
           // If a movie already exists in the movie list, it will not be added again.
@@ -43,8 +42,8 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
           // Emits a [GetPopularMoviesLoaded] state with the updated movie list.
 
           _page++;
-          _movieList.addAll(success.tvShows
-                  ?.where((movie) => _movieList.contains(movie) == false) ??
+          _TvshoList.addAll(success.tvShows
+                  ?.where((movie) => _TvshoList.contains(movie) == false) ??
               []);
 
           /// Checks if the number of movies in the [success] response is less than 20.
@@ -53,7 +52,7 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
             hasReachedMax = true;
           }
 
-          emit(GetPopularTvShowLoaded(tvshows: List.of(_movieList)));
+          emit(GetPopularTvShowLoaded(tvshows: List.of(_TvshoList)));
         },
       );
     } catch (e) {

@@ -10,6 +10,7 @@ import 'package:clean_arch_movie_flutter/data/repositories/tv_show/tv_show_repos
 import 'package:clean_arch_movie_flutter/domain/repositories/tv_show/tv_show_repository.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_popular_tv_show/get_popular_tv_show_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_top_rated_tv_show/get_top_rated_tv_show_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -37,6 +38,10 @@ class MyApp extends StatelessWidget {
         Provider<GetPopularTvShowCubit>(
           create: (context) =>
               injector<GetPopularTvShowCubit>()..getPopularTvShow(),
+        ),
+        Provider<GetTopRatedTvShowCubit>(
+          create: (context) =>
+              injector<GetTopRatedTvShowCubit>()..getTopRatedTvShow(),
         ),
       ],
       child: MaterialApp.router(
