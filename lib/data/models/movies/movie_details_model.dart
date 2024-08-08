@@ -18,8 +18,10 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
   final List<String>? genres;
   final String? runtime;
   final String? overview;
+  @JsonKey(name: 'vote_average')
   final double? voteAverage;
   //final String? voteCount;
+  @JsonKey(name: 'trailer_url')
   final String? trailerUrl;
 
 

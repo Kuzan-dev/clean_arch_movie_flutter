@@ -12,15 +12,29 @@ Future<void> init() async {
         () => TvShowRemoteDataSourceImpl(injector()))
     ..registerLazySingleton<TvShowLocalDataSource>(
         () => TvShowLocalDataSourceImpl(injector<LocalDatabase>()))
+    ..registerLazySingleton<MovieRemoteDataSource>(
+        () => MovieRemoteDataSourceImpl(injector()))
+    ..registerLazySingleton<MovieLocalDataSource>(
+        () => MovieLocalDataSourceImpl(injector<LocalDatabase>()))
 
     // Registra TvShowUsecases
     ..registerLazySingleton<TvShowRepository>(
         () => TvShowRepositoryImpl(injector(), injector()))
     ..registerLazySingleton<TvShowUsecases>(() => TvShowUsecases(injector()))
 
-    // Bloc
+    // Registra MovieUsecases
+    ..registerLazySingleton<MovieRepository>(
+        () => MovieRepositoryImpl(injector(), injector()))
+    ..registerLazySingleton<MoviesUsecases>(() => MoviesUsecases(injector()))
+
+    // Bloc TvShows
     ..registerLazySingleton<GetPopularTvShowCubit>(
         () => GetPopularTvShowCubit(injector<TvShowUsecases>()))
     ..registerLazySingleton<GetTopRatedTvShowCubit>(
-        () => GetTopRatedTvShowCubit(injector<TvShowUsecases>()));
+        () => GetTopRatedTvShowCubit(injector<TvShowUsecases>()))
+    // Bloc Movies
+    ..registerLazySingleton<GetPopularMoviesCubit>(
+        () => GetPopularMoviesCubit(injector<MoviesUsecases>()))
+    ..registerLazySingleton<GetTopRatedMoviesCubit>(
+        () => GetTopRatedMoviesCubit(injector<MoviesUsecases>()));
 }

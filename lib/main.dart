@@ -1,14 +1,19 @@
 import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
 import 'package:clean_arch_movie_flutter/core/database/local_database.dart';
 import 'package:clean_arch_movie_flutter/core/network/dio_client.dart';
+import 'package:clean_arch_movie_flutter/data/datasources/export_datasources.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/local/tv_show/tv_show_local_data_source.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/local/tv_show/tv_show_local_data_source_impl.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/remote/movies/movie_remote_data_source_impl.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/remote/tv_show/tv_show_data_souce.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/remote/tv_show/tv_show_data_source_impl.dart';
+import 'package:clean_arch_movie_flutter/data/repositories/movies/movie_repository_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/tv_show/tv_show_repository_impl.dart';
+import 'package:clean_arch_movie_flutter/domain/repositories/movies/movie_repository.dart';
 import 'package:clean_arch_movie_flutter/domain/repositories/tv_show/tv_show_repository.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_top_rated_movies/get_top_rated_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_popular_tv_show/get_popular_tv_show_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_top_rated_tv_show/get_top_rated_tv_show_cubit.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +47,14 @@ class MyApp extends StatelessWidget {
         Provider<GetTopRatedTvShowCubit>(
           create: (context) =>
               injector<GetTopRatedTvShowCubit>()..getTopRatedTvShow(),
+        ),
+        Provider<GetPopularMoviesCubit>(
+          create: (context) =>
+              injector<GetPopularMoviesCubit>()..getPopularMovies(),
+        ),
+        Provider<GetTopRatedMoviesCubit>(
+          create: (context) =>
+              injector<GetTopRatedMoviesCubit>()..getTopRatedMovies(),
         ),
       ],
       child: MaterialApp.router(

@@ -4,7 +4,7 @@ import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/core/exceptions/network_exception.dart';
 import 'package:clean_arch_movie_flutter/core/exceptions/database_exception.dart';
 
-abstract class MoviesUsecases {
+class MoviesUsecases {
   final MovieRepository _repository;
 
   MoviesUsecases(this._repository);

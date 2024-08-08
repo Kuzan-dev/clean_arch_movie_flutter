@@ -1,7 +1,13 @@
 import 'package:auto_route/annotations.dart';
+import 'package:clean_arch_movie_flutter/core/components/carrousell/carrousell_card.dart';
+import 'package:clean_arch_movie_flutter/core/components/carrousell/section_listview_card.dart';
+import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
 import 'package:clean_arch_movie_flutter/core/components/slider/slider_card.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_top_rated_movies/get_top_rated_movies_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class MoviesView extends StatelessWidget {
@@ -9,45 +15,82 @@ class MoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> testList = [
-      {
-        'backdropUrl': '/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg',
-        'posterUrl': '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg',
-        'id': 1
-      },
-      {
-        'backdropUrl': '/3q01ACG0MWm0DekhvkPFCXyPZSu.jpg',
-        'posterUrl': '/oGythE98MYleE6mZlGs5oBGkux1.jpg',
-        'id': 2
-      },
-      {
-        'backdropUrl': '/2RVcJbWFmICRDsVxRI8F5xRmRsK.jpg',
-        'posterUrl': '/yrpPYKijwdMHyTGIOd1iK1h0Xno.jpg',
-        'id': 23
-      },
-      {
-        'backdropUrl': '/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg',
-        'posterUrl': '/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg',
-        'id': 3
-      },
-      {
-        'backdropUrl': '/lgkPzcOSnTvjeMnuFzozRO5HHw1.jpg',
-        'posterUrl': '/wWba3TaojhK7NdycRhoQpsG0FaH.jpg',
-        'id': 4
-      }
-    ];
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('hols')
-            // SliderCard(
-            //   mediaType: 'movie',
-            //   list: testList,
-            //   index: 0,
-            // ),
-          ],
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<GetPopularMoviesCubit, GetPopularMoviesState>(
+            listener: (context, state) {
+              if (state is GetPopularMoviesError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+          ),
+          BlocListener<GetTopRatedMoviesCubit, GetTopRatedMoviesState>(
+            listener: (context, state) {
+              if (state is GetTopRatedMoviesError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<GetPopularMoviesCubit, GetPopularMoviesState>(
+          builder: (context, popular1State) {
+            return BlocBuilder<GetTopRatedMoviesCubit, GetTopRatedMoviesState>(
+              builder: (context, topRated1State) {
+                if (popular1State is GetPopularMoviesLoading ||
+                    topRated1State is GetTopRatedMoviesLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (popular1State is GetPopularMoviesLoaded &&
+                    topRated1State is GetTopRatedMoviesLoaded) {
+                  return SingleChildScrollView(
+                      child: Column(
+                    children: [
+                      SliderCard(
+                        mediaType: 'movie',
+                        list: popular1State.movies,
+                        index: 0,
+                      ),
+                      HeaderTitle(
+                        title: 'Popular Movies',
+                        onTap: () {},
+                      ),
+                      CarrousellCard(
+                        height: 250,
+                        intemCount: popular1State.movies.length,
+                        itemBuilder: (context, index) {
+                          return SectionListViewCard(
+                              media: popular1State.movies[index]);
+                        },
+                      ),
+                      HeaderTitle(
+                        title: 'Top Rated Movies',
+                        onTap: () {},
+                      ),
+                      CarrousellCard(
+                        height: 250,
+                        intemCount: topRated1State.movies.length,
+                        itemBuilder: (context, index) {
+                          return SectionListViewCard(
+                              media: topRated1State.movies[index]);
+                        },
+                      ),
+                      Padding(padding: const EdgeInsets.only(bottom: 65)),
+                    ],
+                  ));
+                } else {
+                  return const Center(
+                    child: Text('Error'),
+                  );
+                }
+              },
+            );
+          },
         ),
       ),
     );

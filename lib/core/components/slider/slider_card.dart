@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:flutter_gallery_3d/gallery3d.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SliderCard extends StatefulWidget {
   final String mediaType;
@@ -45,10 +47,17 @@ class _SliderCardState extends State<SliderCard> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                FadeInImage.assetNetwork(
-                  placeholder: "assets/backdrop.png",
-                  image:
-                      'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex].backdropUrl}',
+                CachedNetworkImage(
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey[850]!,
+                    highlightColor: Colors.grey[800]!,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      color: Colors.white,
+                    ),
+                  ),
+                  imageUrl: 'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex].backdropUrl}',
                   fit: BoxFit.cover,
                 ),
                 BackdropFilter(
@@ -89,9 +98,17 @@ class _SliderCardState extends State<SliderCard> {
               });
             },
             itemBuilder: (context, index) {
-              return FadeInImage.assetNetwork(
-                placeholder: 'assets/poster.png',
-                image:
+              return CachedNetworkImage(
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[850]!,
+                  highlightColor: Colors.grey[800]!,
+                  child: Container(
+                    width: 220,
+                    height: 300,
+                    color: Colors.white,
+                  ),
+                ),
+                imageUrl:
                     "https://image.tmdb.org/t/p/w780${widget.list[index].posterUrl}",
                 fit: BoxFit.fill,
               );
