@@ -5,12 +5,14 @@ class SearchEntity extends Equatable{
   final String? title;
   final String? posterUrl;
   final bool? isMovie;
+  final double? voteAverage;
 
   const SearchEntity({
     this.id,
     this.title,
     this.posterUrl,
     this.isMovie,
+    this.voteAverage,
   });
 
   @override
@@ -19,5 +21,6 @@ class SearchEntity extends Equatable{
     title,
     posterUrl,
     isMovie,
+    voteAverage,
   ];
 }

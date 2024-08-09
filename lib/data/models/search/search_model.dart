@@ -12,12 +12,15 @@ class SearchModel extends Equatable with EntityConvertible<SearchModel, SearchEn
   final String? posterUrl;
   @JsonKey(name: 'media_type', fromJson: _isMovieFromJson)
   final bool? isMovie;
+  @JsonKey(name: 'vote_average')
+  final double? voteAverage;
 
   const SearchModel({
     this.id,
     this.title,
     this.posterUrl,
     this.isMovie,
+    this.voteAverage,
   });
 
   factory SearchModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +31,7 @@ class SearchModel extends Equatable with EntityConvertible<SearchModel, SearchEn
       title: title,
       posterUrl: json['poster_path'],
       isMovie: json['media_type'] == 'movie',
+      voteAverage: json['vote_average'],
     );
   }
 
@@ -37,12 +41,13 @@ class SearchModel extends Equatable with EntityConvertible<SearchModel, SearchEn
         title: title,
         posterUrl: posterUrl,
         isMovie: isMovie,
+        voteAverage: voteAverage,
       );
   
   Map<String, dynamic> toJson() => _$SearchModelToJson(this);
 
   @override
-  List<Object?> get props => [id, title, posterUrl, isMovie];
+  List<Object?> get props => [id, title, posterUrl, isMovie, voteAverage];
 
   static bool? _isMovieFromJson(String? mediaType) {
     if (mediaType == null) return null;

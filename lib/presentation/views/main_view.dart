@@ -27,7 +27,8 @@ class MainView extends StatelessWidget {
             unselectedItemColor: Colors.white70,
             backgroundColor: Colors.black.withOpacity(0.1),
             onTap: tabsRouter.setActiveIndex,
-            
+            marginR: const EdgeInsets.fromLTRB(50, 35, 50, 5),
+            paddingR: const EdgeInsets.only(bottom: 2, top: 2),
             items: [
               CrystalNavigationBarItem(
                 icon: FluentIcons.movies_and_tv_24_filled,

@@ -1,10 +1,11 @@
+import 'package:clean_arch_movie_flutter/core/components/carrousell/section_listview_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/search_field/search_field.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/search/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:clean_arch_movie_flutter/core/components/carrousell/image_with_shimmer.dart';
+
 
 @RoutePage()
 class SearchView extends StatefulWidget {
@@ -64,41 +65,32 @@ class _SearchViewState extends State<SearchView> {
                       final searchResult = searchState.resultSearch;
                       return Stack(
                         children: [
-                          GridView.builder(
-                            controller: _scrollController,
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
-                            ),
-                            itemCount: searchResult.length,
-                            itemBuilder: (context, index) {
-                              final searchEntity = searchResult[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  // Navegar a la vista de detalle
-                                },
-                                child: GridTile(
-                                  footer: GridTileBar(
-                                    title: Text('${searchEntity.title}'),
-                                    backgroundColor: Colors.black54,
-                                  ),
-                                  child: CachedNetworkImage(
-                                    placeholder: (context, url) => Shimmer.fromColors(
-                                      baseColor: Colors.grey[850]!,
-                                      highlightColor: Colors.grey[800]!,
-                                      child: Container(
-                                        width: MediaQuery.of(context).size.width,
-                                        height: 200,
-                                        color: Colors.white,
-                                      ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(14, 15, 14, 8),
+                            child: GridView.builder(
+                              controller: _scrollController,
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 2,
+                                mainAxisSpacing:1,
+                                childAspectRatio: 0.44,
+                              ),
+                              itemCount: searchResult.length,
+                              itemBuilder: (context, index) {
+                                final searchEntity = searchResult[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    // Navegar a la vista de detalle
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(3, 2, 3, 2),
+                                    child: SectionListViewCard( 
+                                      media: searchEntity,
                                     ),
-                                    imageUrl: 'https://image.tmdb.org/t/p/w300${searchEntity.posterUrl}',
-                                    fit: BoxFit.cover,
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
                           if (context.watch<SearchCubit>().hasReachedMax == false &&
                               (searchState is SearchLoading)) 

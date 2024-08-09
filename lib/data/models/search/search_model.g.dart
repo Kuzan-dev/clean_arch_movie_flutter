@@ -11,6 +11,7 @@ SearchModel _$SearchModelFromJson(Map<String, dynamic> json) => SearchModel(
       title: json['title'] as String?,
       posterUrl: json['poster_path'] as String?,
       isMovie: SearchModel._isMovieFromJson(json['media_type'] as String?),
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$SearchModelToJson(SearchModel instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$SearchModelToJson(SearchModel instance) =>
       'title': instance.title,
       'poster_path': instance.posterUrl,
       'media_type': instance.isMovie,
+      'vote_average': instance.voteAverage,
     };
