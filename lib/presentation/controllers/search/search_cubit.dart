@@ -7,14 +7,21 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   final List<SearchEntity> _searchList = [];
-  final String query;
+  String query = ""; // Inicializar con una cadena vacía por defecto
   final SearchUsecases _searchUsecases;
 
   int _page = 1;
-
   bool hasReachedMax = false;
 
-  SearchCubit(this._searchUsecases, this.query) : super(SearchEmpty());
+  SearchCubit(this._searchUsecases) : super(SearchEmpty());
+
+  void updateQuery(String newQuery) {
+    query = newQuery;
+    _page = 1;
+    hasReachedMax = false;
+    _searchList.clear();
+    getSearchResult();
+  }
 
   Future<void> getSearchResult() async {
     try {
@@ -43,24 +50,23 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
-  Future<void> fetchMoreResults() async{
-    try{
+  Future<void> fetchMoreResults() async {
+    try {
       if (hasReachedMax) return;
 
       final result = await _searchUsecases.search(page: _page, query: query);
 
-      result.fold((error){
+      result.fold((error) {
         emit(SearchError(message: error.message));
-      }, (success){
+      }, (success) {
         _page++;
         _searchList.addAll(success.where((search) => !_searchList.contains(search)));
-        if(success.length < 20){
+        if (success.length < 20) {
           hasReachedMax = true;
         }
         emit(SearchLoaded(resultSearch: List.of(_searchList)));
       });
-
-    } catch(e){
+    } catch (e) {
       print(e);
       rethrow;
     }

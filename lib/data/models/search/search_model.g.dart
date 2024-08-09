@@ -8,7 +8,7 @@ part of 'search_model.dart';
 
 SearchModel _$SearchModelFromJson(Map<String, dynamic> json) => SearchModel(
       id: (json['id'] as num?)?.toInt(),
-      title: SearchModel._titleFromJson(json['title'] as Map<String, dynamic>),
+      title: json['title'] as String?,
       posterUrl: json['poster_path'] as String?,
       isMovie: SearchModel._isMovieFromJson(json['media_type'] as String?),
     );

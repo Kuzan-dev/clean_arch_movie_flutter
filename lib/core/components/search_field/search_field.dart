@@ -33,7 +33,7 @@ class _SearchFieldState extends State<SearchField> {
                 color: Colors.white.withOpacity(0.65),
               ),
           onChanged: (title) {
-            context.read<SearchCubit>().getSearchResult();
+            context.read<SearchCubit>().updateQuery(title);
           },
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
@@ -52,8 +52,8 @@ class _SearchFieldState extends State<SearchField> {
             ),
             suffixIcon: GestureDetector(
               onTap: () {
-                _textCont.text = '';
-                context.read<SearchCubit>().getSearchResult();
+                _textCont.clear();
+                context.read<SearchCubit>().updateQuery('');
               },
               child: Icon(
                 Icons.clear_rounded,

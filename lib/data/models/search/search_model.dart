@@ -7,7 +7,6 @@ part 'search_model.g.dart';
 @JsonSerializable()
 class SearchModel extends Equatable with EntityConvertible<SearchModel, SearchEntity> {
   final int? id;
-  @JsonKey(fromJson: _titleFromJson)
   final String? title;
   @JsonKey(name: 'poster_path')
   final String? posterUrl;
@@ -22,7 +21,14 @@ class SearchModel extends Equatable with EntityConvertible<SearchModel, SearchEn
   });
 
   factory SearchModel.fromJson(Map<String, dynamic> json) {
-    return _$SearchModelFromJson(json);
+    // Extrae 'title' o 'name' del JSON
+    final title = json['title'] ?? json['name'];
+    return SearchModel(
+      id: json['id'],
+      title: title,
+      posterUrl: json['poster_path'],
+      isMovie: json['media_type'] == 'movie',
+    );
   }
 
   @override
@@ -37,12 +43,6 @@ class SearchModel extends Equatable with EntityConvertible<SearchModel, SearchEn
 
   @override
   List<Object?> get props => [id, title, posterUrl, isMovie];
-
-
-
-  static String? _titleFromJson(Map<String, dynamic> json) {
-    return json['title'] ?? json['name'];
-  }
 
   static bool? _isMovieFromJson(String? mediaType) {
     if (mediaType == null) return null;

@@ -16,6 +16,9 @@ class SearchRepositoryImpl implements SearchRepository {
   @override
   Future<Either<NetworkException, List<SearchEntity>>> search({required String query, required int page}) async {
     try {
+      if (query.isEmpty) {
+        return Right([]);
+      }
       final result = await remoteDataSource.search(query: query, page: page);
       final entities = result.map((item) => item.toEntity()).toList();
       return Right(entities);
