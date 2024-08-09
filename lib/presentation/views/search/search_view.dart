@@ -52,71 +52,70 @@ class _SearchViewState extends State<SearchView> {
             },
           ),
         ],
-        child: SafeArea(
-          child: Column(
-            children: [
-              const SearchField(),
-              Expanded(
-                child: BlocBuilder<SearchCubit, SearchState>(
-                  builder: (context, searchState) {
-                    if (searchState is SearchLoading && searchState is! SearchLoaded) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (searchState is SearchLoaded) {
-                      final searchResult = searchState.resultSearch;
-                      return Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(14, 15, 14, 8),
-                            child: GridView.builder(
-                              controller: _scrollController,
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 2,
-                                mainAxisSpacing:1,
-                                childAspectRatio: 0.44,
-                              ),
-                              itemCount: searchResult.length,
-                              itemBuilder: (context, index) {
-                                final searchEntity = searchResult[index];
-                                return GestureDetector(
-                                  onTap: () {
-                                    // Navegar a la vista de detalle
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(3, 2, 3, 2),
-                                    child: SectionListViewCard( 
-                                      media: searchEntity,
-                                    ),
+        child: Column(
+          children: [
+            const Padding(padding: EdgeInsets.only(top: 22)),
+            const SearchField(),
+            Expanded(
+              child: BlocBuilder<SearchCubit, SearchState>(
+                builder: (context, searchState) {
+                  if (searchState is SearchLoading && searchState is! SearchLoaded) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (searchState is SearchLoaded) {
+                    final searchResult = searchState.resultSearch;
+                    return Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(14, 0, 14, 8),
+                          child: GridView.builder(
+                            controller: _scrollController,
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 2,
+                              mainAxisSpacing:1,
+                              childAspectRatio: 0.44,
+                            ),
+                            itemCount: searchResult.length,
+                            itemBuilder: (context, index) {
+                              final searchEntity = searchResult[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  // Navegar a la vista de detalle
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(3, 2, 3, 2),
+                                  child: SectionListViewCard( 
+                                    media: searchEntity,
                                   ),
-                                );
-                              },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        if (context.watch<SearchCubit>().hasReachedMax == false &&
+                            (searchState is SearchLoading)) 
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              child: const CircularProgressIndicator(),
                             ),
                           ),
-                          if (context.watch<SearchCubit>().hasReachedMax == false &&
-                              (searchState is SearchLoading)) 
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                alignment: Alignment.center,
-                                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                                child: const CircularProgressIndicator(),
-                              ),
-                            ),
-                        ],
-                      );
-                    } else if (searchState is SearchError) {
-                      return Center(
-                        child: Text("Error: ${searchState.message}"),
-                      );
-                    }
-                    return const Center(child: Text('No results'));
-                  },
-                ),
+                      ],
+                    );
+                  } else if (searchState is SearchError) {
+                    return Center(
+                      child: Text("Error: ${searchState.message}"),
+                    );
+                  }
+                  return const Center(child: Text('No results'));
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
