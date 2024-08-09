@@ -15,3 +15,19 @@ void navigateToDetailsView(
     throw Exception('Unknown type media');
   }
 }
+
+void navigateToSectionView(BuildContext context, String title, String typeMedia, List<dynamic>  listDetails) {
+  if (typeMedia == 'movie') {
+    if (title == 'Top Rated') {
+      AutoRouter.of(context).push(MovieTopRatedRoute(listData: listDetails));
+    } else if (title == 'Popular') {
+      AutoRouter.of(context).push(MoviePopularRoute(listData: listDetails));
+    } else {
+      throw Exception('Unknown title');
+    }
+  } else if (typeMedia == 'tv_show') {
+    //AutoRouter.of(context).push(TvShowSectionRoute(sectionId: id));
+  } else {
+    throw Exception('Unknown type media');
+  }
+}

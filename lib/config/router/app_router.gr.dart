@@ -40,6 +40,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MovieNavigationView(),
       );
     },
+    MoviePopularRoute.name: (routeData) {
+      final args = routeData.argsAs<MoviePopularRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MoviePopularView(
+          key: args.key,
+          listData: args.listData,
+        ),
+      );
+    },
+    MovieTopRatedRoute.name: (routeData) {
+      final args = routeData.argsAs<MovieTopRatedRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MovieTopRatedView(
+          key: args.key,
+          listData: args.listData,
+        ),
+      );
+    },
     MoviesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -149,6 +169,82 @@ class MovieNavigationRoute extends PageRouteInfo<void> {
   static const String name = 'MovieNavigationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MoviePopularView]
+class MoviePopularRoute extends PageRouteInfo<MoviePopularRouteArgs> {
+  MoviePopularRoute({
+    Key? key,
+    required List<dynamic> listData,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MoviePopularRoute.name,
+          args: MoviePopularRouteArgs(
+            key: key,
+            listData: listData,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MoviePopularRoute';
+
+  static const PageInfo<MoviePopularRouteArgs> page =
+      PageInfo<MoviePopularRouteArgs>(name);
+}
+
+class MoviePopularRouteArgs {
+  const MoviePopularRouteArgs({
+    this.key,
+    required this.listData,
+  });
+
+  final Key? key;
+
+  final List<dynamic> listData;
+
+  @override
+  String toString() {
+    return 'MoviePopularRouteArgs{key: $key, listData: $listData}';
+  }
+}
+
+/// generated route for
+/// [MovieTopRatedView]
+class MovieTopRatedRoute extends PageRouteInfo<MovieTopRatedRouteArgs> {
+  MovieTopRatedRoute({
+    Key? key,
+    required List<dynamic> listData,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MovieTopRatedRoute.name,
+          args: MovieTopRatedRouteArgs(
+            key: key,
+            listData: listData,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MovieTopRatedRoute';
+
+  static const PageInfo<MovieTopRatedRouteArgs> page =
+      PageInfo<MovieTopRatedRouteArgs>(name);
+}
+
+class MovieTopRatedRouteArgs {
+  const MovieTopRatedRouteArgs({
+    this.key,
+    required this.listData,
+  });
+
+  final Key? key;
+
+  final List<dynamic> listData;
+
+  @override
+  String toString() {
+    return 'MovieTopRatedRouteArgs{key: $key, listData: $listData}';
+  }
 }
 
 /// generated route for

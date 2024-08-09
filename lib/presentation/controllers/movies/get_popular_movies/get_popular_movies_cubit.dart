@@ -48,4 +48,32 @@ class GetPopularMoviesCubit extends Cubit<GetPopularMoviesState> {
     }
   }
 
+  Future<void> fetchMoreMovies() async{
+    try{
+      if (hasReachedMax) return;
+
+      final result = await _moviesUsecases.getPopularMovies(page: _page);
+
+      result.fold(
+        (error) {
+          emit(GetPopularMoviesError(message: error.message));
+        },
+        (success) {
+          _page++;
+          _movieList.addAll(success.movies?.where((movie)=> _movieList.contains(movie)==false)??[]);
+          if ((success.movies?.length ?? 0) < 20) {
+          hasReachedMax = true;
+          }
+          emit(GetPopularMoviesLoaded(movies: List.of(_movieList)));
+        }
+
+        
+      );
+
+    } catch(e) {
+      print(e);
+      rethrow;
+    }
+  }
+
 }

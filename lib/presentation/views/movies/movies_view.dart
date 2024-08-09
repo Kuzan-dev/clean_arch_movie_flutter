@@ -3,6 +3,7 @@ import 'package:clean_arch_movie_flutter/core/components/carrousell/carrousell_c
 import 'package:clean_arch_movie_flutter/core/components/carrousell/section_listview_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
 import 'package:clean_arch_movie_flutter/core/components/slider/slider_card.dart';
+import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_top_rated_movies/get_top_rated_movies_cubit.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,9 @@ class MoviesView extends StatelessWidget {
                       ),
                       HeaderTitle(
                         title: 'Popular Movies',
-                        onTap: () {},
+                        onTap: () {
+                          navigateToSectionView( context, 'Popular','movie', popular1State.movies);
+                        },
                       ),
                       CarrousellCard(
                         height: 250,
@@ -70,7 +73,9 @@ class MoviesView extends StatelessWidget {
                       ),
                       HeaderTitle(
                         title: 'Top Rated Movies',
-                        onTap: () {},
+                        onTap: () {
+                          navigateToSectionView( context, 'Top Rated','movie', topRated1State.movies);
+                        },
                       ),
                       CarrousellCard(
                         height: 250,
@@ -80,7 +85,7 @@ class MoviesView extends StatelessWidget {
                               media: topRated1State.movies[index]);
                         },
                       ),
-                      Padding(padding: const EdgeInsets.only(bottom: 65)),
+                      const Padding(padding: EdgeInsets.only(bottom: 65)),
                     ],
                   ));
                 } else {

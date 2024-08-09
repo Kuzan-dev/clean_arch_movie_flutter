@@ -4,6 +4,8 @@ import 'package:clean_arch_movie_flutter/presentation/views/main_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_navigation_view.dart';
 
 import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_detail_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_popular_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_top_rated_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/movies/movies_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/search/search_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_detail_view.dart';
@@ -32,6 +34,16 @@ class AppRouter extends _$AppRouter {
               ),
               CustomRoute(
                 page: MovieDetailRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 500,
+              ),
+              CustomRoute(
+                page: MoviePopularRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 500,
+              ),
+              CustomRoute(
+                page: MovieTopRatedRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
                 durationInMilliseconds: 500,
               ),
