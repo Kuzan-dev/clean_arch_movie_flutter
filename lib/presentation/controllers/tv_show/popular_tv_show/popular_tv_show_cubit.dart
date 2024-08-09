@@ -4,13 +4,13 @@ import 'package:equatable/equatable.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
 
-part 'get_popular_tv_show_state.dart';
+part 'popular_tv_show_state.dart';
 
-class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
-  GetPopularTvShowCubit(this._movieUsecases) : super(GetPopularTvShowInitial());
+class PopularTvShowCubit extends Cubit<PopularTvShowState> {
+  PopularTvShowCubit(this._movieUsecases) : super(PopularTvShowInitial());
 
   /// The list of popular movie details.
-  final List<TvShowDetailsEntity> _TvshoList = [];
+  final List<TvShowDetailsEntity> _tvshoList = [];
 
   /// The current page number for fetching popular movies.
   int _page = 1;
@@ -25,15 +25,15 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
 
       /// Checks if the current state is not [GetPopularMoviesLoaded].
       /// If it is not, emits a [GetPopularMoviesLoading] state.
-      if (state is! GetPopularTvShowLoaded) {
-        emit(const GetPopularTvShowLoading());
+      if (state is! PopularTvShowLoaded) {
+        emit(const PopularTvShowLoading());
       }
 
       final result = await _movieUsecases.getPopularTvShows(page: _page);
 
       result.fold(
         (error) {
-          emit(GetPopularTvShowError(message: error.message));
+          emit(PopularTvShowError(message: error.message));
         },
         (success) {
           // Increases the page number and adds the movies from the [success] response to the movie list.
@@ -42,8 +42,8 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
           // Emits a [GetPopularMoviesLoaded] state with the updated movie list.
 
           _page++;
-          _TvshoList.addAll(success.tvShows
-                  ?.where((movie) => _TvshoList.contains(movie) == false) ??
+          _tvshoList.addAll(success.tvShows
+                  ?.where((movie) => _tvshoList.contains(movie) == false) ??
               []);
 
           /// Checks if the number of movies in the [success] response is less than 20.
@@ -52,7 +52,7 @@ class GetPopularTvShowCubit extends Cubit<GetPopularTvShowState> {
             hasReachedMax = true;
           }
 
-          emit(GetPopularTvShowLoaded(tvshows: List.of(_TvshoList)));
+          emit(PopularTvShowLoaded(tvshows: List.of(_tvshoList)));
         },
       );
     } catch (e) {

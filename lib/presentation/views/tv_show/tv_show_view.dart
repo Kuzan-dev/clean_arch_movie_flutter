@@ -1,8 +1,8 @@
 import 'package:clean_arch_movie_flutter/core/components/carrousell/carrousell_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/carrousell/section_listview_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
-import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_popular_tv_show/get_popular_tv_show_cubit.dart';
-import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_top_rated_tv_show/get_top_rated_tv_show_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/popular_tv_show/popular_tv_show_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/top_rated_tv_show/top_rated_tv_show_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clean_arch_movie_flutter/core/components/slider/slider_card.dart';
@@ -17,18 +17,18 @@ class TvShowView extends StatelessWidget {
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
-          BlocListener<GetPopularTvShowCubit, GetPopularTvShowState>(
+          BlocListener<PopularTvShowCubit, PopularTvShowState>(
             listener: (context, state) {
-              if (state is GetPopularTvShowError) {
+              if (state is PopularTvShowError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),
                 );
               }
             },
           ),
-          BlocListener<GetTopRatedTvShowCubit, GetTopRatedTvShowState>(
+          BlocListener<TopRatedTvShowCubit, TopRatedTvShowState>(
             listener: (context, state) {
-              if (state is GetTopRatedTvShowError) {
+              if (state is TopRatedTvShowError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),
                 );
@@ -36,17 +36,17 @@ class TvShowView extends StatelessWidget {
             },
           ),
         ],
-        child: BlocBuilder<GetPopularTvShowCubit, GetPopularTvShowState>(
+        child: BlocBuilder<PopularTvShowCubit, PopularTvShowState>(
           builder: (context, popularState) {
-            return BlocBuilder<GetTopRatedTvShowCubit, GetTopRatedTvShowState>(
+            return BlocBuilder<TopRatedTvShowCubit, TopRatedTvShowState>(
               builder: (context, topRatedState) {
-                if (popularState is GetPopularTvShowLoading ||
-                    topRatedState is GetTopRatedTvShowLoading) {
+                if (popularState is PopularTvShowLoading ||
+                    topRatedState is TopRatedTvShowLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (popularState is GetPopularTvShowLoaded &&
-                    topRatedState is GetTopRatedTvShowLoaded) {
+                } else if (popularState is PopularTvShowLoaded &&
+                    topRatedState is TopRatedTvShowLoaded) {
                   return SingleChildScrollView(
                     child: Column(
                       children: [

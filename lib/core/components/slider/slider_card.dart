@@ -30,7 +30,7 @@ class _SliderCardState extends State<SliderCard> {
   @override
   Widget build(BuildContext context) {
     final controller = Gallery3DController(
-      itemCount: widget.list.length-14,
+      itemCount: widget.list.length - 14,
       autoLoop: true,
       ellipseHeight: 0,
       minScale: 0.4,
@@ -80,7 +80,7 @@ class _SliderCardState extends State<SliderCard> {
             isClip: true,
             onClickItem: (index) {
               navigateToDetailsView(context, widget.mediaType,
-                  widget.list[index].id);
+                  widget.list[index].id, widget.list[index]);
             },
             onItemChanged: (index) {
               setState(() {
