@@ -35,10 +35,7 @@ Future<void> init() async {
     ..registerLazySingleton<SearchUsecases>(() => SearchUsecases(injector()))
 
     // Bloc TvShows
-    ..registerLazySingleton<GetPopularTvShowCubit>(
-        () => GetPopularTvShowCubit(injector<TvShowUsecases>()))
-    ..registerLazySingleton<GetTopRatedTvShowCubit>(
-        () => GetTopRatedTvShowCubit(injector<TvShowUsecases>()))
+
     // Bloc Movies
     ..registerLazySingleton<GetPopularMoviesCubit>(
         () => GetPopularMoviesCubit(injector<MoviesUsecases>()))
@@ -46,5 +43,12 @@ Future<void> init() async {
         () => GetTopRatedMoviesCubit(injector<MoviesUsecases>()))
     // Bloc Search
     ..registerLazySingleton<SearchCubit>(
-        () => SearchCubit(injector<SearchUsecases>()));
+        () => SearchCubit(injector<SearchUsecases>()))
+    // Bloc
+    ..registerLazySingleton<PopularTvShowCubit>(
+        () => PopularTvShowCubit(injector<TvShowUsecases>()))
+    ..registerLazySingleton<TopRatedTvShowCubit>(
+        () => TopRatedTvShowCubit(injector<TvShowUsecases>()))
+    ..registerLazySingleton<TvShowCreditCubit>(
+        () => TvShowCreditCubit(injector<TvShowUsecases>()));
 }

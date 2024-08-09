@@ -12,7 +12,6 @@ class SectionListViewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       width: 120,
       child: Column(

@@ -2,12 +2,7 @@ import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
 import 'package:clean_arch_movie_flutter/core/database/local_database.dart';
 import 'package:clean_arch_movie_flutter/core/network/dio_client.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/export_datasources.dart';
-import 'package:clean_arch_movie_flutter/data/datasources/local/tv_show/tv_show_local_data_source.dart';
-import 'package:clean_arch_movie_flutter/data/datasources/local/tv_show/tv_show_local_data_source_impl.dart';
-import 'package:clean_arch_movie_flutter/data/datasources/remote/movies/movie_remote_data_source_impl.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/remote/search/search_data_source_impl.dart';
-import 'package:clean_arch_movie_flutter/data/datasources/remote/tv_show/tv_show_data_souce.dart';
-import 'package:clean_arch_movie_flutter/data/datasources/remote/tv_show/tv_show_data_source_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/movies/movie_repository_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/search/search_repository_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/tv_show/tv_show_repository_impl.dart';
@@ -18,8 +13,10 @@ import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_top_rated_movies/get_top_rated_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/search/search_cubit.dart';
-import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_popular_tv_show/get_popular_tv_show_cubit.dart';
-import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/get_top_rated_tv_show/get_top_rated_tv_show_cubit.dart';
+
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/popular_tv_show/popular_tv_show_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/top_rated_tv_show/top_rated_tv_show_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_credit/tv_show_credit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -44,13 +41,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<GetPopularTvShowCubit>(
+        Provider<PopularTvShowCubit>(
           create: (context) =>
-              injector<GetPopularTvShowCubit>()..getPopularTvShow(),
+              injector<PopularTvShowCubit>()..getPopularTvShow(),
         ),
-        Provider<GetTopRatedTvShowCubit>(
+        Provider<TopRatedTvShowCubit>(
           create: (context) =>
-              injector<GetTopRatedTvShowCubit>()..getTopRatedTvShow(),
+              injector<TopRatedTvShowCubit>()..getTopRatedTvShow(),
         ),
         Provider<GetPopularMoviesCubit>(
           create: (context) =>
