@@ -9,3 +9,4 @@ export 'tv_show/tv_show_list.dart';
 export 'util/actor.dart';
 export 'util/actor_movies.dart';
 export 'util/cast_list.dart';
+export 'search/search.dart';
