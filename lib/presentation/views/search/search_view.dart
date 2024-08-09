@@ -4,7 +4,6 @@ import 'package:clean_arch_movie_flutter/presentation/controllers/search/search_
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:clean_arch_movie_flutter/core/components/carrousell/image_with_shimmer.dart';
 
 
 @RoutePage()
@@ -12,6 +11,7 @@ class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchViewState createState() => _SearchViewState();
 }
 
