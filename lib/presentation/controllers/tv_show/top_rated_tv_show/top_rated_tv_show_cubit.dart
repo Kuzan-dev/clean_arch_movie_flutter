@@ -4,11 +4,10 @@ import 'package:equatable/equatable.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
 
-part 'get_top_rated_tv_show_state.dart';
+part 'top_rated_tv_show_state.dart';
 
-class GetTopRatedTvShowCubit extends Cubit<GetTopRatedTvShowState> {
-  GetTopRatedTvShowCubit(this._movieUsecases)
-      : super(GetTopRatedTvShowInitial());
+class TopRatedTvShowCubit extends Cubit<TopRatedTvShowState> {
+  TopRatedTvShowCubit(this._movieUsecases) : super(TopRatedTvShowInitial());
 
   final TvShowUsecases _movieUsecases;
   final List<TvShowDetailsEntity> _movieList = [];
@@ -19,15 +18,15 @@ class GetTopRatedTvShowCubit extends Cubit<GetTopRatedTvShowState> {
     try {
       if (hasReachedMax) return;
 
-      if (state is! GetTopRatedTvShowLoaded) {
-        emit(const GetTopRatedTvShowLoading());
+      if (state is! TopRatedTvShowLoaded) {
+        emit(const TopRatedTvShowLoading());
       }
 
       final result = await _movieUsecases.getTopRatedTvShows(page: _page);
 
       result.fold(
         (error) {
-          emit(GetTopRatedTvShowError(message: error.message));
+          emit(TopRatedTvShowError(message: error.message));
         },
         (success) {
           _page++;
@@ -39,7 +38,7 @@ class GetTopRatedTvShowCubit extends Cubit<GetTopRatedTvShowState> {
             hasReachedMax = true;
           }
 
-          emit(GetTopRatedTvShowLoaded(tvshows: List.of(_movieList)));
+          emit(TopRatedTvShowLoaded(tvshows: List.of(_movieList)));
         },
       );
     } catch (e) {

@@ -53,15 +53,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     TvShowDetailRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<TvShowDetailRouteArgs>(
-          orElse: () =>
-              TvShowDetailRouteArgs(tvshowId: pathParams.getInt('tvshowId')));
+      final args = routeData.argsAs<TvShowDetailRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: TvShowDetailView(
           key: args.key,
           tvshowId: args.tvshowId,
+          tvShowDetails: args.tvShowDetails,
         ),
       );
     },
@@ -187,12 +185,14 @@ class TvShowDetailRoute extends PageRouteInfo<TvShowDetailRouteArgs> {
   TvShowDetailRoute({
     Key? key,
     required int tvshowId,
+    required TvShowDetailsEntity tvShowDetails,
     List<PageRouteInfo>? children,
   }) : super(
           TvShowDetailRoute.name,
           args: TvShowDetailRouteArgs(
             key: key,
             tvshowId: tvshowId,
+            tvShowDetails: tvShowDetails,
           ),
           rawPathParams: {'tvshowId': tvshowId},
           initialChildren: children,
@@ -208,15 +208,18 @@ class TvShowDetailRouteArgs {
   const TvShowDetailRouteArgs({
     this.key,
     required this.tvshowId,
+    required this.tvShowDetails,
   });
 
   final Key? key;
 
   final int tvshowId;
 
+  final TvShowDetailsEntity tvShowDetails;
+
   @override
   String toString() {
-    return 'TvShowDetailRouteArgs{key: $key, tvshowId: $tvshowId}';
+    return 'TvShowDetailRouteArgs{key: $key, tvshowId: $tvshowId, tvShowDetails: $tvShowDetails}';
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/main_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_navigation_view.dart';
 
