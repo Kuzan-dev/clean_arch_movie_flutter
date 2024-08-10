@@ -23,43 +23,38 @@ const MovieDetailsCollectionSchema = CollectionSchema(
       name: r'backdropUrl',
       type: IsarType.string,
     ),
-    r'genres': PropertySchema(
-      id: 1,
-      name: r'genres',
-      type: IsarType.stringList,
-    ),
     r'overview': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'overview',
       type: IsarType.string,
     ),
     r'posterUrl': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'posterUrl',
       type: IsarType.string,
     ),
     r'releaseDate': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'releaseDate',
       type: IsarType.string,
     ),
     r'runtime': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'runtime',
-      type: IsarType.string,
+      type: IsarType.long,
     ),
     r'title': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'title',
       type: IsarType.string,
     ),
     r'trailerUrl': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'trailerUrl',
       type: IsarType.string,
     ),
     r'voteAverage': PropertySchema(
-      id: 8,
+      id: 7,
       name: r'voteAverage',
       type: IsarType.double,
     )
@@ -91,18 +86,6 @@ int _movieDetailsCollectionEstimateSize(
     }
   }
   {
-    final list = object.genres;
-    if (list != null) {
-      bytesCount += 3 + list.length * 3;
-      {
-        for (var i = 0; i < list.length; i++) {
-          final value = list[i];
-          bytesCount += value.length * 3;
-        }
-      }
-    }
-  }
-  {
     final value = object.overview;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -116,12 +99,6 @@ int _movieDetailsCollectionEstimateSize(
   }
   {
     final value = object.releaseDate;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.runtime;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
@@ -148,14 +125,13 @@ void _movieDetailsCollectionSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.backdropUrl);
-  writer.writeStringList(offsets[1], object.genres);
-  writer.writeString(offsets[2], object.overview);
-  writer.writeString(offsets[3], object.posterUrl);
-  writer.writeString(offsets[4], object.releaseDate);
-  writer.writeString(offsets[5], object.runtime);
-  writer.writeString(offsets[6], object.title);
-  writer.writeString(offsets[7], object.trailerUrl);
-  writer.writeDouble(offsets[8], object.voteAverage);
+  writer.writeString(offsets[1], object.overview);
+  writer.writeString(offsets[2], object.posterUrl);
+  writer.writeString(offsets[3], object.releaseDate);
+  writer.writeLong(offsets[4], object.runtime);
+  writer.writeString(offsets[5], object.title);
+  writer.writeString(offsets[6], object.trailerUrl);
+  writer.writeDouble(offsets[7], object.voteAverage);
 }
 
 MovieDetailsCollection _movieDetailsCollectionDeserialize(
@@ -166,15 +142,14 @@ MovieDetailsCollection _movieDetailsCollectionDeserialize(
 ) {
   final object = MovieDetailsCollection(
     backdropUrl: reader.readStringOrNull(offsets[0]),
-    genres: reader.readStringList(offsets[1]),
     id: id,
-    overview: reader.readStringOrNull(offsets[2]),
-    posterUrl: reader.readStringOrNull(offsets[3]),
-    releaseDate: reader.readStringOrNull(offsets[4]),
-    runtime: reader.readStringOrNull(offsets[5]),
-    title: reader.readStringOrNull(offsets[6]),
-    trailerUrl: reader.readStringOrNull(offsets[7]),
-    voteAverage: reader.readDoubleOrNull(offsets[8]),
+    overview: reader.readStringOrNull(offsets[1]),
+    posterUrl: reader.readStringOrNull(offsets[2]),
+    releaseDate: reader.readStringOrNull(offsets[3]),
+    runtime: reader.readLongOrNull(offsets[4]),
+    title: reader.readStringOrNull(offsets[5]),
+    trailerUrl: reader.readStringOrNull(offsets[6]),
+    voteAverage: reader.readDoubleOrNull(offsets[7]),
   );
   return object;
 }
@@ -189,20 +164,18 @@ P _movieDetailsCollectionDeserializeProp<P>(
     case 0:
       return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readStringList(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
       return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 5:
       return (reader.readStringOrNull(offset)) as P;
     case 6:
       return (reader.readStringOrNull(offset)) as P;
     case 7:
-      return (reader.readStringOrNull(offset)) as P;
-    case 8:
       return (reader.readDoubleOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -457,251 +430,6 @@ extension MovieDetailsCollectionQueryFilter on QueryBuilder<
         property: r'backdropUrl',
         value: '',
       ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'genres',
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'genres',
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'genres',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'genres',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'genres',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'genres',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'genres',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'genres',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-          QAfterFilterCondition>
-      genresElementContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'genres',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-          QAfterFilterCondition>
-      genresElementMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'genres',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'genres',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresElementIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'genres',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresLengthEqualTo(int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'genres',
-        length,
-        true,
-        length,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'genres',
-        0,
-        true,
-        0,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'genres',
-        0,
-        false,
-        999999,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'genres',
-        0,
-        true,
-        length,
-        include,
-      );
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'genres',
-        length,
-        include,
-        999999,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> genresLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'genres',
-        lower,
-        includeLower,
-        upper,
-        includeUpper,
-      );
     });
   }
 
@@ -1266,58 +994,49 @@ extension MovieDetailsCollectionQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> runtimeEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
+      QAfterFilterCondition> runtimeEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'runtime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
       QAfterFilterCondition> runtimeGreaterThan(
-    String? value, {
+    int? value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'runtime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
       QAfterFilterCondition> runtimeLessThan(
-    String? value, {
+    int? value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'runtime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
       QAfterFilterCondition> runtimeBetween(
-    String? lower,
-    String? upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -1326,79 +1045,6 @@ extension MovieDetailsCollectionQueryFilter on QueryBuilder<
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> runtimeStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'runtime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> runtimeEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'runtime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-          QAfterFilterCondition>
-      runtimeContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'runtime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-          QAfterFilterCondition>
-      runtimeMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'runtime',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> runtimeIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'runtime',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
-      QAfterFilterCondition> runtimeIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'runtime',
-        value: '',
       ));
     });
   }
@@ -2060,13 +1706,6 @@ extension MovieDetailsCollectionQueryWhereDistinct
   }
 
   QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QDistinct>
-      distinctByGenres() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'genres');
-    });
-  }
-
-  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QDistinct>
       distinctByOverview({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'overview', caseSensitive: caseSensitive);
@@ -2088,9 +1727,9 @@ extension MovieDetailsCollectionQueryWhereDistinct
   }
 
   QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QDistinct>
-      distinctByRuntime({bool caseSensitive = true}) {
+      distinctByRuntime() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'runtime', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'runtime');
     });
   }
 
@@ -2131,13 +1770,6 @@ extension MovieDetailsCollectionQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<MovieDetailsCollection, List<String>?, QQueryOperations>
-      genresProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'genres');
-    });
-  }
-
   QueryBuilder<MovieDetailsCollection, String?, QQueryOperations>
       overviewProperty() {
     return QueryBuilder.apply(this, (query) {
@@ -2159,7 +1791,7 @@ extension MovieDetailsCollectionQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<MovieDetailsCollection, String?, QQueryOperations>
+  QueryBuilder<MovieDetailsCollection, int?, QQueryOperations>
       runtimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'runtime');

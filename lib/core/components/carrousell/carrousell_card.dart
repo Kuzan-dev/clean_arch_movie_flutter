@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CarrousellCard extends StatelessWidget {
-  final int intemCount;
+  final int itemCount;
   final double height;
   final Widget Function(BuildContext context, int index) itemBuilder;
 
   const CarrousellCard({
     required this.height,
-    required this.intemCount,
+    required this.itemCount,
     required this.itemBuilder,
     super.key,
   });
@@ -21,6 +21,6 @@ class CarrousellCard extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: itemBuilder,
             separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemCount: intemCount));
+            itemCount: itemCount));
   }
 }

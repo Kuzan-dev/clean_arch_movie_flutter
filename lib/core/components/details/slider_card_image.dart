@@ -14,16 +14,16 @@ class SliderCardImage extends StatelessWidget {
         return const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.black, Colors.transparent],
+          colors: [Colors.black, Colors.black, Colors.transparent],
+          stops: [0.3, 0.5, 1],
         ).createShader(
           Rect.fromLTRB(0, 0, rect.width, rect.height),
         );
       },
       child: ImageWithShimmer(
-        imageUrl: image,
-        width: double.infinity,
-        height: MediaQuery.of(context).size.width * 0.5,
-      ),
+          imageUrl: image,
+          width: double.infinity,
+          height: MediaQuery.of(context).size.width * 1.3),
     );
   }
 }

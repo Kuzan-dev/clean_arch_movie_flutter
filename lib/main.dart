@@ -17,6 +17,7 @@ import 'package:clean_arch_movie_flutter/presentation/controllers/search/search_
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/popular_tv_show/popular_tv_show_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/top_rated_tv_show/top_rated_tv_show_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_credit/tv_show_credit_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_details/tv_show_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

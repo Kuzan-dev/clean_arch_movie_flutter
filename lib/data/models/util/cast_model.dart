@@ -6,12 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'cast_model.g.dart';
 
 @JsonSerializable()
-class CastModel extends Equatable with EntityConvertible<CastModel, CastEntity>{
-  final int id;
-  final String name;
+class CastModel extends Equatable
+    with EntityConvertible<CastModel, CastEntity> {
+  final int? id;
+  final String? name;
   @JsonKey(name: 'profile_path')
-  final String profileUrl;
-  final int gender;
+  final String? profileUrl;
+  final int? gender;
 
   const CastModel({
     required this.id,
@@ -30,7 +31,7 @@ class CastModel extends Equatable with EntityConvertible<CastModel, CastEntity>{
         name: name,
         profileUrl: profileUrl,
         gender: gender,
-  );
+      );
 
   Map<String, dynamic> toJson() => _$CastModelToJson(this);
 

@@ -1,3 +1,5 @@
+import 'package:clean_arch_movie_flutter/data/models/tv_show/episode_details_model.dart';
+import 'package:clean_arch_movie_flutter/data/models/tv_show/season_details_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/_mappers/entity_convertable.dart';
@@ -17,14 +19,17 @@ class TvShowDetailsModel extends Equatable
   final String? backdropUrl;
   @JsonKey(name: 'first_air_date')
   final String? releaseDate;
-  final List<String>? genres;
+
   @JsonKey(name: 'number_of_seasons')
   final int? numberOfSeasons;
   final String? overview;
   @JsonKey(name: 'vote_average')
   final double? voteAverage;
-  //@JsonKey(name: 'vote_count')
-  //final String? voteCount;
+  @JsonKey(name: 'last_episode_to_air')
+  final EpisodeDetailsModel? lastEpisodeToAir;
+  final List<SeasonDetailsModel>? seasons;
+  @JsonKey(name: 'vote_count')
+  final int? voteCount;
   @JsonKey(name: 'trailer_url')
   final String? trailerUrl;
 
@@ -34,17 +39,17 @@ class TvShowDetailsModel extends Equatable
     required this.posterUrl,
     required this.backdropUrl,
     required this.releaseDate,
-    required this.genres,
     required this.numberOfSeasons,
     required this.overview,
     required this.voteAverage,
-    //required this.voteCount,
+    required this.lastEpisodeToAir,
+    required this.voteCount,
     required this.trailerUrl,
+    required this.seasons,
   });
 
   factory TvShowDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$TvShowDetailsModelFromJson(json);
-
 
   @override
   List<Object?> get props => [
@@ -53,14 +58,15 @@ class TvShowDetailsModel extends Equatable
         posterUrl,
         backdropUrl,
         releaseDate,
-        genres,
         numberOfSeasons,
         overview,
         voteAverage,
-        //voteCount,
+        lastEpisodeToAir,
+        voteCount,
         trailerUrl,
+        seasons,
       ];
-  
+
   Map<String, dynamic> toJson() => _$TvShowDetailsModelToJson(this);
 
   @override
@@ -70,11 +76,12 @@ class TvShowDetailsModel extends Equatable
         posterUrl: posterUrl,
         backdropUrl: backdropUrl,
         releaseDate: releaseDate,
-        genres: genres,
         numberOfSeasons: numberOfSeasons,
         overview: overview,
         voteAverage: voteAverage,
-        //voteCount: voteCount,
+        lastEpisodeToAir: lastEpisodeToAir?.toEntity(),
+        voteCount: voteCount,
         trailerUrl: trailerUrl,
+        seasons: seasons?.map((e) => e.toEntity()).toList(),
       );
 }

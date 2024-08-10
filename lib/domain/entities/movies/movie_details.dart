@@ -1,19 +1,17 @@
 import 'package:equatable/equatable.dart';
 
-
 class MovieDetailsEntity extends Equatable {
   final int? id;
   final String? title;
   final String? posterUrl;
   final String? backdropUrl;
   final String? releaseDate;
-  final List<String>? genres;
-  final String? runtime;
+
+  final int? runtime;
   final String? overview;
   final double? voteAverage;
   //final String? voteCount;
   final String? trailerUrl;
-
 
   const MovieDetailsEntity({
     this.id,
@@ -21,7 +19,6 @@ class MovieDetailsEntity extends Equatable {
     this.posterUrl,
     this.backdropUrl,
     this.releaseDate,
-    this.genres,
     this.runtime,
     this.overview,
     this.voteAverage,
@@ -36,7 +33,7 @@ class MovieDetailsEntity extends Equatable {
         posterUrl,
         backdropUrl,
         releaseDate,
-        genres,
+
         runtime,
         overview,
         voteAverage,

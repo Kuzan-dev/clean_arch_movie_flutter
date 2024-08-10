@@ -1,6 +1,6 @@
 import 'package:clean_arch_movie_flutter/data/datasources/_mappers/entity_convertable.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 
-import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
 import 'package:isar/isar.dart';
 
 part 'tv_show_detail_collection.g.dart';
@@ -13,11 +13,12 @@ class TvShowDetailsCollection
   final String? posterUrl;
   final String? backdropUrl;
   final String? releaseDate;
-  final List<String>? genres;
-  final String? runtime;
+
+  final int? runtime;
   final int? numberOfSeasons;
   final String? overview;
   final double? voteAverage;
+
   //final String? voteCount;
   final String? trailerUrl;
 
@@ -27,11 +28,11 @@ class TvShowDetailsCollection
     this.posterUrl,
     this.backdropUrl,
     this.releaseDate,
-    this.genres,
     this.runtime,
     this.numberOfSeasons,
     this.overview,
     this.voteAverage,
+
     //this.voteCount,
     this.trailerUrl,
   });
@@ -44,11 +45,12 @@ class TvShowDetailsCollection
       posterUrl: posterUrl,
       backdropUrl: backdropUrl,
       releaseDate: releaseDate,
-      genres: genres,
+
       runtime: runtime,
       numberOfSeasons: numberOfSeasons,
       overview: overview,
       voteAverage: voteAverage,
+
       //voteCount: voteCount,
       trailerUrl: trailerUrl,
     );
@@ -62,11 +64,12 @@ class TvShowDetailsCollection
       posterUrl: model?.posterUrl,
       backdropUrl: model?.backdropUrl,
       releaseDate: model?.releaseDate,
-      genres: model?.genres,
+
       runtime: model?.runtime,
       numberOfSeasons: model?.numberOfSeasons,
       overview: model?.overview,
       voteAverage: model?.voteAverage,
+
       //voteCount: model?.voteCount,
       trailerUrl: model?.trailerUrl,
     );
