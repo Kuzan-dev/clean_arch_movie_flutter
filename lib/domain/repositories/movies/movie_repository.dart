@@ -1,7 +1,6 @@
 import 'package:clean_arch_movie_flutter/core/exceptions/database_exception.dart';
 import 'package:clean_arch_movie_flutter/core/exceptions/network_exception.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/movies/movie_details.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/movies/movie_list.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class MovieRepository {
@@ -16,6 +15,9 @@ abstract class MovieRepository {
 
   // Get details of a movie
   Future<Either<NetworkException, MovieDetailsEntity>> getMovieDetails(
+      {required int movieId});
+
+  Future<Either<NetworkException, MovieCreditEntity>> getMovieCredits(
       {required int movieId});
 
   // Get similar movies

@@ -54,7 +54,7 @@ class _SearchViewState extends State<SearchView> {
         ],
         child: Column(
           children: [
-            const Padding(padding: EdgeInsets.only(top: 22)),
+            const Padding(padding: EdgeInsets.only(top: 30)),
             const SearchField(),
             Expanded(
               child: BlocBuilder<SearchCubit, SearchState>(
@@ -80,19 +80,13 @@ class _SearchViewState extends State<SearchView> {
                             itemCount: searchResult.length,
                             itemBuilder: (context, index) {
                               final searchEntity = searchResult[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  // Navegar a la vista de detalle
-                                },
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(3, 2, 3, 2),
-                                  child: SectionListViewCard(
-                                    media: searchEntity,
-                                    typeMedia: searchEntity.isMovie!
-                                        ? 'movie'
-                                        : 'tv_show',
-                                  ),
+                              return Padding(
+                                padding: const EdgeInsets.fromLTRB(3, 2, 3, 2),
+                                child: SectionListViewCard(
+                                  media: searchEntity,
+                                  typeMedia: searchEntity.isMovie!
+                                      ? 'movie'
+                                      : 'tv_show',
                                 ),
                               );
                             },

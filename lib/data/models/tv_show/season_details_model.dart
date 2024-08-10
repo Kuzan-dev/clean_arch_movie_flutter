@@ -18,16 +18,21 @@ class SeasonDetailsModel extends Equatable
   final String? overview;
   @JsonKey(name: 'poster_path')
   final String? posterUrl;
+  @JsonKey(name: 'episode_count')
+  final int? episodeCount;
   @JsonKey(name: 'season_number')
   final int? seasonNumber;
+  final List<EpisodeDetailsModel>? episodes;
 
   SeasonDetailsModel({
     required this.tmdbID,
     required this.name,
     required this.airDate,
     required this.overview,
+    required this.episodeCount,
     required this.posterUrl,
     required this.seasonNumber,
+    required this.episodes,
   });
 
   factory SeasonDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -43,6 +48,7 @@ class SeasonDetailsModel extends Equatable
         overview,
         posterUrl,
         seasonNumber,
+        episodes,
       ];
 
   @override
@@ -51,7 +57,9 @@ class SeasonDetailsModel extends Equatable
         name: name,
         airDate: airDate,
         overview: overview,
+        episodeCount: episodeCount,
         posterUrl: posterUrl,
         seasonNumber: seasonNumber,
+        episodes: episodes?.map((e) => e.toEntity()).toList(),
       );
 }

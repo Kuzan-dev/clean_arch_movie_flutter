@@ -51,6 +51,17 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
+  Future<Either<NetworkException, MovieCreditEntity>> getMovieCredits(
+      {required int movieId}) async {
+    try {
+      final result = await _remoteDataSource.getMovieCredits(movieId: movieId);
+      return Right(result.toEntity());
+    } on DioException catch (e) {
+      return Left(NetworkException.fromDioError(e));
+    }
+  }
+
+  @override
   Future<Either<NetworkException, MovieListEntity>> getSimilarMovies(
       {required int movieId, required int page}) async {
     try {

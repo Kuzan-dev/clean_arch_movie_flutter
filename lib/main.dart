@@ -18,6 +18,7 @@ import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/popula
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/top_rated_tv_show/top_rated_tv_show_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_credit/tv_show_credit_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_details/tv_show_details_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_episodes/tv_show_season_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.black,
+          fontFamily: 'Muli',
         ),
         routerConfig: _appRouter.config(),
       ),

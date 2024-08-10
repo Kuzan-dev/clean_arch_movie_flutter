@@ -29,6 +29,12 @@ class MoviesUsecases {
     return _repository.getMovieDetails(movieId: movieId);
   }
 
+  // Recupera los créditos de una película específica del servidor.
+  Future<Either<NetworkException, MovieCreditEntity>> getMovieCredits(
+      {required int movieId}) async {
+    return _repository.getMovieCredits(movieId: movieId);
+  }
+
   // Recupera las películas similares a una película específica del servidor.
   Future<Either<NetworkException, MovieListEntity>> getSimilarMovies(
       {required int movieId, required int page}) async {

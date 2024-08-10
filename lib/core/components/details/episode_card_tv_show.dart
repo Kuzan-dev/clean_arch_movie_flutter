@@ -1,7 +1,7 @@
 import 'package:clean_arch_movie_flutter/core/components/carrousell/image_with_shimmer.dart';
+import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class EpisodeCardTvShow extends StatelessWidget {
   const EpisodeCardTvShow({
@@ -13,12 +13,6 @@ class EpisodeCardTvShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = '';
-    if (episode?.airDate != null) {
-      final DateTime parsedDate = DateTime.parse(episode!.airDate!);
-      formattedDate = DateFormat('MMM dd yyyy').format(parsedDate);
-    }
-
     return Container(
       height: 84,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -26,13 +20,40 @@ class EpisodeCardTvShow extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: ImageWithShimmer(
-                imageUrl:
-                    'https://image.tmdb.org/t/p/w500${episode?.stillPath}',
-                width: 150,
-                height: double.infinity,
+            child: InkWell(
+              onTap: () {
+                // Add your onTap functionality here
+              },
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: ImageWithShimmer(
+                      imageUrl:
+                          'https://image.tmdb.org/t/p/w500${episode?.stillPath}',
+                      width: 150,
+                      height: double.infinity,
+                    ),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.play_arrow_rounded,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -46,21 +67,22 @@ class EpisodeCardTvShow extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 15,
                   ),
                 ),
                 Text(
                   episode!.name!,
+                  maxLines: 2,
                   style: const TextStyle(
                     color: Colors.white60,
-                    fontSize: 14,
+                    fontSize: 13,
                   ),
                 ),
                 Text(
-                  '$formattedDate - ${episode?.runtime} min',
+                  '${formattedDate(episode!.airDate!)} - ${episode?.runtime} min',
                   style: const TextStyle(
                     color: Colors.white60,
-                    fontSize: 14,
+                    fontSize: 13,
                   ),
                 ),
               ],

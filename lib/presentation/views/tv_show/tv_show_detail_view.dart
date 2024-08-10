@@ -1,8 +1,8 @@
 import 'package:clean_arch_movie_flutter/core/components/details/details_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/episode_card_tv_show.dart';
+import 'package:clean_arch_movie_flutter/core/components/details/season_section.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/tv_show_description_detail.dart';
 import 'package:clean_arch_movie_flutter/core/components/header/header_section.dart';
-import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/tv_show_credit/tv_show_credit_cubit.dart';
@@ -22,7 +22,7 @@ class TvShowDetailView extends StatefulWidget {
   });
 
   @override
-  _TvShowDetailViewState createState() => _TvShowDetailViewState();
+  State<TvShowDetailView> createState() => _TvShowDetailViewState();
 }
 
 class _TvShowDetailViewState extends State<TvShowDetailView> {
@@ -138,6 +138,7 @@ class TvShowDetailsWidget extends StatelessWidget {
           const HeaderSection(
             title: 'Seasons',
           ),
+          SeasonSection(seasons: tvShowDetails.seasons, id: tvShowDetails.id),
         ],
       ),
     ));

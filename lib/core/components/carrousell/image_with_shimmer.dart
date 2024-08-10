@@ -30,9 +30,9 @@ class ImageWithShimmer extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      errorWidget: (_, __, ___) => const Icon(
-        Icons.error,
-        color: Colors.red,
+      errorWidget: (_, __, ___) => Image.asset(
+        'assets/images/poster.png',
+        fit: BoxFit.cover,
       ),
     );
   }
