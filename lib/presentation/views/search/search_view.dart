@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 @RoutePage()
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -21,10 +20,11 @@ class _SearchViewState extends State<SearchView> {
   @override
   void initState() {
     super.initState();
-    
+
     // Add listener to scroll controller
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
         // Check if more results need to be fetched
         context.read<SearchCubit>().fetchMoreResults();
       }
@@ -59,7 +59,8 @@ class _SearchViewState extends State<SearchView> {
             Expanded(
               child: BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, searchState) {
-                  if (searchState is SearchLoading && searchState is! SearchLoaded) {
+                  if (searchState is SearchLoading &&
+                      searchState is! SearchLoaded) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (searchState is SearchLoaded) {
                     final searchResult = searchState.resultSearch;
@@ -69,10 +70,11 @@ class _SearchViewState extends State<SearchView> {
                           padding: const EdgeInsets.fromLTRB(14, 0, 14, 8),
                           child: GridView.builder(
                             controller: _scrollController,
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 2,
-                              mainAxisSpacing:1,
+                              mainAxisSpacing: 1,
                               childAspectRatio: 0.44,
                             ),
                             itemCount: searchResult.length,
@@ -83,24 +85,30 @@ class _SearchViewState extends State<SearchView> {
                                   // Navegar a la vista de detalle
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(3, 2, 3, 2),
-                                  child: SectionListViewCard( 
+                                  padding:
+                                      const EdgeInsets.fromLTRB(3, 2, 3, 2),
+                                  child: SectionListViewCard(
                                     media: searchEntity,
+                                    typeMedia: searchEntity.isMovie!
+                                        ? 'movie'
+                                        : 'tv_show',
                                   ),
                                 ),
                               );
                             },
                           ),
                         ),
-                        if (context.watch<SearchCubit>().hasReachedMax == false &&
-                            (searchState is SearchLoading)) 
+                        if (context.watch<SearchCubit>().hasReachedMax ==
+                                false &&
+                            (searchState is SearchLoading))
                           Positioned(
                             bottom: 0,
                             left: 0,
                             right: 0,
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: const CircularProgressIndicator(),
                             ),
                           ),
