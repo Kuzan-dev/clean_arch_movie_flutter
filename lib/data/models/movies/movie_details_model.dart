@@ -5,18 +5,18 @@ import 'package:json_annotation/json_annotation.dart';
 part 'movie_details_model.g.dart';
 
 @JsonSerializable()
-class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsModel, MovieDetailsEntity> {
+class MovieDetailsModel extends Equatable
+    with EntityConvertible<MovieDetailsModel, MovieDetailsEntity> {
   final int? id;
   final String? title;
   @JsonKey(name: 'poster_path')
   final String? posterUrl;
   @JsonKey(name: 'backdrop_path')
   final String? backdropUrl;
-  @JsonKey(name: 'release_date')	
+  @JsonKey(name: 'release_date')
   final String? releaseDate;
-  @JsonKey(name: 'genres_name')
-  final List<String>? genres;
-  final String? runtime;
+
+  final int? runtime;
   final String? overview;
   @JsonKey(name: 'vote_average')
   final double? voteAverage;
@@ -24,14 +24,12 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
   @JsonKey(name: 'trailer_url')
   final String? trailerUrl;
 
-
   const MovieDetailsModel({
     this.id,
     this.title,
     this.posterUrl,
     this.backdropUrl,
     this.releaseDate,
-    this.genres,
     this.runtime,
     this.overview,
     this.voteAverage,
@@ -50,7 +48,7 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
         posterUrl: posterUrl,
         backdropUrl: backdropUrl,
         releaseDate: releaseDate,
-        genres: genres,
+
         runtime: runtime,
         overview: overview,
         voteAverage: voteAverage,
@@ -66,7 +64,7 @@ class MovieDetailsModel extends Equatable with EntityConvertible<MovieDetailsMod
         posterUrl,
         backdropUrl,
         releaseDate,
-        genres,
+
         runtime,
         overview,
         voteAverage,

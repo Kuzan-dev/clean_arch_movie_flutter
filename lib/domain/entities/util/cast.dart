@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class CastEntity extends Equatable {
-  final int id;
-  final String name;
-  final String profileUrl;
-  final int gender;
+  final int? id;
+  final String? name;
+  final String? profileUrl;
+  final int? gender;
 
   const CastEntity({
     required this.id,

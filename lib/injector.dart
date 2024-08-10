@@ -50,5 +50,7 @@ Future<void> init() async {
     ..registerLazySingleton<TopRatedTvShowCubit>(
         () => TopRatedTvShowCubit(injector<TvShowUsecases>()))
     ..registerLazySingleton<TvShowCreditCubit>(
-        () => TvShowCreditCubit(injector<TvShowUsecases>()));
+        () => TvShowCreditCubit(injector<TvShowUsecases>()))
+    ..registerLazySingleton<TvShowDetailsCubit>(
+        () => TvShowDetailsCubit(injector<TvShowUsecases>()));
 }

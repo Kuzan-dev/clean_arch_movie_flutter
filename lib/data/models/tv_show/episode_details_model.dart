@@ -14,7 +14,7 @@ class EpisodeDetailsModel extends Equatable
   @JsonKey(name: 'season_number')
   final int? season;
   final String? name;
-  final String? runtime;
+  final int? runtime;
   @JsonKey(name: 'still_path')
   final String? stillPath;
   @JsonKey(name: 'air_date')

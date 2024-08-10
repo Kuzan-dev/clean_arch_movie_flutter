@@ -65,10 +65,12 @@ class MoviesView extends StatelessWidget {
                       ),
                       CarrousellCard(
                         height: 250,
-                        intemCount: popular1State.movies.length,
+                        itemCount: popular1State.movies.length,
                         itemBuilder: (context, index) {
                           return SectionListViewCard(
-                              media: popular1State.movies[index]);
+                            media: popular1State.movies[index],
+                            typeMedia: 'movie',
+                          );
                         },
                       ),
                       HeaderTitle(
@@ -79,10 +81,12 @@ class MoviesView extends StatelessWidget {
                       ),
                       CarrousellCard(
                         height: 250,
-                        intemCount: topRated1State.movies.length,
+                        itemCount: topRated1State.movies.length,
                         itemBuilder: (context, index) {
                           return SectionListViewCard(
-                              media: topRated1State.movies[index]);
+                            media: topRated1State.movies[index],
+                            typeMedia: 'movie',
+                          );
                         },
                       ),
                       const Padding(padding: EdgeInsets.only(bottom: 65)),

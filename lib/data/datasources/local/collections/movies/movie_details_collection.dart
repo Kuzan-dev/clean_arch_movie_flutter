@@ -5,27 +5,26 @@ import 'package:isar/isar.dart';
 part 'movie_details_collection.g.dart';
 
 @collection
-class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, MovieDetailsEntity> {
-  
+class MovieDetailsCollection
+    with EntityConvertible<MovieDetailsCollection, MovieDetailsEntity> {
   final Id? id;
   final String? title;
   final String? posterUrl;
   final String? backdropUrl;
   final String? releaseDate;
-  final List<String>? genres;
-  final String? runtime;
+
+  final int? runtime;
   final String? overview;
   final double? voteAverage;
   //final String? voteCount;
   final String? trailerUrl;
-  
+
   MovieDetailsCollection({
     this.id,
     this.title,
     this.posterUrl,
     this.backdropUrl,
     this.releaseDate,
-    this.genres,
     this.runtime,
     this.overview,
     this.voteAverage,
@@ -40,7 +39,7 @@ class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, Movi
         posterUrl: posterUrl,
         backdropUrl: backdropUrl,
         releaseDate: releaseDate,
-        genres: genres,
+
         runtime: runtime,
         overview: overview,
         voteAverage: voteAverage,
@@ -56,7 +55,7 @@ class MovieDetailsCollection with EntityConvertible<MovieDetailsCollection, Movi
       posterUrl: model?.posterUrl,
       backdropUrl: model?.backdropUrl,
       releaseDate: model?.releaseDate,
-      genres: model?.genres,
+
       runtime: model?.runtime,
       overview: model?.overview,
       voteAverage: model?.voteAverage,

@@ -11,7 +11,7 @@ TvShowCreditModel _$TvShowCreditModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       cast: json['cast'] == null
           ? null
-          : CastListModel.fromJson(json['cast'] as Map<String, dynamic>),
+          : CastListModel.fromJson(json['cast'] as List<dynamic>),
     );
 
 Map<String, dynamic> _$TvShowCreditModelToJson(TvShowCreditModel instance) =>

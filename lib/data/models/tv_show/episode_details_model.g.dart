@@ -12,7 +12,7 @@ EpisodeDetailsModel _$EpisodeDetailsModelFromJson(Map<String, dynamic> json) =>
       number: (json['episode_number'] as num?)?.toInt(),
       season: (json['season_number'] as num?)?.toInt(),
       name: json['name'] as String?,
-      runtime: json['runtime'] as String?,
+      runtime: (json['runtime'] as num?)?.toInt(),
       stillPath: json['still_path'] as String?,
       airDate: json['air_date'] as String?,
     );

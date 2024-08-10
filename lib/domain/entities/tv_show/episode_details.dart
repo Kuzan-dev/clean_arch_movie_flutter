@@ -5,7 +5,7 @@ class EpisodeDetailEntity extends Equatable {
   final int? number;
   final int? season;
   final String? name;
-  final String? runtime;
+  final int? runtime;
   final String? stillPath;
   final String? airDate;
 

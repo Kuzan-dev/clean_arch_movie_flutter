@@ -61,9 +61,10 @@ class TvShowView extends StatelessWidget {
                         ),
                         CarrousellCard(
                           height: 250,
-                          intemCount: popularState.tvshows.length,
+                          itemCount: popularState.tvshows.length,
                           itemBuilder: (context, index) {
                             return SectionListViewCard(
+                              typeMedia: 'tv_show',
                               media: popularState.tvshows[index],
                             );
                           },
@@ -74,10 +75,11 @@ class TvShowView extends StatelessWidget {
                         ),
                         CarrousellCard(
                           height: 250,
-                          intemCount: topRatedState.tvshows.length,
+                          itemCount: topRatedState.tvshows.length,
                           itemBuilder: (context, index) {
                             return SectionListViewCard(
                               media: topRatedState.tvshows[index],
+                              typeMedia: 'tv_show',
                             );
                           },
                         ),

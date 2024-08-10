@@ -57,7 +57,8 @@ class _SliderCardState extends State<SliderCard> {
                       color: Colors.white,
                     ),
                   ),
-                  imageUrl: 'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex].backdropUrl}',
+                  imageUrl:
+                      'https://image.tmdb.org/t/p/w780${widget.list[_currentIndex].backdropUrl}',
                   fit: BoxFit.cover,
                 ),
                 BackdropFilter(
@@ -88,8 +89,8 @@ class _SliderCardState extends State<SliderCard> {
             height: 300,
             isClip: true,
             onClickItem: (index) {
-              navigateToDetailsView(context, widget.mediaType,
-                  widget.list[index].id, widget.list[index]);
+              navigateToDetailsView(
+                  context, widget.mediaType, widget.list[index].id);
             },
             onItemChanged: (index) {
               setState(() {

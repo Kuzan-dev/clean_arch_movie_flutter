@@ -1,12 +1,15 @@
+import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clean_arch_movie_flutter/core/components/carrousell/image_with_shimmer.dart';
 
 class SectionListViewCard extends StatelessWidget {
+  final String typeMedia;
   final dynamic media;
 
   const SectionListViewCard({
     required this.media,
+    required this.typeMedia,
     super.key,
   });
 
@@ -18,7 +21,9 @@ class SectionListViewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              navigateToDetailsView(context, typeMedia, media.id!);
+            },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: ImageWithShimmer(
