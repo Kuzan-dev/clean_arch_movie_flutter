@@ -20,7 +20,8 @@ class MovieDetailsModel extends Equatable
   final String? overview;
   @JsonKey(name: 'vote_average')
   final double? voteAverage;
-  //final String? voteCount;
+  @JsonKey(name: 'vote_count')
+  final int? voteCount;
   @JsonKey(name: 'trailer_url')
   final String? trailerUrl;
 
@@ -33,7 +34,7 @@ class MovieDetailsModel extends Equatable
     this.runtime,
     this.overview,
     this.voteAverage,
-    //this.voteCount,
+    this.voteCount,
     this.trailerUrl,
   });
 
@@ -48,11 +49,10 @@ class MovieDetailsModel extends Equatable
         posterUrl: posterUrl,
         backdropUrl: backdropUrl,
         releaseDate: releaseDate,
-
         runtime: runtime,
         overview: overview,
         voteAverage: voteAverage,
-        //voteCount: voteCount,
+        voteCount: voteCount,
         trailerUrl: trailerUrl,
       );
   Map<String, dynamic> toJson() => _$MovieDetailsModelToJson(this);
@@ -64,11 +64,10 @@ class MovieDetailsModel extends Equatable
         posterUrl,
         backdropUrl,
         releaseDate,
-
         runtime,
         overview,
         voteAverage,
-        //voteCount,
+        voteCount,
         trailerUrl,
       ];
 }

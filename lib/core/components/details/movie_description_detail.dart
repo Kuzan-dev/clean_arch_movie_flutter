@@ -1,46 +1,39 @@
 import 'package:clean_arch_movie_flutter/core/components/details/dot_circle.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:flutter/material.dart';
 
 class MovieDescriptionDetail extends StatelessWidget {
-  final dynamic movieDetails;
-  const MovieDescriptionDetail({super.key, this.movieDetails});
+  final MovieDetailsEntity movieDetails;
+  const MovieDescriptionDetail({super.key, required this.movieDetails});
 
   @override
   Widget build(BuildContext context) {
-    if (movieDetails.releaseDate.isNotEmpty &&
-        movieDetails.genres.isNotEmpty &&
-        movieDetails.runtime!.isNotEmpty) {
+    if (movieDetails.releaseDate!.isNotEmpty && movieDetails.runtime != null) {
       return Row(
         children: [
-          if (movieDetails.releaseDate.isNotEmpty) ...[
+          if (movieDetails.releaseDate!.isNotEmpty) ...[
             Text(
-              movieDetails.releaseDate.split(',')[1],
+              movieDetails.releaseDate!.split('-')[0],
               style: TextStyle(
                 color: Colors.white.withOpacity(0.6),
-                fontSize: 12,
+                fontSize: 16,
               ),
             ),
             const DotCircle(),
-          ],
-          if (movieDetails.genres.isNotEmpty) ...[
-            Text(
-              movieDetails.genres,
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.6),
-                fontSize: 12,
-              ),
-            ),
-            const DotCircle(),
-          ] else ...[
-            if (movieDetails.runtime!.isNotEmpty) ...[
-              const DotCircle(),
-            ]
           ],
           Text(
-            movieDetails.runtime!,
+            "Action",
             style: TextStyle(
               color: Colors.white.withOpacity(0.6),
-              fontSize: 12,
+              fontSize: 16,
+            ),
+          ),
+          const DotCircle(),
+          Text(
+            '${movieDetails.runtime!} min',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.6),
+              fontSize: 16,
             ),
           ),
         ],

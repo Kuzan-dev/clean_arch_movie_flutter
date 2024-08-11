@@ -124,6 +124,7 @@ class TvShowDetailsWidget extends StatelessWidget {
         children: [
           DetailsCard(
             mediaDetails: tvShowDetails,
+            typeMedia: 'tvshow',
             detailsCard: TvShowDescriptionDetail(
               lastEpisode: tvShowDetails.lastEpisodeToAir,
               genres: const ['drama'],

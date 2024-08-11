@@ -16,7 +16,7 @@ class MovieDetailsCollection
   final int? runtime;
   final String? overview;
   final double? voteAverage;
-  //final String? voteCount;
+  final int? voteCount;
   final String? trailerUrl;
 
   MovieDetailsCollection({
@@ -28,7 +28,7 @@ class MovieDetailsCollection
     this.runtime,
     this.overview,
     this.voteAverage,
-    //this.voteCount,
+    this.voteCount,
     this.trailerUrl,
   });
 
@@ -39,11 +39,10 @@ class MovieDetailsCollection
         posterUrl: posterUrl,
         backdropUrl: backdropUrl,
         releaseDate: releaseDate,
-
         runtime: runtime,
         overview: overview,
         voteAverage: voteAverage,
-        //voteCount: voteCount,
+        voteCount: voteCount,
         trailerUrl: trailerUrl,
       );
 
@@ -55,11 +54,10 @@ class MovieDetailsCollection
       posterUrl: model?.posterUrl,
       backdropUrl: model?.backdropUrl,
       releaseDate: model?.releaseDate,
-
       runtime: model?.runtime,
       overview: model?.overview,
       voteAverage: model?.voteAverage,
-      //voteCount: model?.voteCount,
+      voteCount: model?.voteCount,
       trailerUrl: model?.trailerUrl,
     );
   }

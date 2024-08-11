@@ -1,11 +1,16 @@
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
+import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:flutter/material.dart';
 
 class DetailsCard extends StatelessWidget {
-  const DetailsCard({super.key, required this.detailsCard, this.mediaDetails});
-
+  const DetailsCard(
+      {super.key,
+      required this.detailsCard,
+      required this.mediaDetails,
+      required this.typeMedia});
   final Widget detailsCard;
   final dynamic mediaDetails;
+  final String typeMedia;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +60,7 @@ class DetailsCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            mediaDetails.title,
+                            mediaDetails.title ?? '',
                             maxLines: 2,
                             style: const TextStyle(
                               fontSize: 18,
@@ -76,14 +81,14 @@ class DetailsCard extends StatelessWidget {
                                 size: 18,
                               ),
                               Text(
-                                mediaDetails.voteAverage.toStringAsFixed(1),
+                                mediaDetails.voteAverage!.toStringAsFixed(1),
                                 style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
                                 ),
                               ),
                               Text(
-                                ' (${mediaDetails.voteCount} votes)',
+                                ' (${mediaDetails.voteCount ?? 0} votes)',
                                 style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
@@ -105,7 +110,7 @@ class DetailsCard extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  navigateToHomeView(context, typeMedia);
                 },
                 child: Container(
                   height: 40,

@@ -2,9 +2,14 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
+import 'package:clean_arch_movie_flutter/core/components/carrousell/carrousell_card.dart';
+import 'package:clean_arch_movie_flutter/core/components/carrousell/section_listview_card.dart';
+import 'package:clean_arch_movie_flutter/core/components/details/cast_cartList.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/over_section.dart';
 import 'package:clean_arch_movie_flutter/core/components/header/header_section.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/util/cast.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -22,6 +27,19 @@ void navigateToDetailsView(
   } else if (typeMedia == 'person') {
   } else {
     throw Exception('Unknown type media');
+  }
+}
+
+void navigateToHomeView(
+  BuildContext context,
+  String typeMedia,
+) {
+  if (typeMedia == 'movie') {
+    AutoRouter.of(context).push(const MoviesRoute());
+  } else if (typeMedia == 'tvshow') {
+    AutoRouter.of(context).push(const TvShowRoute());
+  } else {
+    throw Exception('Unknown title');
   }
 }
 
@@ -94,4 +112,45 @@ void bottomSheetShow(BuildContext context, Widget child) {
       ),
     ),
   );
+}
+
+Widget castList(List<CastEntity>? castList) {
+  if (castList!.isNotEmpty) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const HeaderTitle(title: 'Cast'),
+        CarrousellCard(
+          height: 175,
+          itemCount: castList.length,
+          itemBuilder: (context, index) => CastCartlist(
+            cast: castList[index],
+          ),
+        ),
+      ],
+    );
+  }
+  return const SizedBox();
+}
+
+Widget similarSection(List<MovieDetailsEntity> movieList, String typeMedia) {
+  if (movieList.isNotEmpty) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const HeaderTitle(title: 'Similar Movies'),
+        CarrousellCard(
+          height: 250,
+          itemCount: movieList.length,
+          itemBuilder: (context, index) {
+            return SectionListViewCard(
+              typeMedia: typeMedia,
+              media: movieList[index],
+            );
+          },
+        ),
+      ],
+    );
+  }
+  return const SizedBox();
 }
