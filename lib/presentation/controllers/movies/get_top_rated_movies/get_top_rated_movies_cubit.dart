@@ -48,4 +48,28 @@ class GetTopRatedMoviesCubit extends Cubit<GetTopRatedMoviesState> {
     }
   }
 
+  Future<void> fetchMoreTopMovies() async{
+    try{
+      if (hasReachedMax) return;
+      final result = await _moviesUsecases.getTopRatedMovies(page: _page);
+
+      result.fold(
+        (error){
+          emit(GetTopRatedMoviesError(message: error.message));
+        },
+        (success){
+          _page++;
+          _movieList.addAll(success.movies?.where((movie)=> _movieList.contains(movie)==false)??[]);
+          if ((success.movies?.length ?? 0) < 20) {
+          hasReachedMax = true;
+          }
+          emit(GetTopRatedMoviesLoaded(movies: List.of(_movieList)));
+        }
+      );
+    } catch(e){
+      print(e);
+      rethrow;
+    }	
+  }
+
 }

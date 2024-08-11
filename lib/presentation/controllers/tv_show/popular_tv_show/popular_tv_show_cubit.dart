@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
@@ -7,7 +8,9 @@ import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details
 part 'popular_tv_show_state.dart';
 
 class PopularTvShowCubit extends Cubit<PopularTvShowState> {
-  PopularTvShowCubit(this._movieUsecases) : super(PopularTvShowInitial());
+  final TvShowUsecases _tvShowUsecases;
+
+  PopularTvShowCubit(this._tvShowUsecases) : super(PopularTvShowInitial());
 
   /// The list of popular movie details.
   final List<TvShowDetailsEntity> _tvshoList = [];
@@ -29,7 +32,7 @@ class PopularTvShowCubit extends Cubit<PopularTvShowState> {
         emit(const PopularTvShowLoading());
       }
 
-      final result = await _movieUsecases.getPopularTvShows(page: _page);
+      final result = await _tvShowUsecases.getPopularTvShows(page: _page);
 
       result.fold(
         (error) {
@@ -61,5 +64,31 @@ class PopularTvShowCubit extends Cubit<PopularTvShowState> {
     }
   }
 
-  final TvShowUsecases _movieUsecases;
+  /// Fetches more popular tv show.
+  Future<void> fetchMoreTvShows()async{
+    try{
+      if (hasReachedMax)return;
+      final result = await _tvShowUsecases.getPopularTvShows(page: _page);
+
+      result.fold(
+        (error){
+          emit(PopularTvShowError(message: error.message));
+        },
+        (success){
+          _page++;
+          _tvshoList.addAll(success.tvShows?.where((movie)=> _tvshoList.contains(movie)==false)??[]);
+
+          if ((success.tvShows?.length ?? 0) < 20) {
+            hasReachedMax = true;
+          }
+          emit(PopularTvShowLoaded(tvshows: List.of(_tvshoList)));
+        }
+      );
+    } catch(e){
+      print(e);
+      rethrow;
+    }
+  }
+
+
 }
