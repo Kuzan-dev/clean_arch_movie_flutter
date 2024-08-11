@@ -1,6 +1,10 @@
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/video/video_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:youtube_video_player/potrait_player.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard(
@@ -23,7 +27,20 @@ class DetailsCard extends StatelessWidget {
           Positioned.fill(
             child: Center(
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Scaffold(
+                        appBar: AppBar(),
+                        body: _VideoPlayerWidget(
+                          id: mediaDetails.id!,
+                          isMovie: typeMedia == 'movie',
+                        ),
+                      ),
+                    ),
+                  );
+                },
                 child: Container(
                   height: 50,
                   width: 50,
@@ -144,6 +161,68 @@ class DetailsCard extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _VideoPlayerWidget extends StatefulWidget {
+  final int id;
+  final bool isMovie;
+
+  const _VideoPlayerWidget({required this.id, required this.isMovie});
+
+  @override
+  State<_VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
+}
+
+class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
+  late VideoCubit _videoCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoCubit = GetIt.I<VideoCubit>();
+    _fetchData();
+  }
+
+  void _fetchData() {
+    _videoCubit.getVideo(widget.id, widget.isMovie);
+  }
+
+  @override
+  void didUpdateWidget(covariant _VideoPlayerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.id != widget.id) {
+      _fetchData();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<VideoCubit>.value(
+      value: _videoCubit,
+      child: BlocBuilder<VideoCubit, VideoState>(
+        builder: (context, state) {
+          if (state is VideoLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is VideoLoaded) {
+            return PotraitPlayer(
+              link: 'https://youtube.com/watch?v=${state.videoEntity.key}',
+              aspectRatio: 16 / 9,
+            );
+          } else if (state is VideoError) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 }

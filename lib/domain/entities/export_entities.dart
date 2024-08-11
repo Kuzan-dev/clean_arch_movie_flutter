@@ -10,3 +10,4 @@ export 'util/actor.dart';
 export 'util/actor_movies.dart';
 export 'util/cast_list.dart';
 export 'search/search.dart';
+export 'video/video.dart';

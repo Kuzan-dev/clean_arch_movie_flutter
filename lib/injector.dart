@@ -18,6 +18,8 @@ Future<void> init() async {
         () => MovieLocalDataSourceImpl(injector<LocalDatabase>()))
     ..registerLazySingleton<SearchRemoteDataSource>(
         () => SearchRemoteDataSourceImpl(injector()))
+    ..registerLazySingleton<VideoRemoteDataSource>(
+        () => VideoRemoteDataSourceImpl(injector()))
 
     // Registra TvShowUsecases
     ..registerLazySingleton<TvShowRepository>(
@@ -33,6 +35,11 @@ Future<void> init() async {
     ..registerLazySingleton<SearchRepository>(
         () => SearchRepositoryImpl(injector()))
     ..registerLazySingleton<SearchUsecases>(() => SearchUsecases(injector()))
+
+    // Registra VideoUsecases
+    ..registerLazySingleton<VideoRepository>(
+        () => VideoRepositoryImpl(injector()))
+    ..registerLazySingleton<VideoUsecases>(() => VideoUsecases(injector()))
 
     // Bloc TvShows
 
@@ -60,5 +67,8 @@ Future<void> init() async {
     ..registerLazySingleton<TvShowDetailsCubit>(
         () => TvShowDetailsCubit(injector<TvShowUsecases>()))
     ..registerLazySingleton<TvShowSeasonDetailsCubit>(
-        () => TvShowSeasonDetailsCubit(injector<TvShowUsecases>()));
+        () => TvShowSeasonDetailsCubit(injector<TvShowUsecases>()))
+    
+    // VideoPlayerController
+    ..registerLazySingleton<VideoCubit>( () => VideoCubit(injector<VideoUsecases>()));
 }

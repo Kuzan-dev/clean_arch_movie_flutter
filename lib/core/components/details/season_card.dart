@@ -113,6 +113,7 @@ class _SeasonDetailsWidget extends StatefulWidget {
 class _SeasonDetailsWidgetState extends State<_SeasonDetailsWidget> {
   late TvShowSeasonDetailsCubit _tvShowSeasonDetailsCubit;
 
+  //Metodo para obtener la instancia del cubit y llamar al metodo para obtener los detalles de la temporada
   @override
   void initState() {
     super.initState();
@@ -120,14 +121,16 @@ class _SeasonDetailsWidgetState extends State<_SeasonDetailsWidget> {
     _fetchData();
   }
 
+  // Metodo para actualizar los datos de la temporada
   @override
   void didUpdateWidget(covariant _SeasonDetailsWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.season != widget.season) {
-      _fetchData();
+    super.didUpdateWidget(oldWidget); // Llama al metodo de la clase padre
+    if (oldWidget.season != widget.season) { // Compara si la temporada es diferente
+      _fetchData(); // Llama al metodo para obtener los detalles de la temporada
     }
   }
 
+  // Metodo para obtener los detalles de la temporada
   void _fetchData() {
     _tvShowSeasonDetailsCubit.getSeasonDetails(
         widget.id, widget.season.seasonNumber!);
