@@ -10,7 +10,7 @@ class MovieDetailsEntity extends Equatable {
   final int? runtime;
   final String? overview;
   final double? voteAverage;
-  //final String? voteCount;
+  final int? voteCount;
   final String? trailerUrl;
 
   const MovieDetailsEntity({
@@ -22,7 +22,7 @@ class MovieDetailsEntity extends Equatable {
     this.runtime,
     this.overview,
     this.voteAverage,
-    //this.voteCount,
+    this.voteCount,
     this.trailerUrl,
   });
 
@@ -33,11 +33,10 @@ class MovieDetailsEntity extends Equatable {
         posterUrl,
         backdropUrl,
         releaseDate,
-
         runtime,
         overview,
         voteAverage,
-        //voteCount,
+        voteCount,
         trailerUrl,
       ];
 }

@@ -10,7 +10,10 @@ import 'package:clean_arch_movie_flutter/domain/repositories/movies/movie_reposi
 import 'package:clean_arch_movie_flutter/domain/repositories/search/search_repository.dart';
 import 'package:clean_arch_movie_flutter/domain/repositories/tv_show/tv_show_repository.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_cast_movies/get_credit_movies_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_details_movies/get_details_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
+import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_similar_movies/get_similar_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_top_rated_movies/get_top_rated_movies_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/search/search_cubit.dart';
 

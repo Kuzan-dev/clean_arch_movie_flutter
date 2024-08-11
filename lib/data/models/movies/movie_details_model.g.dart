@@ -16,6 +16,7 @@ MovieDetailsModel _$MovieDetailsModelFromJson(Map<String, dynamic> json) =>
       runtime: (json['runtime'] as num?)?.toInt(),
       overview: json['overview'] as String?,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
+      voteCount: (json['vote_count'] as num?)?.toInt(),
       trailerUrl: json['trailer_url'] as String?,
     );
 
@@ -29,5 +30,6 @@ Map<String, dynamic> _$MovieDetailsModelToJson(MovieDetailsModel instance) =>
       'runtime': instance.runtime,
       'overview': instance.overview,
       'vote_average': instance.voteAverage,
+      'vote_count': instance.voteCount,
       'trailer_url': instance.trailerUrl,
     };

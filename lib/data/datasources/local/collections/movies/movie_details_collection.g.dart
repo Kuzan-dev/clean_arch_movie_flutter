@@ -57,6 +57,11 @@ const MovieDetailsCollectionSchema = CollectionSchema(
       id: 7,
       name: r'voteAverage',
       type: IsarType.double,
+    ),
+    r'voteCount': PropertySchema(
+      id: 8,
+      name: r'voteCount',
+      type: IsarType.long,
     )
   },
   estimateSize: _movieDetailsCollectionEstimateSize,
@@ -132,6 +137,7 @@ void _movieDetailsCollectionSerialize(
   writer.writeString(offsets[5], object.title);
   writer.writeString(offsets[6], object.trailerUrl);
   writer.writeDouble(offsets[7], object.voteAverage);
+  writer.writeLong(offsets[8], object.voteCount);
 }
 
 MovieDetailsCollection _movieDetailsCollectionDeserialize(
@@ -150,6 +156,7 @@ MovieDetailsCollection _movieDetailsCollectionDeserialize(
     title: reader.readStringOrNull(offsets[5]),
     trailerUrl: reader.readStringOrNull(offsets[6]),
     voteAverage: reader.readDoubleOrNull(offsets[7]),
+    voteCount: reader.readLongOrNull(offsets[8]),
   );
   return object;
 }
@@ -177,6 +184,8 @@ P _movieDetailsCollectionDeserializeProp<P>(
       return (reader.readStringOrNull(offset)) as P;
     case 7:
       return (reader.readDoubleOrNull(offset)) as P;
+    case 8:
+      return (reader.readLongOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1444,6 +1453,80 @@ extension MovieDetailsCollectionQueryFilter on QueryBuilder<
       ));
     });
   }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
+      QAfterFilterCondition> voteCountIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'voteCount',
+      ));
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
+      QAfterFilterCondition> voteCountIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'voteCount',
+      ));
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
+      QAfterFilterCondition> voteCountEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'voteCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
+      QAfterFilterCondition> voteCountGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'voteCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
+      QAfterFilterCondition> voteCountLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'voteCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection,
+      QAfterFilterCondition> voteCountBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'voteCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension MovieDetailsCollectionQueryObject on QueryBuilder<
@@ -1563,6 +1646,20 @@ extension MovieDetailsCollectionQuerySortBy
       sortByVoteAverageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteAverage', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QAfterSortBy>
+      sortByVoteCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QAfterSortBy>
+      sortByVoteCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.desc);
     });
   }
 }
@@ -1694,6 +1791,20 @@ extension MovieDetailsCollectionQuerySortThenBy on QueryBuilder<
       return query.addSortBy(r'voteAverage', Sort.desc);
     });
   }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QAfterSortBy>
+      thenByVoteCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QAfterSortBy>
+      thenByVoteCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.desc);
+    });
+  }
 }
 
 extension MovieDetailsCollectionQueryWhereDistinct
@@ -1751,6 +1862,13 @@ extension MovieDetailsCollectionQueryWhereDistinct
       distinctByVoteAverage() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'voteAverage');
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, MovieDetailsCollection, QDistinct>
+      distinctByVoteCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'voteCount');
     });
   }
 }
@@ -1816,6 +1934,13 @@ extension MovieDetailsCollectionQueryProperty on QueryBuilder<
       voteAverageProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'voteAverage');
+    });
+  }
+
+  QueryBuilder<MovieDetailsCollection, int?, QQueryOperations>
+      voteCountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'voteCount');
     });
   }
 }

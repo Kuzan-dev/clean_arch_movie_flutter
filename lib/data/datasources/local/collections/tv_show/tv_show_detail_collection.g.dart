@@ -62,6 +62,11 @@ const TvShowDetailsCollectionSchema = CollectionSchema(
       id: 8,
       name: r'voteAverage',
       type: IsarType.double,
+    ),
+    r'voteCount': PropertySchema(
+      id: 9,
+      name: r'voteCount',
+      type: IsarType.long,
     )
   },
   estimateSize: _tvShowDetailsCollectionEstimateSize,
@@ -138,6 +143,7 @@ void _tvShowDetailsCollectionSerialize(
   writer.writeString(offsets[6], object.title);
   writer.writeString(offsets[7], object.trailerUrl);
   writer.writeDouble(offsets[8], object.voteAverage);
+  writer.writeLong(offsets[9], object.voteCount);
 }
 
 TvShowDetailsCollection _tvShowDetailsCollectionDeserialize(
@@ -157,6 +163,7 @@ TvShowDetailsCollection _tvShowDetailsCollectionDeserialize(
     title: reader.readStringOrNull(offsets[6]),
     trailerUrl: reader.readStringOrNull(offsets[7]),
     voteAverage: reader.readDoubleOrNull(offsets[8]),
+    voteCount: reader.readLongOrNull(offsets[9]),
   );
   return object;
 }
@@ -186,6 +193,8 @@ P _tvShowDetailsCollectionDeserializeProp<P>(
       return (reader.readStringOrNull(offset)) as P;
     case 8:
       return (reader.readDoubleOrNull(offset)) as P;
+    case 9:
+      return (reader.readLongOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1527,6 +1536,80 @@ extension TvShowDetailsCollectionQueryFilter on QueryBuilder<
       ));
     });
   }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
+      QAfterFilterCondition> voteCountIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'voteCount',
+      ));
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
+      QAfterFilterCondition> voteCountIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'voteCount',
+      ));
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
+      QAfterFilterCondition> voteCountEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'voteCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
+      QAfterFilterCondition> voteCountGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'voteCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
+      QAfterFilterCondition> voteCountLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'voteCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection,
+      QAfterFilterCondition> voteCountBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'voteCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension TvShowDetailsCollectionQueryObject on QueryBuilder<
@@ -1660,6 +1743,20 @@ extension TvShowDetailsCollectionQuerySortBy
       sortByVoteAverageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'voteAverage', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
+      sortByVoteCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
+      sortByVoteCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.desc);
     });
   }
 }
@@ -1805,6 +1902,20 @@ extension TvShowDetailsCollectionQuerySortThenBy on QueryBuilder<
       return query.addSortBy(r'voteAverage', Sort.desc);
     });
   }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
+      thenByVoteCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QAfterSortBy>
+      thenByVoteCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'voteCount', Sort.desc);
+    });
+  }
 }
 
 extension TvShowDetailsCollectionQueryWhereDistinct on QueryBuilder<
@@ -1869,6 +1980,13 @@ extension TvShowDetailsCollectionQueryWhereDistinct on QueryBuilder<
       distinctByVoteAverage() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'voteAverage');
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, TvShowDetailsCollection, QDistinct>
+      distinctByVoteCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'voteCount');
     });
   }
 }
@@ -1941,6 +2059,13 @@ extension TvShowDetailsCollectionQueryProperty on QueryBuilder<
       voteAverageProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'voteAverage');
+    });
+  }
+
+  QueryBuilder<TvShowDetailsCollection, int?, QQueryOperations>
+      voteCountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'voteCount');
     });
   }
 }

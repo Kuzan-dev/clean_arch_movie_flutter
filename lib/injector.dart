@@ -41,6 +41,12 @@ Future<void> init() async {
         () => GetPopularMoviesCubit(injector<MoviesUsecases>()))
     ..registerLazySingleton<GetTopRatedMoviesCubit>(
         () => GetTopRatedMoviesCubit(injector<MoviesUsecases>()))
+    ..registerLazySingleton<GetDetailsMoviesCubit>(
+        () => GetDetailsMoviesCubit(injector<MoviesUsecases>()))
+    ..registerLazySingleton<GetCreditMoviesCubit>(
+        () => GetCreditMoviesCubit(injector<MoviesUsecases>()))
+    ..registerLazySingleton<GetSimilarMoviesCubit>(
+        () => GetSimilarMoviesCubit(injector<MoviesUsecases>()))
     // Bloc Search
     ..registerLazySingleton<SearchCubit>(
         () => SearchCubit(injector<SearchUsecases>()))
