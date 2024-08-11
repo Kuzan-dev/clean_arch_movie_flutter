@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clean_arch_movie_flutter/domain/entities/tv_show/tv_show_details.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/main_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_navigation_view.dart';
 
@@ -9,6 +8,8 @@ import 'package:clean_arch_movie_flutter/presentation/views/movies/movie_top_rat
 import 'package:clean_arch_movie_flutter/presentation/views/movies/movies_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/search/search_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_detail_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_popular_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_top_rated_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_view.dart';
 
 import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_navigation_view.dart';
@@ -61,7 +62,17 @@ class AppRouter extends _$AppRouter {
                 page: TvShowDetailRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
                 durationInMilliseconds: 500,
-              )
+              ),
+              CustomRoute(
+                page: TvShowPopularRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 500,
+              ),
+              CustomRoute(
+                page: TvShowTopRatedRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 500,
+              ),
             ]),
             AdaptiveRoute(
                 page: WatchlistRoute.page, title: (_, __) => 'Watchlist'),

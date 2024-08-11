@@ -54,7 +54,13 @@ void navigateToSectionView(BuildContext context, String title, String typeMedia,
       throw Exception('Unknown title');
     }
   } else if (typeMedia == 'tv_show') {
-    //AutoRouter.of(context).push(TvShowSectionRoute(sectionId: id));
+    if (title == 'Top Rated') {
+      AutoRouter.of(context).push(TvShowTopRatedRoute(listData: listDetails));
+    } else if (title == 'Popular') {
+      AutoRouter.of(context).push(TvShowPopularRoute(listData: listDetails));
+    } else {
+      throw Exception('Unknown title');
+    }
   } else {
     throw Exception('Unknown type media');
   }

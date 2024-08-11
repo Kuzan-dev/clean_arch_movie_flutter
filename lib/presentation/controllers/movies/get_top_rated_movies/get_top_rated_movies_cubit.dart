@@ -68,3 +68,4 @@ class GetTopRatedMoviesCubit extends Cubit<GetTopRatedMoviesState> {
   }
 
 }
+

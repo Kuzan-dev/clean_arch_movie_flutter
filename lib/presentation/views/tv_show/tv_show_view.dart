@@ -1,6 +1,7 @@
 import 'package:clean_arch_movie_flutter/core/components/carrousell/carrousell_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/carrousell/section_listview_card.dart';
 import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
+import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/popular_tv_show/popular_tv_show_cubit.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/tv_show/top_rated_tv_show/top_rated_tv_show_cubit.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,9 @@ class TvShowView extends StatelessWidget {
                         ),
                         HeaderTitle(
                           title: 'Popular TV Shows',
-                          onTap: () {},
+                          onTap: () {
+                            navigateToSectionView(context, 'Popular', 'tv_show', popularState.tvshows);
+                          },
                         ),
                         CarrousellCard(
                           height: 250,
@@ -71,7 +74,14 @@ class TvShowView extends StatelessWidget {
                         ),
                         HeaderTitle(
                           title: 'Top Rated TV Shows',
-                          onTap: () {},
+                          onTap: () {
+                            navigateToSectionView(
+                              context,
+                              'Top Rated',
+                              'tv_show',
+                              topRatedState.tvshows,
+                            );
+                          },
                         ),
                         CarrousellCard(
                           height: 250,

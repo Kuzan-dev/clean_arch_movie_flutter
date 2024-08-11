@@ -45,4 +45,33 @@ class TopRatedTvShowCubit extends Cubit<TopRatedTvShowState> {
       print(e);
     }
   }
+
+  Future<void> fetchMoreTopTvShows() async {
+    try {
+      if (hasReachedMax) return;
+
+      final result = await _movieUsecases.getTopRatedTvShows(page: _page);
+
+      result.fold(
+        (error) {
+          emit(TopRatedTvShowError(message: error.message));
+        },
+        (success) {
+          _page++;
+          _movieList.addAll(success.tvShows
+                  ?.where((movie) => _movieList.contains(movie) == false) ??
+              []);
+
+          if ((success.tvShows?.length ?? 0) < 20) {
+            hasReachedMax = true;
+          }
+
+          emit(TopRatedTvShowLoaded(tvshows: List.of(_movieList)));
+        },
+      );
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
 }

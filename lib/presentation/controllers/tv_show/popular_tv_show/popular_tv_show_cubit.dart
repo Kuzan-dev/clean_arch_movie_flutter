@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:clean_arch_movie_flutter/presentation/controllers/movies/get_popular_movies/get_popular_movies_cubit.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';

@@ -91,6 +91,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const TvShowNavigationView(),
       );
     },
+    TvShowPopularRoute.name: (routeData) {
+      final args = routeData.argsAs<TvShowPopularRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TvShowPopularView(
+          key: args.key,
+          listData: args.listData,
+        ),
+      );
+    },
+    TvShowTopRatedRoute.name: (routeData) {
+      final args = routeData.argsAs<TvShowTopRatedRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TvShowTopRatedView(
+          key: args.key,
+          listData: args.listData,
+        ),
+      );
+    },
     TvShowRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -328,6 +348,82 @@ class TvShowNavigationRoute extends PageRouteInfo<void> {
   static const String name = 'TvShowNavigationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TvShowPopularView]
+class TvShowPopularRoute extends PageRouteInfo<TvShowPopularRouteArgs> {
+  TvShowPopularRoute({
+    Key? key,
+    required List<dynamic> listData,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TvShowPopularRoute.name,
+          args: TvShowPopularRouteArgs(
+            key: key,
+            listData: listData,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TvShowPopularRoute';
+
+  static const PageInfo<TvShowPopularRouteArgs> page =
+      PageInfo<TvShowPopularRouteArgs>(name);
+}
+
+class TvShowPopularRouteArgs {
+  const TvShowPopularRouteArgs({
+    this.key,
+    required this.listData,
+  });
+
+  final Key? key;
+
+  final List<dynamic> listData;
+
+  @override
+  String toString() {
+    return 'TvShowPopularRouteArgs{key: $key, listData: $listData}';
+  }
+}
+
+/// generated route for
+/// [TvShowTopRatedView]
+class TvShowTopRatedRoute extends PageRouteInfo<TvShowTopRatedRouteArgs> {
+  TvShowTopRatedRoute({
+    Key? key,
+    required List<dynamic> listData,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TvShowTopRatedRoute.name,
+          args: TvShowTopRatedRouteArgs(
+            key: key,
+            listData: listData,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TvShowTopRatedRoute';
+
+  static const PageInfo<TvShowTopRatedRouteArgs> page =
+      PageInfo<TvShowTopRatedRouteArgs>(name);
+}
+
+class TvShowTopRatedRouteArgs {
+  const TvShowTopRatedRouteArgs({
+    this.key,
+    required this.listData,
+  });
+
+  final Key? key;
+
+  final List<dynamic> listData;
+
+  @override
+  String toString() {
+    return 'TvShowTopRatedRouteArgs{key: $key, listData: $listData}';
+  }
 }
 
 /// generated route for
