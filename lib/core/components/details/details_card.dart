@@ -1,5 +1,7 @@
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
+import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/video/video_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -183,118 +185,103 @@ class _VideoPlayerWidget extends StatefulWidget {
 }
 
 class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
-  late final VideoCubit _videoCubit;
+  late final VideoUsecases _videoUsecases;
+  late Future<VideoEntity> _videoFuture;
   YoutubePlayerController? _controller;
 
   @override
   void initState() {
     super.initState();
-    // Establecer la orientación a horizontal
+    _videoUsecases = GetIt.I<VideoUsecases>();
+    _videoFuture = _fetchData();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
-    _videoCubit = GetIt.I<VideoCubit>();
-    _fetchData();
   }
 
-  @override
-  void didUpdateWidget(covariant _VideoPlayerWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.id != widget.id) {
-      _fetchData();
-    }
-  }
+  Future<VideoEntity> _fetchData() async {
+    final result = await _videoUsecases.getVideo(isMovie: widget.isMovie, id: widget.id);
 
-  @override
-  void deactivate() {
-    _controller?.pause();
-    super.deactivate();
+    return result.fold(
+      (error) => throw Exception(error.message),
+      (videoEntity) => videoEntity,
+    );
   }
 
   @override
   void dispose() {
-    // Restablecer la orientación vertical al cerrar el widget
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    _videoCubit.close();
     _controller?.dispose();
     super.dispose();
-  }
-
-  void _fetchData() {
-    _videoCubit.getVideo(widget.id, widget.isMovie);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      body: Stack(
-        children: [
-          BlocProvider<VideoCubit>.value(
-            value: _videoCubit,
-            child: BlocBuilder<VideoCubit, VideoState>(
-              builder: (context, state) {
-                if (state is VideoLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is VideoLoaded) {
-                  // Actualizar el controlador solo si cambia el video
-                  if (_controller == null || _controller!.initialVideoId != state.videoEntity.key.toString()) {
-                    _controller = YoutubePlayerController(
-                      initialVideoId: state.videoEntity.key.toString(),
-                      flags: const YoutubePlayerFlags(
-                        mute: false,
-                        autoPlay: true,
-                        disableDragSeek: false,
-                        loop: false,
-                        isLive: false,
-                        forceHD: false,
-                        enableCaption: true,
-                      ),
-                    );
-                  }
-                  return YoutubePlayer(
-                    controller: _controller!,
-                    showVideoProgressIndicator: true,
-                    progressColors: const ProgressBarColors(
-                      playedColor: Colors.amber,
-                      handleColor: Colors.amberAccent,
-                    ),
-                    onReady: () {
-                      debugPrint('Player is ready.');
+      body: FutureBuilder<VideoEntity>(
+        future: _videoFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else if (snapshot.hasData) {
+            final videoEntity = snapshot.data!;
+            if (_controller == null || _controller!.initialVideoId != videoEntity.key.toString()) {
+              _controller?.dispose(); // Limpiar el controlador antiguo
+              _controller = YoutubePlayerController(
+                initialVideoId: videoEntity.key.toString(),
+                flags: const YoutubePlayerFlags(
+                  mute: false,
+                  autoPlay: true,
+                  disableDragSeek: false,
+                  loop: false,
+                  isLive: false,
+                  forceHD: false,
+                  enableCaption: true,
+                ),
+              );
+            }
+
+            return Stack(
+              children: [
+                YoutubePlayer(
+                  controller: _controller!,
+                  showVideoProgressIndicator: true,
+                  progressColors: const ProgressBarColors(
+                    playedColor: Colors.amber,
+                    handleColor: Colors.amberAccent,
+                  ),
+                  onReady: () {
+                    debugPrint('Player is ready.');
+                  },
+                ),
+                Positioned(
+                  top: 40,
+                  left: 10,
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
-                  );
-                } else if (state is VideoError) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-          ),
-          Positioned(
-            top: 40,
-            left: 10,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
-              onPressed: () {
-                // Restablecer la orientación vertical
-                SystemChrome.setPreferredOrientations([
-                  DeviceOrientation.portraitUp,
-                ]);
-                Navigator.pop(context);
-              },
-            ),
-          ),
-        ],
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return const Center(
+              child: Text('No data available.'),
+            );
+          }
+        },
       ),
     );
   }

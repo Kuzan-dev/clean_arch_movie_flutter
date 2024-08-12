@@ -9,23 +9,24 @@ class VideoCubit extends Cubit<VideoState> {
   final VideoUsecases _videoUsecases;
 
   VideoCubit(this._videoUsecases) : super(VideoInitial());
+Future<void> getVideo(int id, bool isMovie) async {
+  if (isClosed) return; // Verificar si el Cubit ya está cerrado
 
-  Future<void> getVideo(int id, bool isMovie) async {
-    try{
-      emit(VideoLoading());
+  try {
+    emit(VideoLoading());
 
-      final result = await _videoUsecases.getVideo(isMovie: isMovie, id: id);
+    final result = await _videoUsecases.getVideo(isMovie: isMovie, id: id);
 
-      result.fold(
-        (error) {
-          emit(VideoError(message: error.message));
-        },
-        (success) {
-          emit(VideoLoaded(videoEntity: success));
-        },
-      );
-    } catch (e) {
-      rethrow;
-    }
+    result.fold(
+      (error) {
+        if (!isClosed) emit(VideoError(message: error.message)); // Verificar si el Cubit está cerrado
+      },
+      (success) {
+        if (!isClosed) emit(VideoLoaded(videoEntity: success)); // Verificar si el Cubit está cerrado
+      },
+    );
+  } catch (e) {
+    if (!isClosed) emit(VideoError(message: e.toString())); // Manejar excepciones también
   }
+}
 }
