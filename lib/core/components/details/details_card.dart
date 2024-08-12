@@ -2,9 +2,7 @@ import 'package:clean_arch_movie_flutter/core/components/details/slider_card_ima
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
-import 'package:clean_arch_movie_flutter/presentation/controllers/video/video_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/services.dart';
@@ -202,7 +200,6 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
 
   Future<VideoEntity> _fetchData() async {
     final result = await _videoUsecases.getVideo(isMovie: widget.isMovie, id: widget.id);
-
     return result.fold(
       (error) => throw Exception(error.message),
       (videoEntity) => videoEntity,
