@@ -10,6 +10,7 @@ import 'package:clean_arch_movie_flutter/core/components/header/header_section.d
 import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/util/cast.dart';
+import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';

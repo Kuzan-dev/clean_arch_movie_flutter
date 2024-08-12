@@ -1,20 +1,19 @@
-import 'package:chewie/chewie.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/video/video_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailsCard extends StatelessWidget {
-  const DetailsCard(
-      {super.key,
-      required this.detailsCard,
-      required this.mediaDetails,
-      required this.typeMedia});
+  const DetailsCard({
+    Key? key,
+    required this.detailsCard,
+    required this.mediaDetails,
+    required this.typeMedia,
+  }) : super(key: key);
+
   final Widget detailsCard;
   final dynamic mediaDetails;
   final String typeMedia;
@@ -24,8 +23,8 @@ class DetailsCard extends StatelessWidget {
     return Stack(
       children: [
         SliderCardImage(
-            image:
-                'https://image.tmdb.org/t/p/w1280${mediaDetails.backdropUrl}'),
+          image: 'https://image.tmdb.org/t/p/w1280${mediaDetails.backdropUrl}',
+        ),
         if (mediaDetails is! String) ...[
           Positioned.fill(
             child: Center(
@@ -34,10 +33,12 @@ class DetailsCard extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (context) => _VideoPlayerWidget(
-                            id: mediaDetails.id,
-                            isMovie: typeMedia == 'movie')),
+                      fullscreenDialog: true,
+                      builder: (context) => _VideoPlayerWidget(
+                        id: mediaDetails.id,
+                        isMovie: typeMedia == 'movie',
+                      ),
+                    ),
                   );
                 },
                 child: Container(
@@ -64,60 +65,62 @@ class DetailsCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.6,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            mediaDetails.title ?? '',
-                            maxLines: 2,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          mediaDetails.title ?? '',
+                          maxLines: 2,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 4,
+                            bottom: 6,
+                          ),
+                          child: detailsCard,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.star_rate_rounded,
+                              color: Colors.yellow,
+                              size: 18,
                             ),
-                          ),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                top: 4,
-                                bottom: 6,
+                            Text(
+                              mediaDetails.voteAverage!.toStringAsFixed(1),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
                               ),
-                              child: detailsCard),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.star_rate_rounded,
-                                color: Colors.yellow,
-                                size: 18,
+                            ),
+                            Text(
+                              ' (${mediaDetails.voteCount ?? 0} votes)',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
                               ),
-                              Text(
-                                mediaDetails.voteAverage!.toStringAsFixed(1),
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                ' (${mediaDetails.voteCount ?? 0} votes)',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 35, left: 11, right: 11),
@@ -168,7 +171,10 @@ class _VideoPlayerWidget extends StatefulWidget {
   final int id;
   final bool isMovie;
 
-  const _VideoPlayerWidget({required this.id, required this.isMovie});
+  const _VideoPlayerWidget({
+    required this.id,
+    required this.isMovie,
+  });
 
   @override
   State<_VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
@@ -176,55 +182,33 @@ class _VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   late VideoCubit _videoCubit;
-  late VideoPlayerController _videoPlayerController;
-  late ChewieController _chewieController;
-  late Future<void> _initializeVideoPlayerFuture;
-  double videoContainerRatio = 0.5;
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse('https://youtube.com/watch?v=${widget.id}'));
-    _initializeVideoPlayerFuture = _videoPlayerController.initialize();
-    _videoPlayerController.setVolume(1.0);
     _videoCubit = GetIt.I<VideoCubit>();
     _fetchData();
   }
 
   @override
+  void deactivate() {
+    _controller.pause();
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
     _videoCubit.close();
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   void _fetchData() {
-  try {
-    _videoCubit.getVideo(widget.id, widget.isMovie);
-  } catch (e) {
-    print('Error fetching video: $e');
-  }
-}
-
-  double getScale() {
-    double videoRatio = _videoPlayerController.value.aspectRatio;
-    if (videoRatio < videoContainerRatio) {
-      ///for tall videos, we just return the inverse of the controller aspect ratio
-      return videoContainerRatio / videoRatio;
-    } else {
-      ///for wide videos, divide the video AR by the fixed container AR
-      ///so that the video does not over scale
-      return videoRatio / videoContainerRatio;
-    }
-  }
-
-  void toggleVideoPlayback() {
-    if (_videoPlayerController.value.isPlaying) {
-      _chewieController.pause();
-    } else {
-      _chewieController.play();
+    try {
+      _videoCubit.getVideo(widget.id, widget.isMovie);
+    } catch (e) {
+      debugPrint('Error fetching video: $e');
     }
   }
 
@@ -251,48 +235,27 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is VideoLoaded) {
-                  return FutureBuilder(
-                    future: _initializeVideoPlayerFuture,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        _chewieController = ChewieController(
-                          videoPlayerController: _videoPlayerController,
-                          aspectRatio: _videoPlayerController.value.aspectRatio,
-                          autoPlay: true,
-                          looping: true,
-                          allowFullScreen: true,
-                          allowMuting: false,
-                          showControls: true,
-                          deviceOrientationsAfterFullScreen: [
-                            DeviceOrientation.portraitUp,
-                            DeviceOrientation.portraitDown,
-                          ],
-                        );
-                        return Container(
-                          child: Transform.scale(
-                            scale: getScale(),
-                            child: AspectRatio(
-                              aspectRatio:
-                                  _videoPlayerController.value.aspectRatio,
-                              child: Stack(
-                                children: [
-                                  Chewie(
-                                    controller: _chewieController,
-                                  ),
-                                  GestureDetector(
-                                    onTap: toggleVideoPlayback,
-                                    behavior: HitTestBehavior.opaque,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
+                  _controller = YoutubePlayerController(
+                    initialVideoId: state.videoEntity.key.toString(),
+                    flags: const YoutubePlayerFlags(
+                      mute: false,
+                      autoPlay: true,
+                      disableDragSeek: false,
+                      loop: false,
+                      isLive: false,
+                      forceHD: false,
+                      enableCaption: true,
+                    ),
+                  );
+                  return YoutubePlayer(
+                    controller: _controller,
+                    showVideoProgressIndicator: true,
+                    progressColors: const ProgressBarColors(
+                      playedColor: Colors.amber,
+                      handleColor: Colors.amberAccent,
+                    ),
+                    onReady: () {
+                      print('Player is ready.');
                     },
                   );
                 } else if (state is VideoError) {
