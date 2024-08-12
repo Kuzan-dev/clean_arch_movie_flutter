@@ -4,16 +4,16 @@ import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe_plus/youtube_player_iframe_plus.dart';
 import 'package:flutter/services.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard({
-    Key? key,
+    super.key,
     required this.detailsCard,
     required this.mediaDetails,
     required this.typeMedia,
-  }) : super(key: key);
+  });
 
   final Widget detailsCard;
   final dynamic mediaDetails;
@@ -185,13 +185,22 @@ class _VideoPlayerWidget extends StatefulWidget {
 class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   late final VideoUsecases _videoUsecases;
   late Future<VideoEntity> _videoFuture;
-  YoutubePlayerController? _controller;
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
     _videoUsecases = GetIt.I<VideoUsecases>();
-    _videoFuture = _fetchData();
+    _videoFuture = _fetchData().then((videoEntity) {
+      _controller = YoutubePlayerController(
+        initialVideoId: videoEntity.key.toString(),
+        params: const YoutubePlayerParams(
+          mute: false,
+          autoPlay: true,
+        ),
+      );
+      return videoEntity;
+    });
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
@@ -199,7 +208,8 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   }
 
   Future<VideoEntity> _fetchData() async {
-    final result = await _videoUsecases.getVideo(isMovie: widget.isMovie, id: widget.id);
+    final result =
+        await _videoUsecases.getVideo(isMovie: widget.isMovie, id: widget.id);
     return result.fold(
       (error) => throw Exception(error.message),
       (videoEntity) => videoEntity,
@@ -211,7 +221,7 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    _controller?.dispose();
+    _controller.close();
     super.dispose();
   }
 
@@ -231,41 +241,18 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
               child: Text('Error: ${snapshot.error}'),
             );
           } else if (snapshot.hasData) {
-            final videoEntity = snapshot.data!;
-            if (_controller == null || _controller!.initialVideoId != videoEntity.key.toString()) {
-              _controller?.dispose(); // Limpiar el controlador antiguo
-              _controller = YoutubePlayerController(
-                initialVideoId: videoEntity.key.toString(),
-                flags: const YoutubePlayerFlags(
-                  mute: false,
-                  autoPlay: true,
-                  disableDragSeek: false,
-                  loop: false,
-                  isLive: false,
-                  forceHD: false,
-                  enableCaption: true,
-                ),
-              );
-            }
-
             return Stack(
               children: [
-                YoutubePlayer(
-                  controller: _controller!,
-                  showVideoProgressIndicator: true,
-                  progressColors: const ProgressBarColors(
-                    playedColor: Colors.amber,
-                    handleColor: Colors.amberAccent,
-                  ),
-                  onReady: () {
-                    debugPrint('Player is ready.');
-                  },
+                YoutubePlayerIFramePlus(
+                  controller: _controller,
+                  aspectRatio: 20 / 9,
                 ),
                 Positioned(
                   top: 40,
                   left: 10,
                   child: IconButton(
-                    icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                    icon: const Icon(Icons.arrow_back_rounded,
+                        color: Colors.white),
                     onPressed: () {
                       Navigator.pop(context);
                     },
