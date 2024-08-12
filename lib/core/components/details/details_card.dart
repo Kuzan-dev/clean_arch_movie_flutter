@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:flutter/services.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard({
@@ -99,7 +100,8 @@ class DetailsCard extends StatelessWidget {
                               size: 18,
                             ),
                             Text(
-                              mediaDetails.voteAverage!.toStringAsFixed(1),
+                              mediaDetails.voteAverage?.toStringAsFixed(1) ??
+                                  'N/A',
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -181,43 +183,40 @@ class _VideoPlayerWidget extends StatefulWidget {
 }
 
 class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
-  late VideoCubit _videoCubit;
-  late YoutubePlayerController _controller;
+  late final VideoCubit _videoCubit;
+  YoutubePlayerController? _controller;
 
   @override
   void initState() {
     super.initState();
+    // Establecer la orientación a horizontal
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     _videoCubit = GetIt.I<VideoCubit>();
     _fetchData();
   }
 
   @override
   void deactivate() {
-    _controller.pause();
+    _controller?.pause();
     super.deactivate();
   }
 
   @override
   void dispose() {
+    // Restablecer la orientación vertical al cerrar el widget
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     _videoCubit.close();
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   void _fetchData() {
-    try {
-      _videoCubit.getVideo(widget.id, widget.isMovie);
-    } catch (e) {
-      debugPrint('Error fetching video: $e');
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant _VideoPlayerWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.id != widget.id) {
-      _fetchData();
-    }
+    _videoCubit.getVideo(widget.id, widget.isMovie);
   }
 
   @override
@@ -235,27 +234,29 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is VideoLoaded) {
-                  _controller = YoutubePlayerController(
-                    initialVideoId: state.videoEntity.key.toString(),
-                    flags: const YoutubePlayerFlags(
-                      mute: false,
-                      autoPlay: true,
-                      disableDragSeek: false,
-                      loop: false,
-                      isLive: false,
-                      forceHD: false,
-                      enableCaption: true,
-                    ),
-                  );
+                  if (_controller == null) {
+                    _controller = YoutubePlayerController(
+                      initialVideoId: state.videoEntity.key.toString(),
+                      flags: const YoutubePlayerFlags(
+                        mute: false,
+                        autoPlay: true,
+                        disableDragSeek: false,
+                        loop: false,
+                        isLive: false,
+                        forceHD: false,
+                        enableCaption: true,
+                      ),
+                    );
+                  }
                   return YoutubePlayer(
-                    controller: _controller,
+                    controller: _controller!,
                     showVideoProgressIndicator: true,
                     progressColors: const ProgressBarColors(
                       playedColor: Colors.amber,
                       handleColor: Colors.amberAccent,
                     ),
                     onReady: () {
-                      print('Player is ready.');
+                      debugPrint('Player is ready.');
                     },
                   );
                 } else if (state is VideoError) {
@@ -276,6 +277,10 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
             child: IconButton(
               icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
               onPressed: () {
+                // Restablecer la orientación vertical
+                SystemChrome.setPreferredOrientations([
+                  DeviceOrientation.portraitUp,
+                ]);
                 Navigator.pop(context);
               },
             ),
