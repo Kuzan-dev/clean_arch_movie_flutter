@@ -199,6 +199,14 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant _VideoPlayerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.id != widget.id) {
+      _fetchData();
+    }
+  }
+
+  @override
   void deactivate() {
     _controller?.pause();
     super.deactivate();
@@ -234,7 +242,8 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is VideoLoaded) {
-                  if (_controller == null) {
+                  // Actualizar el controlador solo si cambia el video
+                  if (_controller == null || _controller!.initialVideoId != state.videoEntity.key.toString()) {
                     _controller = YoutubePlayerController(
                       initialVideoId: state.videoEntity.key.toString(),
                       flags: const YoutubePlayerFlags(
