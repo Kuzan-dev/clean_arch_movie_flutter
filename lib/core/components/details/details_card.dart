@@ -1,12 +1,13 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
+import 'package:chewie/chewie.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/video/video_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:youtube_video_player/potrait_player.dart';
+import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard(
@@ -175,16 +176,56 @@ class _VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   late VideoCubit _videoCubit;
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
+  late Future<void> _initializeVideoPlayerFuture;
+  double videoContainerRatio = 0.5;
 
   @override
   void initState() {
     super.initState();
+    _videoPlayerController = VideoPlayerController.networkUrl(
+        Uri.parse('https://youtube.com/watch?v=${widget.id}'));
+    _initializeVideoPlayerFuture = _videoPlayerController.initialize();
+    _videoPlayerController.setVolume(1.0);
     _videoCubit = GetIt.I<VideoCubit>();
     _fetchData();
   }
 
+  @override
+  void dispose() {
+    _videoCubit.close();
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
+    super.dispose();
+  }
+
   void _fetchData() {
+  try {
     _videoCubit.getVideo(widget.id, widget.isMovie);
+  } catch (e) {
+    print('Error fetching video: $e');
+  }
+}
+
+  double getScale() {
+    double videoRatio = _videoPlayerController.value.aspectRatio;
+    if (videoRatio < videoContainerRatio) {
+      ///for tall videos, we just return the inverse of the controller aspect ratio
+      return videoContainerRatio / videoRatio;
+    } else {
+      ///for wide videos, divide the video AR by the fixed container AR
+      ///so that the video does not over scale
+      return videoRatio / videoContainerRatio;
+    }
+  }
+
+  void toggleVideoPlayback() {
+    if (_videoPlayerController.value.isPlaying) {
+      _chewieController.pause();
+    } else {
+      _chewieController.play();
+    }
   }
 
   @override
@@ -196,61 +237,87 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   }
 
   @override
-  void dispose() {
-    _videoCubit.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocProvider<VideoCubit>.value(
-      value: _videoCubit,
-      child: BlocBuilder<VideoCubit, VideoState>(
-        builder: (context, state) {
-          if (state is VideoLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is VideoLoaded) {
-            return Stack(
-              children: [
-                PotraitPlayer(
-                link: 'https://youtube.com/watch?v=${state.videoEntity.key}',
-                aspectRatio: 16 / 9,
-              ),
-                Positioned(
-                  top: 20,
-                  right: 20,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      body: Stack(
+        children: [
+          BlocProvider<VideoCubit>.value(
+            value: _videoCubit,
+            child: BlocBuilder<VideoCubit, VideoState>(
+              builder: (context, state) {
+                if (state is VideoLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is VideoLoaded) {
+                  return FutureBuilder(
+                    future: _initializeVideoPlayerFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        _chewieController = ChewieController(
+                          videoPlayerController: _videoPlayerController,
+                          aspectRatio: _videoPlayerController.value.aspectRatio,
+                          autoPlay: true,
+                          looping: true,
+                          allowFullScreen: true,
+                          allowMuting: false,
+                          showControls: true,
+                          deviceOrientationsAfterFullScreen: [
+                            DeviceOrientation.portraitUp,
+                            DeviceOrientation.portraitDown,
+                          ],
+                        );
+                        return Container(
+                          child: Transform.scale(
+                            scale: getScale(),
+                            child: AspectRatio(
+                              aspectRatio:
+                                  _videoPlayerController.value.aspectRatio,
+                              child: Stack(
+                                children: [
+                                  Chewie(
+                                    controller: _chewieController,
+                                  ),
+                                  GestureDetector(
+                                    onTap: toggleVideoPlayback,
+                                    behavior: HitTestBehavior.opaque,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
                     },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                        color: Colors.black54,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.close_rounded,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          } else if (state is VideoError) {
-            return Center(
-              child: Text(state.message),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+                  );
+                } else if (state is VideoError) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+          ),
+          Positioned(
+            top: 40,
+            left: 10,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
