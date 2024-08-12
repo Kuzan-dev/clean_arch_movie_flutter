@@ -13,6 +13,7 @@ import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_top_
 import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_view.dart';
 
 import 'package:clean_arch_movie_flutter/presentation/views/tv_show/tv_show_navigation_view.dart';
+import 'package:clean_arch_movie_flutter/presentation/views/util/video_view.dart';
 import 'package:clean_arch_movie_flutter/presentation/views/watchlist/watchlist_view.dart';
 import 'package:flutter/material.dart';
 part 'app_router.gr.dart';
@@ -33,11 +34,11 @@ class AppRouter extends _$AppRouter {
                 transitionsBuilder: TransitionsBuilders.fadeIn,
                 durationInMilliseconds: 500,
               ),
-              // CustomRoute(
-              //   page: MovieDetailRoute.page,
-              //   transitionsBuilder: TransitionsBuilders.fadeIn,
-              //   durationInMilliseconds: 500,
-              // ),
+              CustomRoute(
+                page: MovieDetailRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 500,
+              ),
               CustomRoute(
                 page: MoviePopularRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
@@ -58,11 +59,11 @@ class AppRouter extends _$AppRouter {
                 transitionsBuilder: TransitionsBuilders.fadeIn,
                 durationInMilliseconds: 500,
               ),
-              // CustomRoute(
-              //   page: TvShowDetailRoute.page,
-              //   transitionsBuilder: TransitionsBuilders.fadeIn,
-              //   durationInMilliseconds: 500,
-              // ),
+              CustomRoute(
+                page: TvShowDetailRoute.page,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                durationInMilliseconds: 500,
+              ),
               CustomRoute(
                 page: TvShowPopularRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
@@ -78,17 +79,8 @@ class AppRouter extends _$AppRouter {
                 page: WatchlistRoute.page, title: (_, __) => 'Watchlist'),
           ],
         ),
-
-        //Rutas de video:
         CustomRoute(
-          page: MovieDetailRoute.page,
-          transitionsBuilder: TransitionsBuilders.fadeIn,
-          durationInMilliseconds: 500,
-        ),
-        CustomRoute(
-          page: TvShowDetailRoute.page,
-          transitionsBuilder: TransitionsBuilders.fadeIn,
-          durationInMilliseconds: 500,
-        ),
+          page: VideoRoute.page,
+        )
       ];
 }

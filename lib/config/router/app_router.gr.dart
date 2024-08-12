@@ -117,6 +117,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const TvShowView(),
       );
     },
+    VideoRoute.name: (routeData) {
+      final args = routeData.argsAs<VideoRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: VideoView(
+          key: args.key,
+          id: args.id,
+          type: args.type,
+        ),
+      );
+    },
     WatchlistRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -438,6 +449,49 @@ class TvShowRoute extends PageRouteInfo<void> {
   static const String name = 'TvShowRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [VideoView]
+class VideoRoute extends PageRouteInfo<VideoRouteArgs> {
+  VideoRoute({
+    Key? key,
+    required int id,
+    required String type,
+    List<PageRouteInfo>? children,
+  }) : super(
+          VideoRoute.name,
+          args: VideoRouteArgs(
+            key: key,
+            id: id,
+            type: type,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'VideoRoute';
+
+  static const PageInfo<VideoRouteArgs> page = PageInfo<VideoRouteArgs>(name);
+}
+
+class VideoRouteArgs {
+  const VideoRouteArgs({
+    this.key,
+    required this.id,
+    required this.type,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  final String type;
+
+  @override
+  String toString() {
+    return 'VideoRouteArgs{key: $key, id: $id, type: $type}';
+  }
 }
 
 /// generated route for

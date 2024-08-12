@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
@@ -31,14 +33,10 @@ class DetailsCard extends StatelessWidget {
             child: Center(
               child: InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      fullscreenDialog: true,
-                      builder: (context) => _VideoPlayerWidget(
-                        id: mediaDetails.id,
-                        isMovie: typeMedia == 'movie',
-                      ),
+                  AutoRouter.of(context).push(
+                    VideoRoute(
+                      id: mediaDetails.id!,
+                      type: typeMedia,
                     ),
                   );
                 },
