@@ -120,6 +120,13 @@ void bottomSheetShow(BuildContext context, Widget child) {
   );
 }
 
+Widget buildWidgetVideo(Widget build) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 2),
+    child: build,
+  );
+}
+
 Widget castList(List<CastEntity>? castList) {
   if (castList!.isNotEmpty) {
     return Column(

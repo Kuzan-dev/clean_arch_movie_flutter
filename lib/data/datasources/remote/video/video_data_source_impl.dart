@@ -12,15 +12,15 @@ class VideoRemoteDataSourceImpl implements VideoRemoteDataSource {
   Future<VideoModel> getVideo({required bool isMovie, required int id}) async {
     try {
       if (isMovie) {
-        final response = await _dioClient.get(UrlConstants.movieVideos,
-            queryParameters: {'id': id.toString()});
+        final response = await _dioClient.get(
+            UrlConstants.movieVideos.replaceAll('{movie_id}', id.toString()));
 
         final modelV =
             VideoModel.fromJson(response.data as Map<String, dynamic>);
         return modelV;
       } else if (!isMovie) {
-        final response = await _dioClient.get(UrlConstants.tvShowVideos,
-            queryParameters: {'id': id.toString()});
+        final response = await _dioClient.get(
+            UrlConstants.tvShowVideos.replaceAll('{series_id}', id.toString()));
 
         final modelV =
             VideoModel.fromJson(response.data as Map<String, dynamic>);

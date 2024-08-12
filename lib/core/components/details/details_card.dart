@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/presentation/controllers/video/video_cubit.dart';
@@ -28,18 +30,12 @@ class DetailsCard extends StatelessWidget {
             child: Center(
               child: InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Scaffold(
-                        appBar: AppBar(),
-                        body: _VideoPlayerWidget(
-                          id: mediaDetails.id!,
-                          isMovie: typeMedia == 'movie',
-                        ),
-                      ),
-                    ),
-                  );
+                  bottomSheetShow(
+                      context,
+                      _VideoPlayerWidget(
+                        id: mediaDetails.id!,
+                        isMovie: typeMedia == 'movie',
+                      ));
                 },
                 child: Container(
                   height: 50,

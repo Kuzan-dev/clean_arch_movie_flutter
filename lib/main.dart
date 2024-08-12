@@ -2,7 +2,6 @@ import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
 import 'package:clean_arch_movie_flutter/core/database/local_database.dart';
 import 'package:clean_arch_movie_flutter/core/network/dio_client.dart';
 import 'package:clean_arch_movie_flutter/data/datasources/export_datasources.dart';
-import 'package:clean_arch_movie_flutter/data/datasources/remote/search/search_data_source_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/movies/movie_repository_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/search/search_repository_impl.dart';
 import 'package:clean_arch_movie_flutter/data/repositories/tv_show/tv_show_repository_impl.dart';
