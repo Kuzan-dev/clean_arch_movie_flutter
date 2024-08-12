@@ -33,11 +33,11 @@ class AppRouter extends _$AppRouter {
                 transitionsBuilder: TransitionsBuilders.fadeIn,
                 durationInMilliseconds: 500,
               ),
-              CustomRoute(
-                page: MovieDetailRoute.page,
-                transitionsBuilder: TransitionsBuilders.fadeIn,
-                durationInMilliseconds: 500,
-              ),
+              // CustomRoute(
+              //   page: MovieDetailRoute.page,
+              //   transitionsBuilder: TransitionsBuilders.fadeIn,
+              //   durationInMilliseconds: 500,
+              // ),
               CustomRoute(
                 page: MoviePopularRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
@@ -58,11 +58,11 @@ class AppRouter extends _$AppRouter {
                 transitionsBuilder: TransitionsBuilders.fadeIn,
                 durationInMilliseconds: 500,
               ),
-              CustomRoute(
-                page: TvShowDetailRoute.page,
-                transitionsBuilder: TransitionsBuilders.fadeIn,
-                durationInMilliseconds: 500,
-              ),
+              // CustomRoute(
+              //   page: TvShowDetailRoute.page,
+              //   transitionsBuilder: TransitionsBuilders.fadeIn,
+              //   durationInMilliseconds: 500,
+              // ),
               CustomRoute(
                 page: TvShowPopularRoute.page,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
@@ -77,6 +77,18 @@ class AppRouter extends _$AppRouter {
             AdaptiveRoute(
                 page: WatchlistRoute.page, title: (_, __) => 'Watchlist'),
           ],
+        ),
+
+        //Rutas de video:
+        CustomRoute(
+          page: MovieDetailRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 500,
+        ),
+        CustomRoute(
+          page: TvShowDetailRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 500,
         ),
       ];
 }

@@ -30,12 +30,14 @@ class DetailsCard extends StatelessWidget {
             child: Center(
               child: InkWell(
                 onTap: () {
-                  bottomSheetShow(
-                      context,
-                      _VideoPlayerWidget(
-                        id: mediaDetails.id!,
-                        isMovie: typeMedia == 'movie',
-                      ));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (context) => _VideoPlayerWidget(
+                            id: mediaDetails.id,
+                            isMovie: typeMedia == 'movie')),
+                  );
                 },
                 child: Container(
                   height: 50,
@@ -194,6 +196,12 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   }
 
   @override
+  void dispose() {
+    _videoCubit.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider<VideoCubit>.value(
       value: _videoCubit,
@@ -204,9 +212,34 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
               child: CircularProgressIndicator(),
             );
           } else if (state is VideoLoaded) {
-            return PotraitPlayer(
-              link: 'https://youtube.com/watch?v=${state.videoEntity.key}',
-              aspectRatio: 16 / 9,
+            return Stack(
+              children: [
+                PotraitPlayer(
+                link: 'https://youtube.com/watch?v=${state.videoEntity.key}',
+                aspectRatio: 16 / 9,
+              ),
+                Positioned(
+                  top: 20,
+                  right: 20,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.black54,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             );
           } else if (state is VideoError) {
             return Center(
