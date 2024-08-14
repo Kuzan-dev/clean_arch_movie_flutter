@@ -158,7 +158,7 @@ class MovieDetailsWidget extends StatelessWidget {
         // Add more details card here
         buildOverSection(movieDetails.overview),
         castList(movieCredit.cast),
-        similarSection(similarMovies, 'movie'),
+        similarSection(similarMovies, true),
         // const SizedBox(height: 18),
       ]),
     ));

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:clean_arch_movie_flutter/core/components/carrousell/image_with_shimmer.dart';
 
 class SectionListViewCard extends StatelessWidget {
-  final String typeMedia;
+  final bool? isMovie;
   final dynamic media;
 
   const SectionListViewCard({
     required this.media,
-    required this.typeMedia,
+    required this.isMovie,
     super.key,
   });
 
@@ -22,7 +22,7 @@ class SectionListViewCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              navigateToDetailsView(context, typeMedia, media.id!);
+              navigateToDetailsView(context, isMovie!, media.id!);
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),

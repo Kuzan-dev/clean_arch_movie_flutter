@@ -10,7 +10,6 @@ import 'package:clean_arch_movie_flutter/core/components/header/header_section.d
 import 'package:clean_arch_movie_flutter/core/components/header/header_title.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/util/cast.dart';
-import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -18,14 +17,14 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 //Función para navegar a la vista de detalles de movie/tv_show/person
 void navigateToDetailsView(
   BuildContext context,
-  String typeMedia,
+  bool isMedia,
   int id,
 ) {
-  if (typeMedia == 'movie') {
+  if (isMedia) {
     AutoRouter.of(context).push(MovieDetailRoute(movieId: id));
-  } else if (typeMedia == 'tv_show') {
+  } else if (isMedia == false) {
     AutoRouter.of(context).push(TvShowDetailRoute(tvshowId: id));
-  } else if (typeMedia == 'person') {
+  } else if (isMedia) {
   } else {
     throw Exception('Unknown type media');
   }
@@ -147,7 +146,7 @@ Widget castList(List<CastEntity>? castList) {
   return const SizedBox();
 }
 
-Widget similarSection(List<MovieDetailsEntity> movieList, String typeMedia) {
+Widget similarSection(List<MovieDetailsEntity> movieList, bool isMovie) {
   if (movieList.isNotEmpty) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +157,7 @@ Widget similarSection(List<MovieDetailsEntity> movieList, String typeMedia) {
           itemCount: movieList.length,
           itemBuilder: (context, index) {
             return SectionListViewCard(
-              typeMedia: typeMedia,
+              isMovie: isMovie,
               media: movieList[index],
             );
           },

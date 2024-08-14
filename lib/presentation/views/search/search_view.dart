@@ -10,8 +10,7 @@ class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _SearchViewState createState() => _SearchViewState();
+  State<SearchView> createState() => _SearchViewState();
 }
 
 class _SearchViewState extends State<SearchView> {
@@ -84,9 +83,7 @@ class _SearchViewState extends State<SearchView> {
                                 padding: const EdgeInsets.fromLTRB(3, 2, 3, 2),
                                 child: SectionListViewCard(
                                   media: searchEntity,
-                                  typeMedia: searchEntity.isMovie!
-                                      ? 'movie'
-                                      : 'tv_show',
+                                  isMovie: searchEntity.isMovie,
                                 ),
                               );
                             },

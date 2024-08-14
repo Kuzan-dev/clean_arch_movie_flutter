@@ -6,7 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class SliderCard extends StatefulWidget {
-  final String mediaType;
+  final bool isMovie;
   final List<dynamic> list;
   final int index;
 
@@ -14,7 +14,7 @@ class SliderCard extends StatefulWidget {
       {super.key,
       required this.list,
       required this.index,
-      required this.mediaType});
+      required this.isMovie});
 
   @override
   State<SliderCard> createState() => _SliderCardState();
@@ -90,7 +90,7 @@ class _SliderCardState extends State<SliderCard> {
             isClip: true,
             onClickItem: (index) {
               navigateToDetailsView(
-                  context, widget.mediaType, widget.list[index].id);
+                  context, widget.isMovie, widget.list[index].id);
             },
             onItemChanged: (index) {
               setState(() {

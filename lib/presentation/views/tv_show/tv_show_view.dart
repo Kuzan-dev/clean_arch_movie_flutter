@@ -52,14 +52,15 @@ class TvShowView extends StatelessWidget {
                     child: Column(
                       children: [
                         SliderCard(
-                          mediaType: 'tv_show',
+                          isMovie: false,
                           list: popularState.tvshows,
                           index: 0,
                         ),
                         HeaderTitle(
                           title: 'Popular TV Shows',
                           onTap: () {
-                            navigateToSectionView(context, 'Popular', 'tv_show', popularState.tvshows);
+                            navigateToSectionView(context, 'Popular', 'tv_show',
+                                popularState.tvshows);
                           },
                         ),
                         CarrousellCard(
@@ -67,7 +68,7 @@ class TvShowView extends StatelessWidget {
                           itemCount: popularState.tvshows.length,
                           itemBuilder: (context, index) {
                             return SectionListViewCard(
-                              typeMedia: 'tv_show',
+                              isMovie: false,
                               media: popularState.tvshows[index],
                             );
                           },
@@ -89,7 +90,7 @@ class TvShowView extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return SectionListViewCard(
                               media: topRatedState.tvshows[index],
-                              typeMedia: 'tv_show',
+                              isMovie: false,
                             );
                           },
                         ),

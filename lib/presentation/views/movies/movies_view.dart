@@ -53,14 +53,15 @@ class MoviesView extends StatelessWidget {
                       child: Column(
                     children: [
                       SliderCard(
-                        mediaType: 'movie',
+                        isMovie: true,
                         list: popular1State.movies,
                         index: 0,
                       ),
                       HeaderTitle(
                         title: 'Popular Movies',
                         onTap: () {
-                          navigateToSectionView( context, 'Popular','movie', popular1State.movies);
+                          navigateToSectionView(context, 'Popular', 'movie',
+                              popular1State.movies);
                         },
                       ),
                       CarrousellCard(
@@ -69,14 +70,15 @@ class MoviesView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return SectionListViewCard(
                             media: popular1State.movies[index],
-                            typeMedia: 'movie',
+                            isMovie: true,
                           );
                         },
                       ),
                       HeaderTitle(
                         title: 'Top Rated Movies',
                         onTap: () {
-                          navigateToSectionView( context, 'Top Rated','movie', topRated1State.movies);
+                          navigateToSectionView(context, 'Top Rated', 'movie',
+                              topRated1State.movies);
                         },
                       ),
                       CarrousellCard(
@@ -85,7 +87,7 @@ class MoviesView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return SectionListViewCard(
                             media: topRated1State.movies[index],
-                            typeMedia: 'movie',
+                            isMovie: true,
                           );
                         },
                       ),
