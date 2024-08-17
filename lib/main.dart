@@ -33,12 +33,19 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'injector.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
   await init();
+  await injector<LocalDatabase>().initialize();
+  final directory = await getApplicationDocumentsDirectory();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: directory,
+  );
   runApp(
     MyApp(),
   );
@@ -76,8 +83,8 @@ class MyApp extends StatelessWidget {
           create: (context) => injector<GetCreditMoviesCubit>(),
         ),
         Provider<WatchlistCubit>(
-          create: (context) => injector<WatchlistCubit>(),
-        ),
+            create: (context) =>
+                injector<WatchlistCubit>()..getSavedWatchlist()),
         Provider<ToggleMediaCubit>(
           create: (context) => injector<ToggleMediaCubit>(),
         ),

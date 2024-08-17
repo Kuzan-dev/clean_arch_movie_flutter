@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clean_arch_movie_flutter/config/router/app_router.dart';
 import 'package:clean_arch_movie_flutter/core/components/details/slider_card_image.dart';
+import 'package:clean_arch_movie_flutter/core/components/watchlist_button/watchlist_button.dart';
 import 'package:clean_arch_movie_flutter/core/extras/functions.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
+import 'package:clean_arch_movie_flutter/domain/entities/watchlist/watchlist.dart';
 import 'package:clean_arch_movie_flutter/domain/usecases/export_usecases.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -20,6 +22,30 @@ class DetailsCard extends StatelessWidget {
   final Widget detailsCard;
   final dynamic mediaDetails;
   final String typeMedia;
+
+  WatchlistEntity _mapToWatchlistEntity(
+      dynamic mediaDetails, String typeMedia) {
+    if (mediaDetails is MovieDetailsEntity) {
+      return WatchlistEntity(
+        id: mediaDetails.id!,
+        title: mediaDetails.title!,
+        posterUrl: mediaDetails.posterUrl!,
+        isMovie: true,
+        voteAverage: mediaDetails.voteAverage!,
+      );
+    } else if (mediaDetails is TvShowDetailsEntity) {
+      return WatchlistEntity(
+        id: mediaDetails.id!,
+        title:
+            mediaDetails.title!, // Usamos name en lugar de title para TV Shows
+        posterUrl: mediaDetails.posterUrl!,
+        isMovie: false,
+        voteAverage: mediaDetails.voteAverage!,
+      );
+    } else {
+      throw Exception('Invalid media type');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,20 +170,8 @@ class DetailsCard extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    color: Colors.black54,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.bookmark_rounded,
-                    color: Colors.white,
-                  ),
-                ),
+              WatchlistButton.filled(
+                watchlistEntity: _mapToWatchlistEntity(mediaDetails, typeMedia),
               ),
             ],
           ),

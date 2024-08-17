@@ -15,53 +15,50 @@ class WatchlistButton extends StatelessWidget {
 
   WatchlistButton.filled({super.key, required this.watchlistEntity})
       : _buttonStyle = ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
-        shape: WidgetStateProperty.all( RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0)
-        )),
-        elevation: WidgetStateProperty.all<double>(1.5),
-        shadowColor: WidgetStateProperty.all<Color>(Colors.black87),
+          backgroundColor: WidgetStateProperty.all<Color>(Colors.black45),
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0))),
+          elevation: WidgetStateProperty.all<double>(1.5),
+          shadowColor: WidgetStateProperty.all<Color>(Colors.black),
         );
   @override
-  Widget build(BuildContext context){
-    return BlocBuilder<WatchlistCubit, WatchListState>(
-      builder: (_, state) {
-        if (state is WatchListLoaded){
-          bool isAdded = state.media?.any((element)=> element.id == watchlistEntity?.id) ?? false;
+  Widget build(BuildContext context) {
+    return BlocBuilder<WatchlistCubit, WatchListState>(builder: (_, state) {
+      if (state is WatchListLoaded) {
+        bool isAdded =
+            state.media?.any((element) => element.id == watchlistEntity?.id) ??
+                false;
 
-          return IconButton(
-            style: _buttonStyle,
-            padding: EdgeInsets.zero,
-            onPressed: () async {
-              await GetIt.I<ToggleMediaCubit>()
+        return IconButton(
+          style: _buttonStyle,
+          padding: EdgeInsets.zero,
+          onPressed: () async {
+            await GetIt.I<ToggleMediaCubit>()
                 .toggleWatchList(watchlistEntity: watchlistEntity!)
-                .then((_) => context.read<WatchlistCubit>().
-                getSavedWatchlist());
+                .then(
+                    (_) => context.read<WatchlistCubit>().getSavedWatchlist());
 
-              isAdded = !isAdded;             
-            },
-            icon: AnimatedCrossFade(
-              firstChild: Icon(
-                Icons.bookmark,
-                size: 30,
-                color: Colors.blue,
-              ),
-
-              secondChild: Icon(
-                Icons.bookmark_border,
-                size: 30,
-                color: Colors.blue,
-              ),
-              crossFadeState: isAdded ? CrossFadeState.showFirst :
-              CrossFadeState.showSecond,
-              duration: const Duration(milliseconds: 300),
+            isAdded = !isAdded;
+          },
+          icon: AnimatedCrossFade(
+            firstChild: const Icon(
+              Icons.bookmark,
+              size: 27,
+              color: Colors.white,
             ),
-          );
-        }
-
-        return const SizedBox();
+            secondChild: const Icon(
+              Icons.bookmark_border,
+              size: 27,
+              color: Colors.white,
+            ),
+            crossFadeState:
+                isAdded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+            duration: const Duration(milliseconds: 300),
+          ),
+        );
       }
-    );
+
+      return const SizedBox();
+    });
   }
 }
-

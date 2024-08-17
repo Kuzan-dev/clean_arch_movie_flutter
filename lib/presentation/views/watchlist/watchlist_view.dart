@@ -26,7 +26,13 @@ class WatchlistView extends StatelessWidget {
       child: Column(
         children: [
           const Padding(padding: EdgeInsets.only(top: 30)),
-          const Text('Watchlist'),
+          const Text(
+            'Watchlist',
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+            ),
+          ),
           Expanded(child: BlocBuilder<WatchlistCubit, WatchListState>(
             builder: (context, watchlistState) {
               if (watchlistState is WatchlistLoading &&
@@ -55,7 +61,7 @@ class WatchlistView extends StatelessWidget {
                             ),
                           );
                         },
-                        itemCount: 10,
+                        itemCount: media.length,
                       ),
                     )
                   ],
