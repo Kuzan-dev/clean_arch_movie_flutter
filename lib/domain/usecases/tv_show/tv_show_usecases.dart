@@ -2,7 +2,6 @@ import 'package:clean_arch_movie_flutter/domain/repositories/tv_show/tv_show_rep
 import 'package:fpdart/fpdart.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:clean_arch_movie_flutter/core/exceptions/network_exception.dart';
-import 'package:clean_arch_movie_flutter/core/exceptions/database_exception.dart';
 
 class TvShowUsecases {
   final TvShowRepository _repository;
@@ -56,30 +55,5 @@ class TvShowUsecases {
   Future<Either<NetworkException, TvShowListEntity>> getSimilarTvShows(
       {required int tvShowId, required int page}) async {
     return _repository.getSimilarTvShows(tvShowId: tvShowId, page: page);
-  }
-
-  //* Local Data Source
-  Future<Either<DatabaseException, List<TvShowDetailsEntity>>>
-      getSavedTvShowDetails() async {
-    return _repository.getSavedTvShowDetails();
-  }
-
-  //Este método alterna el marcador de una película en la fuente de datos local.
-  Future<Either<DatabaseException, void>> toggleTvShowSavedStatus(
-      {required TvShowDetailsEntity tvShowDetails}) async {
-    final isSaved =
-        await _repository.isTvShowSaved(tvShowId: tvShowDetails.id!);
-    return isSaved.fold(
-      (error) {
-        return left(error);
-      },
-      (isSaved) {
-        if (isSaved) {
-          return _repository.deleteTvShowDetails(tvShowId: tvShowDetails.id!);
-        } else {
-          return _repository.saveTvShowDetails(tvShowDetails: tvShowDetails);
-        }
-      },
-    );
   }
 }

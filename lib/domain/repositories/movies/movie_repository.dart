@@ -1,4 +1,3 @@
-import 'package:clean_arch_movie_flutter/core/exceptions/database_exception.dart';
 import 'package:clean_arch_movie_flutter/core/exceptions/network_exception.dart';
 import 'package:clean_arch_movie_flutter/domain/entities/export_entities.dart';
 import 'package:fpdart/fpdart.dart';
@@ -23,20 +22,4 @@ abstract class MovieRepository {
   // Get similar movies
   Future<Either<NetworkException, MovieListEntity>> getSimilarMovies(
       {required int movieId, required int page});
-
-  //Data Local
-  //Get favorite movies
-  Future<Either<DatabaseException, List<MovieDetailsEntity>>>
-      getFavoriteMovies();
-
-  //Save a movie detail as favorite
-  Future<Either<DatabaseException, void>> saveMovieDetails(
-      {required MovieDetailsEntity? movieDetailsEntity});
-
-  //Remove a movie detail from favorite
-  Future<Either<DatabaseException, void>> removeMovieDetails(
-      {required int? movieId});
-
-  //Check if a movie detail is favorite
-  Future<Either<DatabaseException, bool>> isFavorite({required int? movieId});
 }

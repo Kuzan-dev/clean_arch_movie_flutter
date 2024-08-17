@@ -40,29 +40,4 @@ class MoviesUsecases {
       {required int movieId, required int page}) async {
     return _repository.getSimilarMovies(movieId: movieId, page: page);
   }
-
-  //* Fuente de datos local
-  Future<Either<DatabaseException, List<MovieDetailsEntity>>>
-      getFavoriteMovies() async {
-    return _repository.getFavoriteMovies();
-  }
-
-  //Este método alterna el marcador de una película en la fuente de datos local.
-
-  Future<Either<DatabaseException, void>> toggleFavoriteMovie(
-      {required MovieDetailsEntity? movieDetailsEntity}) async {
-    final isSaved =
-        await _repository.isFavorite(movieId: movieDetailsEntity?.id);
-
-    return isSaved.fold((error) {
-      return left(error);
-    }, (isSaved) {
-      if (isSaved) {
-        return _repository.removeMovieDetails(movieId: movieDetailsEntity?.id);
-      } else {
-        return _repository.saveMovieDetails(
-            movieDetailsEntity: movieDetailsEntity);
-      }
-    });
-  }
 }

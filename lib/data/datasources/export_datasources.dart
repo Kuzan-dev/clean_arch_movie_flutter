@@ -1,7 +1,5 @@
-export 'local/movies/movie_local_data_source.dart';
-export 'local/movies/movie_local_data_source_impl.dart';
-export 'local/tv_show/tv_show_local_data_source.dart';
-export 'local/tv_show/tv_show_local_data_source_impl.dart';
+export 'local/watchlist/watchlist_local_data_source.dart';
+export 'local/watchlist/watchlist_local_data_source_impl.dart';
 export 'remote/movies/movie_remote_data_source.dart';
 export 'remote/movies/movie_remote_data_source_impl.dart';
 export 'remote/tv_show/tv_show_data_souce.dart';
