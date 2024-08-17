@@ -16,6 +16,8 @@ Future<void> init() async {
         () => SearchRemoteDataSourceImpl(injector()))
     ..registerLazySingleton<VideoRemoteDataSource>(
         () => VideoRemoteDataSourceImpl(injector()))
+    ..registerLazySingleton<WatchlistLocalDataSource>(
+      () => WatchlistLocalDataSourceImpl(injector()))
 
     // Registra TvShowUsecases
     ..registerLazySingleton<TvShowRepository>(
@@ -37,7 +39,16 @@ Future<void> init() async {
         () => VideoRepositoryImpl(injector()))
     ..registerLazySingleton<VideoUsecases>(() => VideoUsecases(injector()))
 
-    // Bloc TvShows
+    //Registra WatchlistUsecases
+    ..registerLazySingleton<WatchlistRepository>(
+        () => WatchlistRepositoryImpl(injector()))
+    ..registerLazySingleton<WatchlistUsecases>(
+        () => WatchlistUsecases(injector()))
+
+    // Bloc Watchlist
+    ..registerLazySingleton<WatchlistCubit>(
+        () => WatchlistCubit(injector<WatchlistUsecases>()))
+    ..registerSingleton(ToggleMediaCubit(injector<WatchlistUsecases>()))
 
     // Bloc Movies
     ..registerLazySingleton<GetPopularMoviesCubit>(

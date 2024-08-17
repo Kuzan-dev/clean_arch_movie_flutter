@@ -17,9 +17,11 @@ class VideoModel extends Equatable with EntityConvertible<VideoModel, VideoEntit
   factory VideoModel.fromJson(Map<String, dynamic> json) {
     final results = json['results'] as List<dynamic>;
 
-    //Filtramos el primer resultado cuyo 'site' sea 'Youtube':
+    // Filtramos el primer resultado cuyo 'site' sea 'YouTube'
+    // y el 'type' sea igual a "Trailer" o "Teaser":
     final youtubeVideo = results.firstWhere(
-      (result) => result['site'] == 'YouTube',
+      (result) => result['site'] == 'YouTube' && 
+                  (result['type'] == 'Trailer'),
       orElse:() => null,
     );
 

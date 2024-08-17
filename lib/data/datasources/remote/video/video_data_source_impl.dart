@@ -13,14 +13,14 @@ class VideoRemoteDataSourceImpl implements VideoRemoteDataSource {
     try {
       if (isMovie) {
         final response = await _dioClient.get(
-            UrlConstants.movieVideos.replaceAll('{movie_id}', id.toString()));
+            UrlConstants.movieVideos.replaceAll('{movie_id}', id.toString()), queryParameters: {'language': 'es-MX'});
 
         final modelV =
             VideoModel.fromJson(response.data as Map<String, dynamic>);
         return modelV;
       } else if (!isMovie) {
         final response = await _dioClient.get(
-            UrlConstants.tvShowVideos.replaceAll('{series_id}', id.toString()));
+            UrlConstants.tvShowVideos.replaceAll('{series_id}', id.toString()), queryParameters: {'language': 'es-MX'});
 
         final modelV =
             VideoModel.fromJson(response.data as Map<String, dynamic>);
